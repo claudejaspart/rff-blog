@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.d-flex {
+   font-family: 'Montserrat', sans-serif;
+   background-color: #2B2A33;
+}
+
+.text-center {
+   background-color: #37363F;
+   
+}
+
+h1 {
+   font-family: 'Permanent Marker', cursive;
+   color: #FFCE54;
+   font-size: 3vw;
+   letter-spacing: 8px;
+   margin-bottom: 0;
+}
+
+p {
+   margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+   h1 {
+      font-size: 5vw;
+      letter-spacing: 15px;
+   }
+}
