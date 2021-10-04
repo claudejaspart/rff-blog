@@ -1,11 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-
-.d-flex {
-   font-family: 'Montserrat', sans-serif;
-   background-color: #2B2A33;
-}
-
 .text-center {
    background-color: #37363F;
    
@@ -14,18 +6,57 @@
 h1 {
    font-family: 'Permanent Marker', cursive;
    color: #FFCE54;
-   font-size: 3vw;
+   font-size: 7rem;
    letter-spacing: 8px;
    margin-bottom: 0;
 }
 
-p {
-   margin-bottom: 0;
+.person-custom {
+   font-size: 5rem;
+   color: #4FC2EA;
+   position: absolute;
+   width: 78px;
+   height: 53px;
+   left: 342px;
+   top: 325px;
 }
 
-@media (min-width: 768px) {
-   h1 {
-      font-size: 5vw;
-      letter-spacing: 15px;
-   }
+button {
+   background-color: #FFCE54;
+   position: absolute;
+   width: 417px;
+   height: 91px;
+   left: 350px;
+   top: 445px;
+   border-radius: 10px;
+   font-size: 2.7rem;
+   padding-bottom: 10px;
+}
+
+.logo-container {
+   position: absolute;
+   left: 925px;
+   top: 150px;
+}
+
+.logo-robot {
+   width: 600px;
+   object-fit: contain;
+}
+
+.robotic-hand {
+   position: absolute;
+   width: 130px;
+   height: 130px;
+   left: 750px;
+   top: 519px;
+   z-index: 5000;
+}
+
+
+footer {
+   margin-bottom: 0;
+   position: absolute;
+   bottom: 0;
+   display: inline-block;
 }
