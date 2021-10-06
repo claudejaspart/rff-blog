@@ -1,0 +1,59 @@
+.person-custom {
+   font-size: 5rem;
+   color: var(--secondary-lightBlue);
+   position: absolute;
+   width: 78px;
+   height: 53px;
+   left: 342px;
+   top: 325px;
+}
+
+button {
+   font-family: 'Montserrat', sans-serif;
+   background-color: var(--tertiary-yellow);
+   position: absolute;
+   width: 417px;
+   height: 91px;
+   left: 350px;
+   top: 445px;
+   border-radius: 10px;
+   font-size: 2.7rem;
+   padding-bottom: 10px;
+   transition: .3s;
+}
+
+button:hover {
+   animation: pulse 1s infinite;
+   transition: .3s;
+ }
+ @keyframes pulse {
+   0% {
+     transform: scale(1);
+   }
+   70% {
+     transform: scale(.9);
+   }
+     100% {
+     transform: scale(1);
+   }
+ }
+
+.logo-container {
+   position: absolute;
+   left: 925px;
+   top: 150px;
+}
+
+.logo-robot {
+   width: 600px;
+   object-fit: contain;
+}
+
+.robotic-hand {
+   position: absolute;
+   width: 130px;
+   height: 130px;
+   left: 750px;
+   top: 519px;
+   z-index: 5000;
+}
