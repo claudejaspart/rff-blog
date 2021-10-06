@@ -1,24 +1,18 @@
 <div>
-   <div class="text-center">
-      <h1>{{ blogTitle }}</h1>
-   </div>
 
+   <app-header></app-header>
    <div class="main-container">
       <i class="bi bi-person person-custom"></i>
       <div class="robotic-hand">
          <img src="./assets/images/rsz_robotic_hand.png" alt="main robotique en guise de curseur" >
       </div>
-      <button type="submit" class="fw-bold">google me in !</button>
+      <button routerLink="/dashboard" type="submit" class="fw-bold">google me in !</button>
       <div class="logo-container">
          <img class="logo-robot" src="./assets/images/rsz_robot_logo.png" alt="logo du site qui représente un robot multicolore">
       </div>
       
    </div>
+   <app-footer></app-footer>
 
-<!--    <footer class="footer mt-auto text-center">
-      <p class="text-white badge badge-warning">Robotics For Fun &copy; 2021 - <a href="#" class="link-light">Sébastien GUERAULT</a> | 
-         <a href="#">Contact</a>
-      </p>
-   </footer> -->
 </div>
 

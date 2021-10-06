@@ -1,19 +1,6 @@
-.text-center {
-   background-color: #37363F;
-   
-}
-
-h1 {
-   font-family: 'Permanent Marker', cursive;
-   color: #FFCE54;
-   font-size: 7rem;
-   letter-spacing: 8px;
-   margin-bottom: 0;
-}
-
 .person-custom {
    font-size: 5rem;
-   color: #4FC2EA;
+   color: var(--secondary-lightBlue);
    position: absolute;
    width: 78px;
    height: 53px;
@@ -22,7 +9,8 @@ h1 {
 }
 
 button {
-   background-color: #FFCE54;
+   font-family: 'Montserrat', sans-serif;
+   background-color: var(--tertiary-yellow);
    position: absolute;
    width: 417px;
    height: 91px;
@@ -31,7 +19,24 @@ button {
    border-radius: 10px;
    font-size: 2.7rem;
    padding-bottom: 10px;
+   transition: .3s;
 }
+
+button:hover {
+   animation: pulse 1s infinite;
+   transition: .3s;
+ }
+ @keyframes pulse {
+   0% {
+     transform: scale(1);
+   }
+   70% {
+     transform: scale(.9);
+   }
+     100% {
+     transform: scale(1);
+   }
+ }
 
 .logo-container {
    position: absolute;
@@ -51,12 +56,4 @@ button {
    left: 750px;
    top: 519px;
    z-index: 5000;
-}
-
-
-footer {
-   margin-bottom: 0;
-   position: absolute;
-   bottom: 0;
-   display: inline-block;
 }
