@@ -1,3 +1,87 @@
-p {
+*, *::before, *::after{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box; 
+}
+
+
+.dashboard-header {
+   background-color: var(--header-and-footer-color);
+   display: flex;
+   align-items: center;
+   border: 2px solid white;
+}
+
+.header {
+   flex: 0 0 80%;
+}
+
+.login-credentials {
+   flex: 0 0 17%;
+}
+
+h2 {
+   font-family: 'Montserrat', sans-serif;
+   color: var(--tertiary-yellow);
+   font-size: 2.5rem;
+   margin-left: 25px;
+   padding: 8px 0;
+}
+
+.welcome-message {
+   font-family: 'Montserrat', sans-serif;
    color: var(--main-white);
 }
+
+.logout-icon-custom {
+   color: var(--secondary-lightBlue);
+   font-size: 2rem;
+}
+
+.left-panel {
+   display: flex;
+   flex-direction: column;
+   margin: 0 25px;
+}
+
+label {
+   color: var(--main-white);
+   margin-top: 15px;
+}
+
+select {
+   background-color: var(--tertiary-yellow);
+   width: 12%;
+}
+
+img:first-of-type {
+   position: absolute;
+   width: 2.5rem;
+   left: 257px;
+   top: 109px;
+}
+
+.date-selection-panel {
+   left: 25px;
+   top: 145px;
+}
+
+input {
+   width: 12%;
+   margin-left: 50px;
+   color: var(--main-white);
+}
+
+.date-input {
+   background-color: var(--header-and-footer-color);
+}
+
+.date-icon-custom {
+   color: var(--tertiary-yellow);
+   font-size: 1.5rem;
+   margin-top: -32px;
+}
+
+
+
+
