@@ -1,35 +1,172 @@
-<div class="dashboard-header">
-   <div class="header">
-      <h2>Gestion des articles</h2>
+<!-- HEADER DASHBOARD -->
+
+<div class="d-flex flex-row dashboard-header">
+   <div class="d-flex align-items-center ps-3 header-title">Gestion des articles</div>
+   <div class="d-flex align-items-center header-welcome">
+      <span class="text-end w-100 pe-3">Bienvenue Claude !</span>
    </div>
-   
-   <div class="login-credentials">
-      <span class="welcome-message">Bienvenue Claude !</span>
+   <div class="d-flex align-items-center header-logout">
+      <span class="text-end w-100 pe-4">
+         <i class="bi bi-box-arrow-right logout-icon-custom"></i>
+      </span>
    </div>
-   <div>
-      <i class="bi bi-box-arrow-right logout-icon-custom"></i>
-   </div>
-      
 </div>
+
+<!-- MAIN DASHBOARD -->
+<div class="d-flex flex-row flex-wrap main-container">
+
+   <!-- Panneau Gauche -->
+   <div class="d-flex main-left test1">
+
+   </div>
    
+   <!-- Panneau Central -->
+   <div class="d-flex flex-column main-center test2">
+      <label for="main-content">Contenu principal :</label>
+      <div class="d-flex flex-row align-items-center mx-4 text-editor">
+         <select name="format" id="format">
+            <option value="paragraph">Paragraph</option>
+            <option value="title 1">Title 1</option>
+            <option value="title 2" class="sizing-2">Title 2</option>
+            <option value="title 3" class="sizing-3">Title 3</option>
+         </select>
+         <i class="bi bi-type-bold"></i>
+         <i class="bi bi-type-italic"></i>
+         <i class="bi bi-paperclip"></i>
+         <i class="bi bi-list-ol"></i>
+         <i class="bi bi-chat-left-quote"></i>
+         <i class="bi bi-image"></i>
+      </div>
+      <div class="d-flex justify-content-center">
+         <textarea id="main-content" name="main-content" class="main-content-textarea mx-4"
+          rows="20" cols="100"></textarea>
+      </div>
+
+      <label for="products-links">Ajouter des liens vers des produits :</label>
+      <div class="d-flex flex-row align-items-start">
+         <button type="button" class="d-flex flex-column mb-auto edit-tag-button">
+            <i class="bi bi-file-earmark-plus-fill d-flex date-icon-custom"></i>
+         </button>
+         <input type="text" id="products-links" name="products-links" class="w-25"/>
+      </div>
+
+      <div class="row m-4 p-4 products-cards">
+         <div class="col">
+            <div class="card h-100">
+               <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image">
+               <div class="card-body">
+                 <h5 class="card-title fw-bold">Moteur Lego</h5>
+                 <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro adipisci eum, accusantium quaerat at natus odio laborum doloribus ea magni sequi.</p>
+               </div>
+             </div>
+         </div>
 
 
-<div class="left-panel">
+         <div class="col">
+            <div class="card h-100">
+               <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image">
+               <div class="card-body">
+                 <h5 class="card-title fw-bold">Moteur Lego</h5>
+                 <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+               </div>
+             </div>
+         </div>
 
-   <label for="select-language">Langue d'édition :</label>
-   <select name="language" id="select-language">
-      <option class="option-language" value="english">Anglais</option>
-      <option class="option-language" value="french">Français</option>
-   </select>
-   <img src="./assets/images/Flag_of_the_United_Kingdom.svg" />
+         <div class="col">
+            <div class="card h-100">
+               <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image">
+               <div class="card-body">
+                 <h5 class="card-title fw-bold">Moteur Lego</h5>
+                 <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+               </div>
+             </div>
+         </div>
 
-   <label for="select-date">Date de publication :</label>
-   <input type="text" id="select-date" name="select-date" class="date-input" />
-   <i class="bi bi-calendar-week-fill date-icon-custom"></i>
+         <div class="col">
+            <div class="card h-100">
+               <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image">
+               <div class="card-body">
+                 <h5 class="card-title fw-bold">Moteur Lego</h5>
+                 <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+               </div>
+             </div>
+         </div>
+
+      </div>
+
+   </div>
+
+
+   <!-- Panneau Droit -->
+   <div class="d-flex flex-column main-right test3">
+      <label for="select-language">Langue d'édition :</label>
+      <div class="d-flex flex-row align-items-center">
+         <select name="language" id="select-language">
+            <option value="english">Anglais</option>
+            <option value="french">Français</option>
+         </select>
+
+         <img src="./assets/images/Flag_of_the_United_Kingdom.svg" class="ms-3 flag-icon"/>
+      </div>
+
+      <label for="date-selection">Date de publication :</label>
+      <div class="d-flex flex-row align-items-center">
+         <i class="bi bi-calendar-week-fill date-icon-custom"></i>
+         <input type="text" id="date-selection" name="date-selection" /> 
+      </div>
+
+      <label for="post-title">Titre :</label>
+      <div class="d-flex flex-row align-items-center">
+         <i class="bi bi-pen date-icon-custom"></i>
+         <input type="text" id="post-title" name="post-title" />
+      </div>
+
+      <label for="post-summary">Courte description :</label>
+      <div class="d-flex flex-row align-items-center">
+         <i class="bi bi-pen d-flex mb-auto date-icon-custom"></i>
+         <textarea id="post-summary" name="post-summary"
+          rows="5" cols="33"></textarea>
+      </div>
       
+      <label for="tags">Tags séparés par des virgules :</label>
+      <div class="d-flex flex-row align-items-center">
+         <button type="button" class="d-flex flex-column mb-auto edit-tag-button">
+            <i class="bi bi-pencil-square d-flex date-icon-custom"></i>
+            <div class="modify-tag-text">modifier<br/>tag</div>
+         </button>
+         <textarea id="tags" name="tags"
+          rows="4" cols="33"></textarea>
+      </div>
 
+      <label for="attachments">Ajouter des pièces jointes :</label>
+      <div class="d-flex flex-row align-items-center">
+         <button type="button" class="d-flex flex-column mb-auto edit-tag-button">
+            <i class="bi bi-file-earmark-arrow-up-fill d-flex date-icon-custom"></i>
+         </button>
+         <textarea id="attachments" name="attachments"
+          rows="4" cols="33"></textarea>
+      </div>
 
+      <label for="video">Vidéo youtube :</label>
+      <div class="d-flex flex-row align-items-center">
+         <i class="bi bi-link-45deg date-icon-custom"></i>
+         <input type="text" id="video" name="video" />
+      </div>
 
-   
-   
+      <label for="level">Niveau de difficulté</label>
+      <div class="d-flex flex-row align-items-center">
+         <i class="bi bi-star-fill level-icon"></i>
+         <i class="bi bi-star-fill level-icon"></i>
+         <i class="bi bi-star-fill level-icon"></i>
+         <select name="level" id="level" class="select-level">
+            <option class="option-level" value="1">1</option>
+            <option class="option-level" value="2">2</option>
+            <option class="option-level" value="3">3</option>
+         </select>
+      </div>
+
+      <div class="d-flex flex-row align-items-center">
+         <button type="submit" class="fw-bold button-publish">Publier !</button>
+      </div>
+   </div>
 </div>
