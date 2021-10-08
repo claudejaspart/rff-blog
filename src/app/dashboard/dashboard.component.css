@@ -1,36 +1,25 @@
-*, *::before, *::after{
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box; 
-}
-
+/* CSS HEADER */
 
 .dashboard-header {
    background-color: var(--header-and-footer-color);
-   display: flex;
-   align-items: center;
-   border: 2px solid white;
+   height: 50px;
+   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.75);
 }
 
-.header {
-   flex: 0 0 80%;
+.header-title {
+   width: 50%;
+   font-size: 1.85rem;
+   font-weight: bold;
+   color : var(--tertiary-yellow);
 }
 
-.login-credentials {
-   flex: 0 0 17%;
-}
-
-h2 {
-   font-family: 'Montserrat', sans-serif;
-   color: var(--tertiary-yellow);
-   font-size: 2.5rem;
-   margin-left: 25px;
-   padding: 8px 0;
-}
-
-.welcome-message {
-   font-family: 'Montserrat', sans-serif;
+.header-welcome {
+   width: 40%;
    color: var(--main-white);
+}
+
+.header-logout {
+   width: 10%;
 }
 
 .logout-icon-custom {
@@ -38,48 +27,178 @@ h2 {
    font-size: 2rem;
 }
 
-.left-panel {
-   display: flex;
-   flex-direction: column;
-   margin: 0 25px;
+/* MAIN CSS */
+
+.main-container {
+   color:var(--main-white);
+   height: calc(100vh - 50px - 1px);
 }
 
+.main-left,.main-right {
+   width:25%;
+}
+
+.main-center {
+   width:50%;
+}
+
+/* RIGHT PANEL */
+
 label {
-   color: var(--main-white);
-   margin-top: 15px;
+   margin: 20px 0 0 25px;
 }
 
 select {
    background-color: var(--tertiary-yellow);
-   width: 12%;
+   margin-left: 25px;
+   width: 75%;
 }
 
-img:first-of-type {
-   position: absolute;
+input, textarea {
+   color: black;
+   margin-left: 10px;
+   width: 80%;
+}
+
+.flag-icon {
    width: 2.5rem;
-   left: 257px;
-   top: 109px;
 }
 
-.date-selection-panel {
-   left: 25px;
-   top: 145px;
-}
-
-input {
-   width: 12%;
-   margin-left: 50px;
-   color: var(--main-white);
-}
-
-.date-input {
-   background-color: var(--header-and-footer-color);
+i {
+   margin-left: 25px;
 }
 
 .date-icon-custom {
    color: var(--tertiary-yellow);
    font-size: 1.5rem;
-   margin-top: -32px;
+   
+}
+
+.edit-tag-button {
+   background-color: var(--main-black);
+   border: none;
+   box-shadow: none;
+   font-size: 0.6rem;
+   color:var(--main-white);
+}
+
+.modify-tag-text {
+   margin-left: 15px;
+}
+
+.level-icon {
+   width: 0.4rem;
+}
+
+.select-level {
+   width: 12%;
+}
+
+.option-level {
+   text-align: center;
+}
+
+.button-publish {
+   background-color: var(--tertiary-yellow);
+   width: 87%;
+   height: fit-content;
+   margin: 20px 0 5px 25px;
+   font-size: 2rem;
+   border-radius: 10px;
+}
+
+.button-publish:hover {
+   background-color:var(--main-black);
+   color: var(--tertiary-yellow);
+   border-color: var(--tertiary-yellow);
+}
+
+/* CENTER PANEL */
+
+.text-editor {
+   background-color:var(--main-white);
+   height: 4%;
+}
+
+.sizing-2 {
+   font-size: 0.9rem;
+}
+
+.sizing-3 {
+   font-size: 0.7rem;
+}
+
+.text-editor i {
+   color: black;
+   font-size: 1.5rem;
+   width: 0.7rem;
+   
+}
+
+.text-editor select {
+   background-color: rgb(241, 237, 237);
+   font-size: 1.2rem;
+   width: 20%;
+   margin: 2px;
+}
+
+
+.main-content-textarea {
+   width: auto;
+   border-color: lightgrey;
+   border-top-width: 0.2rem;
+}
+
+.products-cards {
+   background-color: var(--header-and-footer-color);
+}
+
+.lego-motor-image {
+   width: 8rem;
+}
+
+h5, p {
+   color: black;
+}
+
+
+
+
+/* RESPONSIVE */
+/* écran de taille inférieure à 630px */
+@media screen and (max-width: 630px) {
+   .header-title {
+      font-size: 1rem;
+      padding-left: 8px !important;
+   } 
+   .header-welcome {
+      font-size: 0.75rem;
+   }
+   .logout-icon-custom {
+      font-size: 1.5rem;
+   }
+   .main-left, .main-center {
+      width:100vw;
+      flex-wrap: wrap;
+   }
+   .main-right {
+      visibility: hidden;
+   }
+}
+
+/* HELPER */
+
+.test1
+{
+   outline : 1px solid yellow;
+}
+.test2
+{
+   outline : 1px solid white;
+}
+.test3
+{
+   outline : 1px solid cyan;
 }
 
 
