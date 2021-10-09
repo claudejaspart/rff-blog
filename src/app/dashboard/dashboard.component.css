@@ -41,6 +41,10 @@
    width:44%;
 }
 
+/* *************** */
+/* PANNEAU CENTRAL */
+/* *************** */
+
 /* rich text editor styling */
 /* setting the height in px */
 :host ::ng-deep .ck-editor__editable_inline 
@@ -60,9 +64,9 @@
 {
    background-color: #37363F;
    color : white;
-   width: 250px;
    height: 100%;
    font-weight: bold;
+   padding-top: 3px;
 }
 
 .referenced-products-list
@@ -112,9 +116,96 @@
 }
 
 
+/* ***************** */
+/* PANNEAU DE DROITE */
+/* ***************** */
 
+/* language */
+.language-combobox
+{
+   border-radius: 0px;
+   background-color: var(--tertiary-yellow);
+   color : black;
+   height : 32px;
+   border : var(--header-and-footer-color);
+}
 
+/* date publication */
+.date-icon
+{
+   color: var(--tertiary-yellow);
+}
 
+.date-info
+{
+   background-color: #37363F;
+   color : white;
+   height: 100%;
+   font-weight: bold;
+   padding-top: 3px;
+}
+
+/* titre de l'article */
+.titre-info
+{
+   border-radius: 0px;
+   color:black;
+}
+
+/* courte description */
+.description-info
+{
+   border-radius: 0px;
+   color:black;
+   resize: none;
+}
+
+/* tags */
+.tags-icon
+{
+   color: var(--tertiary-yellow);
+}
+
+.tags-info
+{
+   border-radius: 0px;
+   color:black;
+   resize: none;
+}
+
+/* pieces jointes */
+.files-icon
+{
+   color: var(--tertiary-yellow);
+}
+
+.files-info
+{
+   color:white;
+   font-weight: bold;
+   background-color: var(--header-and-footer-color);
+   overflow-y: auto;
+   height: 115px;
+}
+
+/* video link */
+.video-info
+{
+   border-radius: 0px;
+   color:black;
+   font-weight: bold;
+}
+
+/* level */
+.level-icon
+{
+
+}
+
+.level-info
+{
+   
+}
 
 
 /* HELPER */

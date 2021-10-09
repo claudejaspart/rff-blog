@@ -26,12 +26,11 @@
       <label class="mb-1">Contenu principal</label>
       <ckeditor [editor]="Editor" class="rt-editor"></ckeditor>
 
-      <!-- liens amazon -->
       <label class="mt-4 mb-1">Ajouter des liens vers des produits</label>
-      <span class="mb-2">
-         <i class="bi bi-file-earmark-plus-fill fs-6 me-2 add-product-icon"></i>
-         <div class="d-inline-block ps-2 referenced-products-info">3 produits référencés</div>
-      </span>
+      <div class="d-flex flex-row mb-2 w-100 me-5" style="height: 30px;">
+         <i class="bi bi-file-earmark-plus-fill fs-5 me-2 add-product-icon"></i>
+         <div class="d-flex flex-grow-1 ps-2 referenced-products-info">3 produits référencés</div>
+      </div>
 
       <!-- liste des cartes produits -->
       <div class="p-2 w-100 referenced-products-list">
@@ -141,14 +140,86 @@
    </div>
 
 
-   <!-- Panneau Droit -->
-   <div class="d-flex flex-column main-right">
+   <!-- Panneau de droite -->
+   <div class="d-flex flex-column p-2 pe-3 main-right">
       
+      <!-- langue -->
+      <label class="mb-1">Langue d'édition</label>
+      <div class="d-flex flex-row">
+         <select class="d-flex flex-grow-1 language-combobox me-3" name="language" id="select-language">
+            <option value="english">Anglais</option>
+            <option value="french">Français</option>
+         </select>
+         <div class="d-inline">
+            <img src="./assets/images/Flag_of_the_United_Kingdom.svg" style="height: 31px; object-fit: contain;display:inline-block"/>
+         </div>
+      </div>
 
+      <!-- date de publication -->
+      <label class="mt-4 mb-1">Date de publication</label>
+      <div class="d-flex flex-row mb-2 w-100 me-5" style="height: 30px;">
+         <i class="bi bi-calendar-week-fill fs-5 me-2 date-icon"></i>
+         <div class="d-flex flex-grow-1 ps-2 date-info">Vendredi 5 Mai 2021</div>
+      </div>
+
+      <!-- titre -->
+      <label class="mt-4 mb-1">Titre</label>
+      <div class="d-flex flex-row mb-2 w-100 me-5" style="height: 30px;">
+         <i class="bi bi-pen fs-5 me-2 titre-icon"></i>
+         <input type="text" class="d-flex flex-grow-1 ps-2 titre-info">
+      </div>
+
+      <!-- courte description -->
+      <label class="mt-4 mb-1">Courte description</label>
+      <div class="d-flex flex-row mb-2 w-100 me-5" >
+         <i class="bi bi-pen fs-5 me-2 description-icon"></i>
+         <textarea class="d-flex flex-grow-1 ps-2 description-info" rows="3"></textarea>
+      </div>
       
-      
-      
+      <!-- tags -->
+      <label class="mt-4 mb-1">Tags séparés par une virgule</label>
+      <div class="d-flex flex-row mb-2 w-100 me-5" >
+         <i class="bi bi-pencil-square fs-5 me-2 tags-icon"></i>
+         <textarea class="d-flex flex-grow-1 ps-2 tags-info" rows="3"></textarea>
+      </div>
+
+      <!-- pièces jointes -->
+      <label class="mt-4 mb-1">Ajouter des pièces jointes :</label>
+      <div class="d-flex flex-row mb-2 w-100 me-5" >
+         <i class="bi bi-file-earmark-arrow-up-fill fs-5 me-2 files-icon"></i>
+         <div class="d-flex flex-grow-1 ps-2 files-info">
+            <div>
+               3 fichiers sélectionnés :
+               <br>
+               <ul>
+                  <li>test.js</li>
+                  <li>code1.cpp</li>
+                  <li>moon.css</li>
+               </ul>
+            </div>
+         </div>
+      </div>
+
+      <!-- video link -->
+      <label class="mt-4 mb-1">Vidéo Youtube</label>
+      <div class="d-flex flex-row mb-2 w-100 me-5" style="height: 30px;">
+         <i class="bi bi-link-45deg fs-5 me-2 titre-icon"></i>
+         <input type="text" class="d-flex flex-grow-1 ps-2 titre-info">
+      </div>
+
+      <!-- Niveau de difficulté -->
+      <label class="mt-4 mb-1">Niveau de difficulté</label>
+      <div class="d-flex flex-row mb-2 w-100 me-5" style="height: 30px;">
+         <i class="bi bi-star-fill fs-5 me-2 level-icon"></i>
+         <i class="bi bi-star-fill fs-5 me-2 level-icon"></i>
+         <i class="bi bi-star-fill fs-5 me-2 level-icon"></i>
+         <select name="level" id="level" class="rating-info">
+            <option class="level-level" value="1">1</option>
+            <option class="level-level" value="2">2</option>
+            <option class="level-level" value="3">3</option>
+         </select>
+      </div>
+
    </div>
-
 
 </div>
