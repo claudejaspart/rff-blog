@@ -67,10 +67,11 @@
 
 .referenced-products-list
 {
+   display: block;
    background-color: #37363F;
    white-space: nowrap;
    overflow-x: auto;
-   overflow-y: hidden
+   overflow-y: hidden;
 }
 
 .card
@@ -164,15 +165,12 @@
    }
    .main-left, .main-center
    {
-      width:100vw;
-      flex-wrap: wrap;
+      width:100%;
    }
+
    .main-right
    {
       visibility: hidden;
    }
-   .test1
-   {
-      outline : 3px dashed rgb(135, 222, 196);
-   }
+
 }
