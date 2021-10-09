@@ -199,12 +199,27 @@
 /* level */
 .level-icon
 {
-
+   color: var(--tertiary-yellow);
 }
 
 .level-info
 {
-   
+   width: 50px;
+   border-radius: 0px;
+   background-color: var(--tertiary-yellow);
+   color : black;
+   height : 32px;
+   border : var(--header-and-footer-color);
+   padding-left: 10px;
+   margin-left: 10px;
+}
+
+/* bouton publication */
+.button-publish
+{
+   background: var(--tertiary-yellow);
+   border-radius: 10px;
+   font-size: 2rem;
 }
 
 
@@ -254,12 +269,12 @@
    {
       font-size: 1.5rem;
    }
-   .main-left, .main-center
+   .main-right, .main-center
    {
       width:100%;
    }
 
-   .main-right
+   .main-left
    {
       visibility: hidden;
    }

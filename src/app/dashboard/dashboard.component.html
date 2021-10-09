@@ -26,7 +26,7 @@
       <label class="mb-1">Contenu principal</label>
       <ckeditor [editor]="Editor" class="rt-editor"></ckeditor>
 
-      <label class="mt-4 mb-1">Ajouter des liens vers des produits</label>
+      <label class="mt-3 mb-1">Ajouter des liens vers des produits</label>
       <div class="d-flex flex-row mb-2 w-100 me-5" style="height: 30px;">
          <i class="bi bi-file-earmark-plus-fill fs-5 me-2 add-product-icon"></i>
          <div class="d-flex flex-grow-1 ps-2 referenced-products-info">3 produits référencés</div>
@@ -141,7 +141,7 @@
 
 
    <!-- Panneau de droite -->
-   <div class="d-flex flex-column p-2 pe-3 main-right">
+   <div class="d-flex flex-column p-2 pe-3 main-right position-relative">
       
       <!-- langue -->
       <label class="mb-1">Langue d'édition</label>
@@ -156,35 +156,35 @@
       </div>
 
       <!-- date de publication -->
-      <label class="mt-4 mb-1">Date de publication</label>
+      <label class="mt-2 mb-1">Date de publication</label>
       <div class="d-flex flex-row mb-2 w-100 me-5" style="height: 30px;">
          <i class="bi bi-calendar-week-fill fs-5 me-2 date-icon"></i>
          <div class="d-flex flex-grow-1 ps-2 date-info">Vendredi 5 Mai 2021</div>
       </div>
 
       <!-- titre -->
-      <label class="mt-4 mb-1">Titre</label>
+      <label class="mt-2 mb-1">Titre</label>
       <div class="d-flex flex-row mb-2 w-100 me-5" style="height: 30px;">
          <i class="bi bi-pen fs-5 me-2 titre-icon"></i>
          <input type="text" class="d-flex flex-grow-1 ps-2 titre-info">
       </div>
 
       <!-- courte description -->
-      <label class="mt-4 mb-1">Courte description</label>
+      <label class="mt-2 mb-1">Courte description</label>
       <div class="d-flex flex-row mb-2 w-100 me-5" >
          <i class="bi bi-pen fs-5 me-2 description-icon"></i>
          <textarea class="d-flex flex-grow-1 ps-2 description-info" rows="3"></textarea>
       </div>
       
       <!-- tags -->
-      <label class="mt-4 mb-1">Tags séparés par une virgule</label>
+      <label class="mt-2 mb-1">Tags séparés par une virgule</label>
       <div class="d-flex flex-row mb-2 w-100 me-5" >
          <i class="bi bi-pencil-square fs-5 me-2 tags-icon"></i>
          <textarea class="d-flex flex-grow-1 ps-2 tags-info" rows="3"></textarea>
       </div>
 
       <!-- pièces jointes -->
-      <label class="mt-4 mb-1">Ajouter des pièces jointes :</label>
+      <label class="mt-2 mb-1">Ajouter des pièces jointes :</label>
       <div class="d-flex flex-row mb-2 w-100 me-5" >
          <i class="bi bi-file-earmark-arrow-up-fill fs-5 me-2 files-icon"></i>
          <div class="d-flex flex-grow-1 ps-2 files-info">
@@ -201,25 +201,31 @@
       </div>
 
       <!-- video link -->
-      <label class="mt-4 mb-1">Vidéo Youtube</label>
+      <label class="mt-3 mb-1">Vidéo Youtube</label>
       <div class="d-flex flex-row mb-2 w-100 me-5" style="height: 30px;">
          <i class="bi bi-link-45deg fs-5 me-2 titre-icon"></i>
          <input type="text" class="d-flex flex-grow-1 ps-2 titre-info">
       </div>
 
       <!-- Niveau de difficulté -->
-      <label class="mt-4 mb-1">Niveau de difficulté</label>
-      <div class="d-flex flex-row mb-2 w-100 me-5" style="height: 30px;">
+      <label class="mt-3 mb-1">Niveau de difficulté</label>
+      <div class="d-flex flex-row mb-5 w-100 me-5" style="height: 30px;">
          <i class="bi bi-star-fill fs-5 me-2 level-icon"></i>
          <i class="bi bi-star-fill fs-5 me-2 level-icon"></i>
-         <i class="bi bi-star-fill fs-5 me-2 level-icon"></i>
-         <select name="level" id="level" class="rating-info">
-            <option class="level-level" value="1">1</option>
-            <option class="level-level" value="2">2</option>
-            <option class="level-level" value="3">3</option>
+         <i class="bi bi-star fs-5 me-2 level-icon"></i>
+         <select name="level" id="level" class="level-info">
+            <option class="level" value="1">1</option>
+            <option class="level" value="2">2</option>
+            <option class="level" value="3">3</option>
          </select>
       </div>
 
+      <!-- bouton publier -->
+      <div class="d-flex flex-row justify-content-center mb-3">
+         <button class=" w-75 button-publish">
+            <span class="w-100 text-middle">Publier !</span>
+         </button>
+      </div>
    </div>
 
 </div>
