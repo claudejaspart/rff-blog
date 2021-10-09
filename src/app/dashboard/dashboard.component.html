@@ -16,81 +16,126 @@
 <div class="d-flex flex-row flex-wrap main-container">
 
    <!-- Panneau Gauche -->
-   <div class="d-flex main-left test1">
-
+   <div class="d-flex flex-column main-left">
+      <!-- todo -->
    </div>
    
    <!-- Panneau Central -->
-   <div class="d-flex flex-column main-center test2">
-      <label for="main-content">Contenu principal :</label>
-      <div class="d-flex flex-row align-items-center mx-4 text-editor">
-         <select name="format" id="format">
-            <option value="paragraph">Paragraph</option>
-            <option value="title 1">Title 1</option>
-            <option value="title 2" class="sizing-2">Title 2</option>
-            <option value="title 3" class="sizing-3">Title 3</option>
-         </select>
-         <i class="bi bi-type-bold"></i>
-         <i class="bi bi-type-italic"></i>
-         <i class="bi bi-paperclip"></i>
-         <i class="bi bi-list-ol"></i>
-         <i class="bi bi-chat-left-quote"></i>
-         <i class="bi bi-image"></i>
-      </div>
-      <div class="d-flex justify-content-center">
-         <textarea id="main-content" name="main-content" class="main-content-textarea mx-4"
-          rows="20" cols="100"></textarea>
-      </div>
+   <div class="d-flex flex-column main-center p-2">
+      
+      <!-- editeur rich text -->
+      <label class="mb-1">Contenu principal</label>
+      <ckeditor [editor]="Editor" class="rt-editor"></ckeditor>
 
-      <label for="products-links">Ajouter des liens vers des produits :</label>
-      <div class="d-flex flex-row align-items-start">
-         <button type="button" class="d-flex flex-column mb-auto edit-tag-button">
-            <i class="bi bi-file-earmark-plus-fill d-flex date-icon-custom"></i>
-         </button>
-         <input type="text" id="products-links" name="products-links" class="w-25"/>
-      </div>
+      <!-- liens amazon -->
+      <label class="mt-4 mb-1">Ajouter des liens vers des produits</label>
+      <span class="mb-2">
+         <i class="bi bi-file-earmark-plus-fill fs-6 me-2 add-product-icon"></i>
+         <div class="d-inline-block ps-2 referenced-products-info">3 produits référencés</div>
+      </span>
 
-      <div class="row m-4 p-4 products-cards">
-         <div class="col">
-            <div class="card h-100">
-               <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image">
-               <div class="card-body">
-                 <h5 class="card-title fw-bold">Moteur Lego</h5>
-                 <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro adipisci eum, accusantium quaerat at natus odio laborum doloribus ea magni sequi.</p>
-               </div>
-             </div>
+      <!-- liste des cartes produits -->
+      <div class="p-2 referenced-products-list">
+
+         <!-- carte -->
+         <div class="card d-inline-block position-relative me-2">
+            <i class="bi bi-pencil-square fs-5 edit-product-icon position-absolute"></i>
+            <div class="d-inline-block w-100 " style="padding-left: 3rem;">
+               <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image" style="width: 8rem;">
+            </div>
+            <i class="bi bi-x-square fs-5 delete-product-icon position-absolute"></i>
+            <div class="card-body">
+               <h5 class="card-title fw-bold">Moteur Lego</h5>
+               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+               <a href="#" class="btn btn-product-see fw-bold">Voir</a>
+            </div>
          </div>
 
-
-         <div class="col">
-            <div class="card h-100">
-               <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image">
-               <div class="card-body">
-                 <h5 class="card-title fw-bold">Moteur Lego</h5>
-                 <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                 <!-- carte -->
+                 <div class="card d-inline-block position-relative me-2">
+                  <i class="bi bi-pencil-square fs-5 edit-product-icon position-absolute"></i>
+                  <div class="d-inline-block w-100 " style="padding-left: 3rem;">
+                     <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image" style="width: 8rem;">
+                  </div>
+                  <i class="bi bi-x-square fs-5 delete-product-icon position-absolute"></i>
+                  <div class="card-body">
+                     <h5 class="card-title fw-bold">Moteur Lego</h5>
+                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                     <a href="#" class="btn btn-product-see fw-bold">Voir</a>
+                  </div>
+               </div>         <!-- carte -->
+               <div class="card d-inline-block position-relative me-2">
+                  <i class="bi bi-pencil-square fs-5 edit-product-icon position-absolute"></i>
+                  <div class="d-inline-block w-100 " style="padding-left: 3rem;">
+                     <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image" style="width: 8rem;">
+                  </div>
+                  <i class="bi bi-x-square fs-5 delete-product-icon position-absolute"></i>
+                  <div class="card-body">
+                     <h5 class="card-title fw-bold">Moteur Lego</h5>
+                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                     <a href="#" class="btn btn-product-see fw-bold">Voir</a>
+                  </div>
+               </div>         <!-- carte -->
+               <div class="card d-inline-block position-relative me-2">
+                  <i class="bi bi-pencil-square fs-5 edit-product-icon position-absolute"></i>
+                  <div class="d-inline-block w-100 " style="padding-left: 3rem;">
+                     <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image" style="width: 8rem;">
+                  </div>
+                  <i class="bi bi-x-square fs-5 delete-product-icon position-absolute"></i>
+                  <div class="card-body">
+                     <h5 class="card-title fw-bold">Moteur Lego</h5>
+                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                     <a href="#" class="btn btn-product-see fw-bold">Voir</a>
+                  </div>
+               </div>         <!-- carte -->
+               <div class="card d-inline-block position-relative me-2">
+                  <i class="bi bi-pencil-square fs-5 edit-product-icon position-absolute"></i>
+                  <div class="d-inline-block w-100 " style="padding-left: 3rem;">
+                     <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image" style="width: 8rem;">
+                  </div>
+                  <i class="bi bi-x-square fs-5 delete-product-icon position-absolute"></i>
+                  <div class="card-body">
+                     <h5 class="card-title fw-bold">Moteur Lego</h5>
+                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                     <a href="#" class="btn btn-product-see fw-bold">Voir</a>
+                  </div>
+               </div>         <!-- carte -->
+               <div class="card d-inline-block position-relative me-2">
+                  <i class="bi bi-pencil-square fs-5 edit-product-icon position-absolute"></i>
+                  <div class="d-inline-block w-100 " style="padding-left: 3rem;">
+                     <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image" style="width: 8rem;">
+                  </div>
+                  <i class="bi bi-x-square fs-5 delete-product-icon position-absolute"></i>
+                  <div class="card-body">
+                     <h5 class="card-title fw-bold">Moteur Lego</h5>
+                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                     <a href="#" class="btn btn-product-see fw-bold">Voir</a>
+                  </div>
+               </div>         <!-- carte -->
+               <div class="card d-inline-block position-relative me-2">
+                  <i class="bi bi-pencil-square fs-5 edit-product-icon position-absolute"></i>
+                  <div class="d-inline-block w-100 " style="padding-left: 3rem;">
+                     <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image" style="width: 8rem;">
+                  </div>
+                  <i class="bi bi-x-square fs-5 delete-product-icon position-absolute"></i>
+                  <div class="card-body">
+                     <h5 class="card-title fw-bold">Moteur Lego</h5>
+                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                     <a href="#" class="btn btn-product-see fw-bold">Voir</a>
+                  </div>
+               </div>         <!-- carte -->
+               <div class="card d-inline-block position-relative me-2">
+                  <i class="bi bi-pencil-square fs-5 edit-product-icon position-absolute"></i>
+                  <div class="d-inline-block w-100 " style="padding-left: 3rem;">
+                     <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image" style="width: 8rem;">
+                  </div>
+                  <i class="bi bi-x-square fs-5 delete-product-icon position-absolute"></i>
+                  <div class="card-body">
+                     <h5 class="card-title fw-bold">Moteur Lego</h5>
+                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                     <a href="#" class="btn btn-product-see fw-bold">Voir</a>
+                  </div>
                </div>
-             </div>
-         </div>
-
-         <div class="col">
-            <div class="card h-100">
-               <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image">
-               <div class="card-body">
-                 <h5 class="card-title fw-bold">Moteur Lego</h5>
-                 <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-               </div>
-             </div>
-         </div>
-
-         <div class="col">
-            <div class="card h-100">
-               <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image">
-               <div class="card-body">
-                 <h5 class="card-title fw-bold">Moteur Lego</h5>
-                 <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-               </div>
-             </div>
-         </div>
 
       </div>
 
@@ -98,75 +143,13 @@
 
 
    <!-- Panneau Droit -->
-   <div class="d-flex flex-column main-right test3">
-      <label for="select-language">Langue d'édition :</label>
-      <div class="d-flex flex-row align-items-center">
-         <select name="language" id="select-language">
-            <option value="english">Anglais</option>
-            <option value="french">Français</option>
-         </select>
-
-         <img src="./assets/images/Flag_of_the_United_Kingdom.svg" class="ms-3 flag-icon"/>
-      </div>
-
-      <label for="date-selection">Date de publication :</label>
-      <div class="d-flex flex-row align-items-center">
-         <i class="bi bi-calendar-week-fill date-icon-custom"></i>
-         <input type="text" id="date-selection" name="date-selection" /> 
-      </div>
-
-      <label for="post-title">Titre :</label>
-      <div class="d-flex flex-row align-items-center">
-         <i class="bi bi-pen date-icon-custom"></i>
-         <input type="text" id="post-title" name="post-title" />
-      </div>
-
-      <label for="post-summary">Courte description :</label>
-      <div class="d-flex flex-row align-items-center">
-         <i class="bi bi-pen d-flex mb-auto date-icon-custom"></i>
-         <textarea id="post-summary" name="post-summary"
-          rows="5" cols="33"></textarea>
-      </div>
+   <div class="d-flex flex-column main-right">
       
-      <label for="tags">Tags séparés par des virgules :</label>
-      <div class="d-flex flex-row align-items-center">
-         <button type="button" class="d-flex flex-column mb-auto edit-tag-button">
-            <i class="bi bi-pencil-square d-flex date-icon-custom"></i>
-            <div class="modify-tag-text">modifier<br/>tag</div>
-         </button>
-         <textarea id="tags" name="tags"
-          rows="4" cols="33"></textarea>
-      </div>
 
-      <label for="attachments">Ajouter des pièces jointes :</label>
-      <div class="d-flex flex-row align-items-center">
-         <button type="button" class="d-flex flex-column mb-auto edit-tag-button">
-            <i class="bi bi-file-earmark-arrow-up-fill d-flex date-icon-custom"></i>
-         </button>
-         <textarea id="attachments" name="attachments"
-          rows="4" cols="33"></textarea>
-      </div>
-
-      <label for="video">Vidéo youtube :</label>
-      <div class="d-flex flex-row align-items-center">
-         <i class="bi bi-link-45deg date-icon-custom"></i>
-         <input type="text" id="video" name="video" />
-      </div>
-
-      <label for="level">Niveau de difficulté</label>
-      <div class="d-flex flex-row align-items-center">
-         <i class="bi bi-star-fill level-icon"></i>
-         <i class="bi bi-star-fill level-icon"></i>
-         <i class="bi bi-star-fill level-icon"></i>
-         <select name="level" id="level" class="select-level">
-            <option class="option-level" value="1">1</option>
-            <option class="option-level" value="2">2</option>
-            <option class="option-level" value="3">3</option>
-         </select>
-      </div>
-
-      <div class="d-flex flex-row align-items-center">
-         <button type="submit" class="fw-bold button-publish">Publier !</button>
-      </div>
+      
+      
+      
    </div>
+
+
 </div>

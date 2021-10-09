@@ -1,193 +1,122 @@
 /* CSS HEADER */
-
-.dashboard-header {
+.dashboard-header 
+{
    background-color: var(--header-and-footer-color);
    height: 50px;
    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.75);
 }
-
-.header-title {
+.header-title
+{
    width: 50%;
    font-size: 1.85rem;
    font-weight: bold;
    color : var(--tertiary-yellow);
 }
-
-.header-welcome {
+.header-welcome 
+{
    width: 40%;
    color: var(--main-white);
 }
-
-.header-logout {
+.header-logout
+{
    width: 10%;
 }
-
-.logout-icon-custom {
+.logout-icon-custom 
+{
    color: var(--secondary-lightBlue);
    font-size: 2rem;
 }
-
 /* MAIN CSS */
-
-.main-container {
-   color:var(--main-white);
+.main-container
+{
+   color:white;
    height: calc(100vh - 50px - 1px);
 }
-
-.main-left,.main-right {
-   width:25%;
+.main-left,.main-right
+{
+   width:28%;
+}
+.main-center
+{
+   width:44%;
 }
 
-.main-center {
-   width:50%;
-}
-
-/* RIGHT PANEL */
-
-label {
-   margin: 20px 0 0 25px;
-}
-
-select {
-   background-color: var(--tertiary-yellow);
-   margin-left: 25px;
-   width: 75%;
-}
-
-input, textarea {
+/* rich text editor styling */
+/* setting the height in px */
+:host ::ng-deep .ck-editor__editable_inline 
+{
+   height: 475px;
    color: black;
-   margin-left: 10px;
-   width: 80%;
 }
 
-.flag-icon {
-   width: 2.5rem;
-}
 
-i {
-   margin-left: 25px;
-}
-
-.date-icon-custom {
+/* Ajout produits amazon */
+.add-product-icon
+{
    color: var(--tertiary-yellow);
-   font-size: 1.5rem;
-   
 }
 
-.edit-tag-button {
-   background-color: var(--main-black);
-   border: none;
-   box-shadow: none;
-   font-size: 0.6rem;
-   color:var(--main-white);
+.referenced-products-info
+{
+   background-color: #37363F;
+   color : white;
+   width: 250px;
+   height: 100%;
+   font-weight: bold;
 }
 
-.modify-tag-text {
-   margin-left: 15px;
+.referenced-products-list
+{
+   background-color: #37363F;
+   white-space: nowrap;
+   overflow-x: auto;
+   overflow-y: hidden
 }
 
-.level-icon {
-   width: 0.4rem;
+.card
+{
+   color: black !important;
+   width: 14rem;
+   white-space: normal;
 }
 
-.select-level {
-   width: 12%;
+.card-title
+{
+   font-size: 0.85rem;
 }
 
-.option-level {
-   text-align: center;
+.card-text
+{
+   font-size: 0.65rem;
 }
 
-.button-publish {
-   background-color: var(--tertiary-yellow);
-   width: 87%;
-   height: fit-content;
-   margin: 20px 0 5px 25px;
-   font-size: 2rem;
-   border-radius: 10px;
+.btn-product-see
+{
+   background-color: var(--secondary-lightBlue);
+   font-size: 0.75rem;
 }
 
-.button-publish:hover {
-   background-color:var(--main-black);
-   color: var(--tertiary-yellow);
-   border-color: var(--tertiary-yellow);
+.edit-product-icon
+{
+   top : 4px;
+   left: 7px;
+   color : var(--tiny-icon-red);
 }
 
-/* CENTER PANEL */
-
-.text-editor {
-   background-color:var(--main-white);
-   height: 4%;
-}
-
-.sizing-2 {
-   font-size: 0.9rem;
-}
-
-.sizing-3 {
-   font-size: 0.7rem;
-}
-
-.text-editor i {
-   color: black;
-   font-size: 1.5rem;
-   width: 0.7rem;
-   
-}
-
-.text-editor select {
-   background-color: rgb(241, 237, 237);
-   font-size: 1.2rem;
-   width: 20%;
-   margin: 2px;
-}
-
-
-.main-content-textarea {
-   width: auto;
-   border-color: lightgrey;
-   border-top-width: 0.2rem;
-}
-
-.products-cards {
-   background-color: var(--header-and-footer-color);
-}
-
-.lego-motor-image {
-   width: 8rem;
-}
-
-h5, p {
-   color: black;
+.delete-product-icon
+{
+   top : 4px;
+   right: 7px;
+   color : var(--tiny-icon-red);
 }
 
 
 
 
-/* RESPONSIVE */
-/* écran de taille inférieure à 630px */
-@media screen and (max-width: 630px) {
-   .header-title {
-      font-size: 1rem;
-      padding-left: 8px !important;
-   } 
-   .header-welcome {
-      font-size: 0.75rem;
-   }
-   .logout-icon-custom {
-      font-size: 1.5rem;
-   }
-   .main-left, .main-center {
-      width:100vw;
-      flex-wrap: wrap;
-   }
-   .main-right {
-      visibility: hidden;
-   }
-}
+
+
 
 /* HELPER */
-
 .test1
 {
    outline : 1px solid yellow;
@@ -200,7 +129,50 @@ h5, p {
 {
    outline : 1px solid cyan;
 }
+.test4
+{
+   outline : 1px solid black;
+}
 
 
 
 
+
+
+
+
+
+
+
+
+/* RESPONSIVE */
+/* écran de taille inférieure à 680px */
+@media screen and (max-width: 680px)
+{
+   .header-title
+   {
+      font-size: 1rem;
+      padding-left: 8px !important;
+   } 
+   .header-welcome 
+   {
+      font-size: 0.75rem;
+   }
+   .logout-icon-custom 
+   {
+      font-size: 1.5rem;
+   }
+   .main-left, .main-center
+   {
+      width:100vw;
+      flex-wrap: wrap;
+   }
+   .main-right
+   {
+      visibility: hidden;
+   }
+   .test1
+   {
+      outline : 3px dashed rgb(135, 222, 196);
+   }
+}
