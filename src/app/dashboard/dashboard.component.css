@@ -239,7 +239,7 @@
 /* level */
 .level-icon
 {
-   color: var(--tertiary-yellow);
+   color: white;
 }
 
 .level-info
@@ -293,8 +293,17 @@
 
 
 /* RESPONSIVE */
-/* écran de taille inférieure à 680px */
-@media screen and (max-width: 680px)
+/* écran de taille inférieure à 1270px */
+@media screen and (max-width: 1270px)
+{
+   .post-card
+   {
+      height: 115px;
+   }
+}
+
+/* écran de taille inférieure à 1000px */
+@media screen and (max-width: 1000px)
 {
    .header-title
    {
@@ -309,14 +318,16 @@
    {
       font-size: 1.5rem;
    }
-   .main-right, .main-center
-   {
-      width:100%;
-   }
 
    .main-left
    {
       visibility: hidden;
+      height: 0px;
+      width: 0px;
    }
 
+   .main-right, .main-center
+   {
+      width:100%;
+   }
 }
