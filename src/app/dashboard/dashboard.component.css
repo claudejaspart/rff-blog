@@ -64,7 +64,7 @@
 {
    height: 80px;
    background-color: var(--secondary-lightBlue);
-   border-bottom: 1px solid black;
+   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
    color: black;
 }
 
@@ -263,33 +263,6 @@
 }
 
 
-/* HELPER */
-.test1
-{
-   outline : 1px solid yellow;
-}
-.test2
-{
-   outline : 1px solid white;
-}
-.test3
-{
-   outline : 1px solid cyan;
-}
-.test4
-{
-   outline : 1px solid black;
-}
-
-
-
-
-
-
-
-
-
-
 
 
 /* RESPONSIVE */
@@ -330,4 +303,29 @@
    {
       width:100%;
    }
+}
+
+
+
+
+
+
+
+
+/* HELPER */
+.test1
+{
+   outline : 1px solid yellow;
+}
+.test2
+{
+   outline : 1px solid white;
+}
+.test3
+{
+   outline : 1px solid cyan;
+}
+.test4
+{
+   outline : 1px solid black;
 }

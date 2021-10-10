@@ -18,7 +18,7 @@
    <div class="d-flex flex-column main-left p-2">
       
       <!-- boutons de recherches -->
-      <label class="mb-1">Filtres</label>
+      <label class="mb-1">Filtres de recherche</label>
       <!-- groupe 1 -->
       <div class="d-flex flex-row mb-2">
             <!-- recherche par tags-->
@@ -64,7 +64,7 @@
       </div>
 
       <!-- liste des articles -->
-      <div class="d-flex flex-column flex-grow-1 w-100 posts-list">
+      <div class="d-flex flex-column w-100 posts-list" #listPosts>
 
          <!-- post 1-->
          <div class="d-flex flex-row post-card ">
@@ -74,6 +74,11 @@
             </div>
             <div class="d-flex flex-column w-25 justify-content-center align-items-center">
                <div class="d-flex flex-row">
+                  <!-- mode editable / selection -->
+                  <i class="bi bi-pencil-square fs-5 me-2 post-edit" style="display: none;"></i>
+                  <i class="bi bi-pencil-square fs-5 me-2" style="display: none;"></i>
+                  <i class="bi bi-trash fs-5 me-2 post-delete" style="display: none;"></i>
+                  <!-- mode non selection -->
                   <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
                   <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
                   <i class="bi bi-star fs-5 me-2 post-level"></i>
@@ -89,28 +94,19 @@
             </div>
             <div class="d-flex flex-column w-25 justify-content-center align-items-center">
                <div class="d-flex flex-row">
+                  <!-- mode editable / selection -->
                   <i class="bi bi-pencil-square fs-5 me-2 post-edit"></i>
                   <i class="bi bi-pencil-square fs-5 me-2" style="visibility: hidden;"></i>
                   <i class="bi bi-trash fs-5 me-2 post-delete"></i>
+                  <!-- mode non selection -->
+                  <i class="bi bi-star-fill fs-5 me-2 post-level" style="display: none;"></i>
+                  <i class="bi bi-star-fill fs-5 me-2 post-level" style="display: none;"></i>
+                  <i class="bi bi-star fs-5 me-2 post-level" style="display: none;"></i>
                </div>
             </div>
          </div>
 
-                  <!-- post 1-->
-                  <div class="d-flex flex-row post-card ">
-                     <div class="d-flex flex-column flex-grow-1">
-                        <div class="d-flex flex-row h-50 align-items-center ps-2">Jeudi 5 mars 2021</div> 
-                        <div class="d-flex flex-row h-50 ps-2 fw-bold">Caméra all-sky made easy</div> 
-                     </div>
-                     <div class="d-flex flex-column w-25 justify-content-center align-items-center">
-                        <div class="d-flex flex-row">
-                           <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
-                           <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
-                           <i class="bi bi-star fs-5 me-2 post-level"></i>
-                        </div>
-                     </div>
-                  </div>
-                           <!-- post 1-->
+         <!-- post 1-->
          <div class="d-flex flex-row post-card ">
             <div class="d-flex flex-column flex-grow-1">
                <div class="d-flex flex-row h-50 align-items-center ps-2">Jeudi 5 mars 2021</div> 
@@ -118,6 +114,11 @@
             </div>
             <div class="d-flex flex-column w-25 justify-content-center align-items-center">
                <div class="d-flex flex-row">
+                  <!-- mode editable / selection -->
+                  <i class="bi bi-pencil-square fs-5 me-2 post-edit" style="display: none;"></i>
+                  <i class="bi bi-pencil-square fs-5 me-2" style="display: none;"></i>
+                  <i class="bi bi-trash fs-5 me-2 post-delete" style="display: none;"></i>
+                  <!-- mode non selection -->
                   <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
                   <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
                   <i class="bi bi-star fs-5 me-2 post-level"></i>
@@ -125,54 +126,31 @@
             </div>
          </div>
                   <!-- post 1-->
-                  <div class="d-flex flex-row post-card ">
-                     <div class="d-flex flex-column flex-grow-1">
-                        <div class="d-flex flex-row h-50 align-items-center ps-2">Jeudi 5 mars 2021</div> 
-                        <div class="d-flex flex-row h-50 ps-2 fw-bold">Caméra all-sky made easy</div> 
-                     </div>
-                     <div class="d-flex flex-column w-25 justify-content-center align-items-center">
-                        <div class="d-flex flex-row">
-                           <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
-                           <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
-                           <i class="bi bi-star fs-5 me-2 post-level"></i>
-                        </div>
-                     </div>
-                  </div>
-                           <!-- post 1-->
          <div class="d-flex flex-row post-card ">
-            <div class="d-flex flex-column flex-grow-1">
-               <div class="d-flex flex-row h-50 align-items-center ps-2">Jeudi 5 mars 2021</div> 
-               <div class="d-flex flex-row h-50 ps-2 fw-bold">Caméra all-sky made easy</div> 
-            </div>
-            <div class="d-flex flex-column w-25 justify-content-center align-items-center">
-               <div class="d-flex flex-row">
-                  <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
-                  <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
-                  <i class="bi bi-star fs-5 me-2 post-level"></i>
-               </div>
-            </div>
+         <div class="d-flex flex-column flex-grow-1">
+         <div class="d-flex flex-row h-50 align-items-center ps-2">Jeudi 5 mars 2021</div> 
+         <div class="d-flex flex-row h-50 ps-2 fw-bold">Caméra all-sky made easy</div> 
          </div>
-                  <!-- post 1-->
-                  <div class="d-flex flex-row post-card ">
-                     <div class="d-flex flex-column flex-grow-1">
-                        <div class="d-flex flex-row h-50 align-items-center ps-2">Jeudi 5 mars 2021</div> 
-                        <div class="d-flex flex-row h-50 ps-2 fw-bold">Caméra all-sky made easy</div> 
-                     </div>
-                     <div class="d-flex flex-column w-25 justify-content-center align-items-center">
-                        <div class="d-flex flex-row">
-                           <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
-                           <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
-                           <i class="bi bi-star fs-5 me-2 post-level"></i>
-                        </div>
-                     </div>
-                  </div>
+         <div class="d-flex flex-column w-25 justify-content-center align-items-center">
+         <div class="d-flex flex-row">
+         <!-- mode editable / selection -->
+         <i class="bi bi-pencil-square fs-5 me-2 post-edit" style="display: none;"></i>
+         <i class="bi bi-pencil-square fs-5 me-2" style="display: none;"></i>
+         <i class="bi bi-trash fs-5 me-2 post-delete" style="display: none;"></i>
+         <!-- mode non selection -->
+         <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
+         <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
+         <i class="bi bi-star fs-5 me-2 post-level"></i>
+         </div>
+         </div>
+         </div>
 
       </div>
 
    </div>
    
    <!-- Panneau Central -->
-   <div class="d-flex flex-column main-center p-2">
+   <div class="d-flex flex-column main-center p-2" #mainCentral>
       
       <!-- editeur rich text -->
       <label class="mb-1">Contenu principal</label>

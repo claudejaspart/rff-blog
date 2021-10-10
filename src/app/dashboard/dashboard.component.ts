@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import * as ClassicEditor  from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
@@ -6,13 +6,26 @@ import * as ClassicEditor  from '@ckeditor/ckeditor5-build-classic';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements AfterViewInit {
 
   public Editor = ClassicEditor;
+  @ViewChild('listPosts') listOfPosts!:ElementRef;
+  @ViewChild('mainCentral') centralPanel!:ElementRef;
   
   constructor() { }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void 
+  {
+    this.resizePostsLists();
   }
 
+  resizePostsLists():void
+  {
+    // calcul hauteur du container de la liste des posts existants
+    let centralPanelRectBottom = Math.floor(this.centralPanel.nativeElement.getBoundingClientRect().bottom);
+    let listPostsRectTop = Math.floor(this.listOfPosts.nativeElement.getBoundingClientRect().top);
+    let height = centralPanelRectBottom - listPostsRectTop - 34 ;
+    
+    this.listOfPosts.nativeElement.style.height = `${height}px`;
+  }
 }
