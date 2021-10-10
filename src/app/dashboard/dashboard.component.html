@@ -15,8 +15,160 @@
 <div class="d-flex flex-row flex-wrap main-container">
 
    <!-- Panneau Gauche -->
-   <div class="d-flex flex-column main-left">
-      <!-- todo -->
+   <div class="d-flex flex-column main-left p-2">
+      
+      <!-- boutons de recherches -->
+      <label class="mb-1">Filtres</label>
+      <!-- groupe 1 -->
+      <div class="d-flex flex-row mb-2">
+            <!-- recherche par tags-->
+            <select class="me-2 w-50 filter-combobox p-1" name="tags" id="select-tags">
+               <option value="">Tags</option>
+               <option value="robots">Robots</option>
+               <option value="lego">Lego</option>
+               <option value="arduino">Arduino</option>
+            </select>
+         <!-- recherche par level -->
+            <select class="w-50 filter-combobox p-1" name="level" id="select-level">
+               <option value="">Niveau</option>
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+            </select>
+      </div>
+      <!-- groupe 2 -->
+      <div class="d-flex flex-row mb-2">
+         <!-- recherche par année -->
+         <select class="me-2 w-50 filter-combobox p-1" name="year" id="select-year">
+            <option value="">Année</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+         </select>
+         <!-- recherche mois -->
+         <select class="w-50 filter-combobox p-1" name="month" id="select-month">
+            <option value="">Mois</option>
+            <option value="12">Décembre</option>
+            <option value="11">Novembre</option>
+            <option value="10">Octobre</option>
+            <option value="9">Septembre</option>
+            <option value="8">Août</option>
+            <option value="7">Juillet</option>
+            <option value="6">Juin</option>
+            <option value="5">Mai</option>
+            <option value="4">Avril</option>
+            <option value="3">Mars</option>
+            <option value="2">Février</option>
+            <option value="1">Janvier</option>
+         </select>
+      </div>
+
+      <!-- liste des articles -->
+      <div class="d-flex flex-column flex-grow-1 w-100 posts-list">
+
+         <!-- post 1-->
+         <div class="d-flex flex-row post-card ">
+            <div class="d-flex flex-column flex-grow-1">
+               <div class="d-flex flex-row h-50 align-items-center ps-2">Jeudi 5 mars 2021</div> 
+               <div class="d-flex flex-row h-50 ps-2 fw-bold">Caméra all-sky made easy</div> 
+            </div>
+            <div class="d-flex flex-column w-25 justify-content-center align-items-center">
+               <div class="d-flex flex-row">
+                  <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
+                  <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
+                  <i class="bi bi-star fs-5 me-2 post-level"></i>
+               </div>
+            </div>
+         </div>
+
+         <!-- carte selectionnée -->
+         <div class="d-flex flex-row post-card post-selected">
+            <div class="d-flex flex-column flex-grow-1">
+               <div class="d-flex flex-row h-50 align-items-center ps-2">Mardi 10 février 2021</div> 
+               <div class="d-flex flex-row h-50 ps-2 fw-bold">Fabriquer un adaptateur légo</div> 
+            </div>
+            <div class="d-flex flex-column w-25 justify-content-center align-items-center">
+               <div class="d-flex flex-row">
+                  <i class="bi bi-pencil-square fs-5 me-2 post-edit"></i>
+                  <i class="bi bi-pencil-square fs-5 me-2" style="visibility: hidden;"></i>
+                  <i class="bi bi-trash fs-5 me-2 post-delete"></i>
+               </div>
+            </div>
+         </div>
+
+                  <!-- post 1-->
+                  <div class="d-flex flex-row post-card ">
+                     <div class="d-flex flex-column flex-grow-1">
+                        <div class="d-flex flex-row h-50 align-items-center ps-2">Jeudi 5 mars 2021</div> 
+                        <div class="d-flex flex-row h-50 ps-2 fw-bold">Caméra all-sky made easy</div> 
+                     </div>
+                     <div class="d-flex flex-column w-25 justify-content-center align-items-center">
+                        <div class="d-flex flex-row">
+                           <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
+                           <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
+                           <i class="bi bi-star fs-5 me-2 post-level"></i>
+                        </div>
+                     </div>
+                  </div>
+                           <!-- post 1-->
+         <div class="d-flex flex-row post-card ">
+            <div class="d-flex flex-column flex-grow-1">
+               <div class="d-flex flex-row h-50 align-items-center ps-2">Jeudi 5 mars 2021</div> 
+               <div class="d-flex flex-row h-50 ps-2 fw-bold">Caméra all-sky made easy</div> 
+            </div>
+            <div class="d-flex flex-column w-25 justify-content-center align-items-center">
+               <div class="d-flex flex-row">
+                  <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
+                  <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
+                  <i class="bi bi-star fs-5 me-2 post-level"></i>
+               </div>
+            </div>
+         </div>
+                  <!-- post 1-->
+                  <div class="d-flex flex-row post-card ">
+                     <div class="d-flex flex-column flex-grow-1">
+                        <div class="d-flex flex-row h-50 align-items-center ps-2">Jeudi 5 mars 2021</div> 
+                        <div class="d-flex flex-row h-50 ps-2 fw-bold">Caméra all-sky made easy</div> 
+                     </div>
+                     <div class="d-flex flex-column w-25 justify-content-center align-items-center">
+                        <div class="d-flex flex-row">
+                           <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
+                           <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
+                           <i class="bi bi-star fs-5 me-2 post-level"></i>
+                        </div>
+                     </div>
+                  </div>
+                           <!-- post 1-->
+         <div class="d-flex flex-row post-card ">
+            <div class="d-flex flex-column flex-grow-1">
+               <div class="d-flex flex-row h-50 align-items-center ps-2">Jeudi 5 mars 2021</div> 
+               <div class="d-flex flex-row h-50 ps-2 fw-bold">Caméra all-sky made easy</div> 
+            </div>
+            <div class="d-flex flex-column w-25 justify-content-center align-items-center">
+               <div class="d-flex flex-row">
+                  <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
+                  <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
+                  <i class="bi bi-star fs-5 me-2 post-level"></i>
+               </div>
+            </div>
+         </div>
+                  <!-- post 1-->
+                  <div class="d-flex flex-row post-card ">
+                     <div class="d-flex flex-column flex-grow-1">
+                        <div class="d-flex flex-row h-50 align-items-center ps-2">Jeudi 5 mars 2021</div> 
+                        <div class="d-flex flex-row h-50 ps-2 fw-bold">Caméra all-sky made easy</div> 
+                     </div>
+                     <div class="d-flex flex-column w-25 justify-content-center align-items-center">
+                        <div class="d-flex flex-row">
+                           <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
+                           <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
+                           <i class="bi bi-star fs-5 me-2 post-level"></i>
+                        </div>
+                     </div>
+                  </div>
+
+      </div>
+
    </div>
    
    <!-- Panneau Central -->
@@ -146,7 +298,7 @@
       <!-- langue -->
       <label class="mb-1">Langue d'édition</label>
       <div class="d-flex flex-row">
-         <select class="d-flex flex-grow-1 language-combobox me-3" name="language" id="select-language">
+         <select class="d-flex flex-grow-1 language-combobox me-3 p-1" name="language" id="select-language">
             <option value="english">Anglais</option>
             <option value="french">Français</option>
          </select>
@@ -222,7 +374,7 @@
 
       <!-- bouton publier -->
       <div class="d-flex flex-row justify-content-center mb-3">
-         <button class=" w-75 button-publish">
+         <button class=" w-100 button-publish py-1">
             <span class="w-100 text-middle">Publier !</span>
          </button>
       </div>

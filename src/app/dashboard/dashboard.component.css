@@ -42,6 +42,46 @@
 }
 
 /* *************** */
+/* PANNEAU GAUCHE  */
+/* *************** */
+
+.filter-combobox
+{
+   border-radius: 0px;
+   background-color: var(--tertiary-yellow);
+   color : black;
+   height : 32px;
+   border : var(--header-and-footer-color);
+}
+
+.posts-list
+{
+   background-color: var(--header-and-footer-color);
+   overflow-x: auto;
+}
+
+.post-card
+{
+   height: 80px;
+   background-color: var(--secondary-lightBlue);
+   border-bottom: 1px solid black;
+   color: black;
+}
+
+.post-selected
+{
+   background-color: var(--tertiary-yellow);
+}
+
+.post-level
+{
+   color : white;
+}
+
+
+
+
+/* *************** */
 /* PANNEAU CENTRAL */
 /* *************** */
 
