@@ -262,8 +262,11 @@
    font-size: 2rem;
 }
 
-
-
+.button-publish:hover {
+   background-color:var(--main-black);
+   color: var(--tertiary-yellow);
+   border-color: var(--tertiary-yellow);
+}
 
 /* RESPONSIVE */
 /* écran de taille inférieure à 1270px */
