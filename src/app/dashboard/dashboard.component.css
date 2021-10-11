@@ -1,0 +1,331 @@
+/* CSS HEADER */
+.dashboard-header 
+{
+   background-color: var(--header-and-footer-color);
+   height: 50px;
+   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.75);
+}
+.header-title
+{
+   width: 50%;
+   font-size: 1.85rem;
+   font-weight: bold;
+   color : var(--tertiary-yellow);
+}
+.header-welcome 
+{
+   width: 40%;
+   color: var(--main-white);
+}
+.header-logout
+{
+   width: 10%;
+}
+.logout-icon-custom 
+{
+   color: var(--secondary-lightBlue);
+   font-size: 2rem;
+}
+/* MAIN CSS */
+.main-container
+{
+   color:white;
+   height: calc(100vh - 50px - 1px);
+}
+.main-left,.main-right
+{
+   width:28%;
+}
+.main-center
+{
+   width:44%;
+}
+
+/* *************** */
+/* PANNEAU GAUCHE  */
+/* *************** */
+
+.filter-combobox
+{
+   border-radius: 0px;
+   background-color: var(--tertiary-yellow);
+   color : black;
+   height : 32px;
+   border : var(--header-and-footer-color);
+}
+
+.posts-list
+{
+   background-color: var(--header-and-footer-color);
+   overflow-x: auto;
+}
+
+.post-card
+{
+   height: 80px;
+   background-color: var(--secondary-lightBlue);
+   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+   color: black;
+}
+
+.post-selected
+{
+   background-color: var(--tertiary-yellow);
+}
+
+.post-level
+{
+   color : white;
+}
+
+
+
+
+/* *************** */
+/* PANNEAU CENTRAL */
+/* *************** */
+
+/* rich text editor styling */
+/* setting the height in px */
+:host ::ng-deep .ck-editor__editable_inline 
+{
+   height: 475px;
+   color: black;
+}
+
+
+/* Ajout produits amazon */
+.add-product-icon
+{
+   color: var(--tertiary-yellow);
+}
+
+.referenced-products-info
+{
+   background-color: #37363F;
+   color : white;
+   height: 100%;
+   font-weight: bold;
+   padding-top: 3px;
+}
+
+.referenced-products-list
+{
+   display: block;
+   background-color: #37363F;
+   white-space: nowrap;
+   overflow-x: auto;
+   overflow-y: hidden;
+}
+
+.card
+{
+   color: black !important;
+   width: 14rem;
+   white-space: normal;
+}
+
+.card-title
+{
+   font-size: 0.85rem;
+}
+
+.card-text
+{
+   font-size: 0.65rem;
+}
+
+.btn-product-see
+{
+   background-color: var(--secondary-lightBlue);
+   font-size: 0.75rem;
+}
+
+.edit-product-icon
+{
+   top : 4px;
+   left: 7px;
+   color : var(--tiny-icon-red);
+}
+
+.delete-product-icon
+{
+   top : 4px;
+   right: 7px;
+   color : var(--tiny-icon-red);
+}
+
+
+/* ***************** */
+/* PANNEAU DE DROITE */
+/* ***************** */
+
+/* language */
+.language-combobox
+{
+   border-radius: 0px;
+   background-color: var(--tertiary-yellow);
+   color : black;
+   height : 32px;
+   border : var(--header-and-footer-color);
+}
+
+/* date publication */
+.date-icon
+{
+   color: var(--tertiary-yellow);
+}
+
+.date-info
+{
+   background-color: #37363F;
+   color : white;
+   height: 100%;
+   font-weight: bold;
+   padding-top: 3px;
+}
+
+/* titre de l'article */
+.titre-info
+{
+   border-radius: 0px;
+   color:black;
+}
+
+/* courte description */
+.description-info
+{
+   border-radius: 0px;
+   color:black;
+   resize: none;
+}
+
+/* tags */
+.tags-icon
+{
+   color: var(--tertiary-yellow);
+}
+
+.tags-info
+{
+   border-radius: 0px;
+   color:black;
+   resize: none;
+}
+
+/* pieces jointes */
+.files-icon
+{
+   color: var(--tertiary-yellow);
+}
+
+.files-info
+{
+   color:white;
+   font-weight: bold;
+   background-color: var(--header-and-footer-color);
+   overflow-y: auto;
+   height: 115px;
+}
+
+/* video link */
+.video-info
+{
+   border-radius: 0px;
+   color:black;
+   font-weight: bold;
+}
+
+/* level */
+.level-icon
+{
+   color: white;
+}
+
+.level-info
+{
+   width: 50px;
+   border-radius: 0px;
+   background-color: var(--tertiary-yellow);
+   color : black;
+   height : 32px;
+   border : var(--header-and-footer-color);
+   padding-left: 10px;
+   margin-left: 10px;
+}
+
+/* bouton publication */
+.button-publish
+{
+   background: var(--tertiary-yellow);
+   border-radius: 10px;
+   font-size: 2rem;
+}
+
+
+
+
+/* RESPONSIVE */
+/* écran de taille inférieure à 1270px */
+@media screen and (max-width: 1270px)
+{
+   .post-card
+   {
+      height: 115px;
+   }
+}
+
+/* écran de taille inférieure à 1000px */
+@media screen and (max-width: 1000px)
+{
+   .header-title
+   {
+      font-size: 1rem;
+      padding-left: 8px !important;
+   } 
+   .header-welcome 
+   {
+      font-size: 0.75rem;
+   }
+   .logout-icon-custom 
+   {
+      font-size: 1.5rem;
+   }
+
+   .main-left
+   {
+      visibility: hidden;
+      height: 0px;
+      width: 0px;
+   }
+
+   .main-right, .main-center
+   {
+      width:100%;
+   }
+}
+
+
+
+
+
+
+
+
+/* HELPER */
+.test1
+{
+   outline : 1px solid yellow;
+}
+.test2
+{
+   outline : 1px solid white;
+}
+.test3
+{
+   outline : 1px solid cyan;
+}
+.test4
+{
+   outline : 1px solid black;
+}

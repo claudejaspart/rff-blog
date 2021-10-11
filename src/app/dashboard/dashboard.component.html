@@ -1,0 +1,361 @@
+<!-- HEADER DASHBOARD -->
+<div class="d-flex flex-row dashboard-header">
+   <div class="d-flex align-items-center ps-3 header-title">Gestion des articles</div>
+   <div class="d-flex align-items-center header-welcome">
+      <span class="text-end w-100 pe-3">Bienvenue Claude !</span>
+   </div>
+   <div class="d-flex align-items-center header-logout">
+      <span class="text-end w-100 pe-4">
+         <i class="bi bi-box-arrow-right logout-icon-custom"></i>
+      </span>
+   </div>
+</div>
+
+<!-- MAIN DASHBOARD -->
+<div class="d-flex flex-row flex-wrap main-container">
+
+   <!-- Panneau Gauche -->
+   <div class="d-flex flex-column main-left p-2">
+      
+      <!-- boutons de recherches -->
+      <label class="mb-1">Filtres de recherche</label>
+      <!-- groupe 1 -->
+      <div class="d-flex flex-row mb-2">
+            <!-- recherche par tags-->
+            <select class="me-2 w-50 filter-combobox p-1" name="tags" id="select-tags">
+               <option value="">Tags</option>
+               <option value="robots">Robots</option>
+               <option value="lego">Lego</option>
+               <option value="arduino">Arduino</option>
+            </select>
+         <!-- recherche par level -->
+            <select class="w-50 filter-combobox p-1" name="level" id="select-level">
+               <option value="">Niveau</option>
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+            </select>
+      </div>
+      <!-- groupe 2 -->
+      <div class="d-flex flex-row mb-2">
+         <!-- recherche par année -->
+         <select class="me-2 w-50 filter-combobox p-1" name="year" id="select-year">
+            <option value="">Année</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+         </select>
+         <!-- recherche mois -->
+         <select class="w-50 filter-combobox p-1" name="month" id="select-month">
+            <option value="">Mois</option>
+            <option value="12">Décembre</option>
+            <option value="11">Novembre</option>
+            <option value="10">Octobre</option>
+            <option value="9">Septembre</option>
+            <option value="8">Août</option>
+            <option value="7">Juillet</option>
+            <option value="6">Juin</option>
+            <option value="5">Mai</option>
+            <option value="4">Avril</option>
+            <option value="3">Mars</option>
+            <option value="2">Février</option>
+            <option value="1">Janvier</option>
+         </select>
+      </div>
+
+      <!-- liste des articles -->
+      <div class="d-flex flex-column w-100 posts-list" #listPosts>
+
+         <!-- post 1-->
+         <div class="d-flex flex-row post-card ">
+            <div class="d-flex flex-column flex-grow-1">
+               <div class="d-flex flex-row h-50 align-items-center ps-2">Jeudi 5 mars 2021</div> 
+               <div class="d-flex flex-row h-50 ps-2 fw-bold">Caméra all-sky made easy</div> 
+            </div>
+            <div class="d-flex flex-column w-25 justify-content-center align-items-center">
+               <div class="d-flex flex-row">
+                  <!-- mode editable / selection -->
+                  <i class="bi bi-pencil-square fs-5 me-2 post-edit" style="display: none;"></i>
+                  <i class="bi bi-pencil-square fs-5 me-2" style="display: none;"></i>
+                  <i class="bi bi-trash fs-5 me-2 post-delete" style="display: none;"></i>
+                  <!-- mode non selection -->
+                  <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
+                  <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
+                  <i class="bi bi-star fs-5 me-2 post-level"></i>
+               </div>
+            </div>
+         </div>
+
+         <!-- carte selectionnée -->
+         <div class="d-flex flex-row post-card post-selected">
+            <div class="d-flex flex-column flex-grow-1">
+               <div class="d-flex flex-row h-50 align-items-center ps-2">Mardi 10 février 2021</div> 
+               <div class="d-flex flex-row h-50 ps-2 fw-bold">Fabriquer un adaptateur légo</div> 
+            </div>
+            <div class="d-flex flex-column w-25 justify-content-center align-items-center">
+               <div class="d-flex flex-row">
+                  <!-- mode editable / selection -->
+                  <i class="bi bi-pencil-square fs-5 me-2 post-edit"></i>
+                  <i class="bi bi-pencil-square fs-5 me-2" style="visibility: hidden;"></i>
+                  <i class="bi bi-trash fs-5 me-2 post-delete"></i>
+                  <!-- mode non selection -->
+                  <i class="bi bi-star-fill fs-5 me-2 post-level" style="display: none;"></i>
+                  <i class="bi bi-star-fill fs-5 me-2 post-level" style="display: none;"></i>
+                  <i class="bi bi-star fs-5 me-2 post-level" style="display: none;"></i>
+               </div>
+            </div>
+         </div>
+
+         <!-- post 1-->
+         <div class="d-flex flex-row post-card ">
+            <div class="d-flex flex-column flex-grow-1">
+               <div class="d-flex flex-row h-50 align-items-center ps-2">Jeudi 5 mars 2021</div> 
+               <div class="d-flex flex-row h-50 ps-2 fw-bold">Caméra all-sky made easy</div> 
+            </div>
+            <div class="d-flex flex-column w-25 justify-content-center align-items-center">
+               <div class="d-flex flex-row">
+                  <!-- mode editable / selection -->
+                  <i class="bi bi-pencil-square fs-5 me-2 post-edit" style="display: none;"></i>
+                  <i class="bi bi-pencil-square fs-5 me-2" style="display: none;"></i>
+                  <i class="bi bi-trash fs-5 me-2 post-delete" style="display: none;"></i>
+                  <!-- mode non selection -->
+                  <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
+                  <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
+                  <i class="bi bi-star fs-5 me-2 post-level"></i>
+               </div>
+            </div>
+         </div>
+                  <!-- post 1-->
+         <div class="d-flex flex-row post-card ">
+         <div class="d-flex flex-column flex-grow-1">
+         <div class="d-flex flex-row h-50 align-items-center ps-2">Jeudi 5 mars 2021</div> 
+         <div class="d-flex flex-row h-50 ps-2 fw-bold">Caméra all-sky made easy</div> 
+         </div>
+         <div class="d-flex flex-column w-25 justify-content-center align-items-center">
+         <div class="d-flex flex-row">
+         <!-- mode editable / selection -->
+         <i class="bi bi-pencil-square fs-5 me-2 post-edit" style="display: none;"></i>
+         <i class="bi bi-pencil-square fs-5 me-2" style="display: none;"></i>
+         <i class="bi bi-trash fs-5 me-2 post-delete" style="display: none;"></i>
+         <!-- mode non selection -->
+         <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
+         <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
+         <i class="bi bi-star fs-5 me-2 post-level"></i>
+         </div>
+         </div>
+         </div>
+
+      </div>
+
+   </div>
+   
+   <!-- Panneau Central -->
+   <div class="d-flex flex-column main-center p-2" #mainCentral>
+      
+      <!-- editeur rich text -->
+      <label class="mb-1">Contenu principal</label>
+      <ckeditor [editor]="Editor" class="rt-editor"></ckeditor>
+
+      <label class="mt-3 mb-1">Ajouter des liens vers des produits</label>
+      <div class="d-flex flex-row mb-2 w-100 me-5" style="height: 30px;">
+         <i class="bi bi-file-earmark-plus-fill fs-5 me-2 add-product-icon"></i>
+         <div class="d-flex flex-grow-1 ps-2 referenced-products-info">3 produits référencés</div>
+      </div>
+
+      <!-- liste des cartes produits -->
+      <div class="p-2 w-100 referenced-products-list">
+
+         <!-- carte -->
+         <div class="card d-inline-block position-relative me-2">
+            <i class="bi bi-pencil-square fs-5 edit-product-icon position-absolute"></i>
+            <div class="d-inline-block w-100 " style="padding-left: 3rem;">
+               <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image" style="width: 8rem;">
+            </div>
+            <i class="bi bi-x-square fs-5 delete-product-icon position-absolute"></i>
+            <div class="card-body">
+               <h5 class="card-title fw-bold">Moteur Lego</h5>
+               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+               <a href="#" class="btn btn-product-see fw-bold">Voir</a>
+            </div>
+         </div>
+
+                 <!-- carte -->
+                 <div class="card d-inline-block position-relative me-2">
+                  <i class="bi bi-pencil-square fs-5 edit-product-icon position-absolute"></i>
+                  <div class="d-inline-block w-100 " style="padding-left: 3rem;">
+                     <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image" style="width: 8rem;">
+                  </div>
+                  <i class="bi bi-x-square fs-5 delete-product-icon position-absolute"></i>
+                  <div class="card-body">
+                     <h5 class="card-title fw-bold">Moteur Lego</h5>
+                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                     <a href="#" class="btn btn-product-see fw-bold">Voir</a>
+                  </div>
+               </div>         <!-- carte -->
+               <div class="card d-inline-block position-relative me-2">
+                  <i class="bi bi-pencil-square fs-5 edit-product-icon position-absolute"></i>
+                  <div class="d-inline-block w-100 " style="padding-left: 3rem;">
+                     <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image" style="width: 8rem;">
+                  </div>
+                  <i class="bi bi-x-square fs-5 delete-product-icon position-absolute"></i>
+                  <div class="card-body">
+                     <h5 class="card-title fw-bold">Moteur Lego</h5>
+                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                     <a href="#" class="btn btn-product-see fw-bold">Voir</a>
+                  </div>
+               </div>         <!-- carte -->
+               <div class="card d-inline-block position-relative me-2">
+                  <i class="bi bi-pencil-square fs-5 edit-product-icon position-absolute"></i>
+                  <div class="d-inline-block w-100 " style="padding-left: 3rem;">
+                     <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image" style="width: 8rem;">
+                  </div>
+                  <i class="bi bi-x-square fs-5 delete-product-icon position-absolute"></i>
+                  <div class="card-body">
+                     <h5 class="card-title fw-bold">Moteur Lego</h5>
+                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                     <a href="#" class="btn btn-product-see fw-bold">Voir</a>
+                  </div>
+               </div>         <!-- carte -->
+               <div class="card d-inline-block position-relative me-2">
+                  <i class="bi bi-pencil-square fs-5 edit-product-icon position-absolute"></i>
+                  <div class="d-inline-block w-100 " style="padding-left: 3rem;">
+                     <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image" style="width: 8rem;">
+                  </div>
+                  <i class="bi bi-x-square fs-5 delete-product-icon position-absolute"></i>
+                  <div class="card-body">
+                     <h5 class="card-title fw-bold">Moteur Lego</h5>
+                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                     <a href="#" class="btn btn-product-see fw-bold">Voir</a>
+                  </div>
+               </div>         <!-- carte -->
+               <div class="card d-inline-block position-relative me-2">
+                  <i class="bi bi-pencil-square fs-5 edit-product-icon position-absolute"></i>
+                  <div class="d-inline-block w-100 " style="padding-left: 3rem;">
+                     <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image" style="width: 8rem;">
+                  </div>
+                  <i class="bi bi-x-square fs-5 delete-product-icon position-absolute"></i>
+                  <div class="card-body">
+                     <h5 class="card-title fw-bold">Moteur Lego</h5>
+                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                     <a href="#" class="btn btn-product-see fw-bold">Voir</a>
+                  </div>
+               </div>         <!-- carte -->
+               <div class="card d-inline-block position-relative me-2">
+                  <i class="bi bi-pencil-square fs-5 edit-product-icon position-absolute"></i>
+                  <div class="d-inline-block w-100 " style="padding-left: 3rem;">
+                     <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image" style="width: 8rem;">
+                  </div>
+                  <i class="bi bi-x-square fs-5 delete-product-icon position-absolute"></i>
+                  <div class="card-body">
+                     <h5 class="card-title fw-bold">Moteur Lego</h5>
+                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                     <a href="#" class="btn btn-product-see fw-bold">Voir</a>
+                  </div>
+               </div>         <!-- carte -->
+               <div class="card d-inline-block position-relative me-2">
+                  <i class="bi bi-pencil-square fs-5 edit-product-icon position-absolute"></i>
+                  <div class="d-inline-block w-100 " style="padding-left: 3rem;">
+                     <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image" style="width: 8rem;">
+                  </div>
+                  <i class="bi bi-x-square fs-5 delete-product-icon position-absolute"></i>
+                  <div class="card-body">
+                     <h5 class="card-title fw-bold">Moteur Lego</h5>
+                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                     <a href="#" class="btn btn-product-see fw-bold">Voir</a>
+                  </div>
+               </div>
+
+      </div>
+
+   </div>
+
+
+   <!-- Panneau de droite -->
+   <div class="d-flex flex-column p-2 pe-3 main-right position-relative">
+      
+      <!-- langue -->
+      <label class="mb-1">Langue d'édition</label>
+      <div class="d-flex flex-row">
+         <select class="d-flex flex-grow-1 language-combobox me-3 p-1" name="language" id="select-language">
+            <option value="english">Anglais</option>
+            <option value="french">Français</option>
+         </select>
+         <div class="d-inline">
+            <img src="./assets/images/Flag_of_the_United_Kingdom.svg" style="height: 31px; object-fit: contain;display:inline-block"/>
+         </div>
+      </div>
+
+      <!-- date de publication -->
+      <label class="mt-2 mb-1">Date de publication</label>
+      <div class="d-flex flex-row mb-2 w-100 me-5" style="height: 30px;">
+         <i class="bi bi-calendar-week-fill fs-5 me-2 date-icon"></i>
+         <div class="d-flex flex-grow-1 ps-2 date-info">Vendredi 5 Mai 2021</div>
+      </div>
+
+      <!-- titre -->
+      <label class="mt-2 mb-1">Titre</label>
+      <div class="d-flex flex-row mb-2 w-100 me-5" style="height: 30px;">
+         <i class="bi bi-pen fs-5 me-2 titre-icon"></i>
+         <input type="text" class="d-flex flex-grow-1 ps-2 titre-info">
+      </div>
+
+      <!-- courte description -->
+      <label class="mt-2 mb-1">Courte description</label>
+      <div class="d-flex flex-row mb-2 w-100 me-5" >
+         <i class="bi bi-pen fs-5 me-2 description-icon"></i>
+         <textarea class="d-flex flex-grow-1 ps-2 description-info" rows="3"></textarea>
+      </div>
+      
+      <!-- tags -->
+      <label class="mt-2 mb-1">Tags séparés par une virgule</label>
+      <div class="d-flex flex-row mb-2 w-100 me-5" >
+         <i class="bi bi-pencil-square fs-5 me-2 tags-icon"></i>
+         <textarea class="d-flex flex-grow-1 ps-2 tags-info" rows="3"></textarea>
+      </div>
+
+      <!-- pièces jointes -->
+      <label class="mt-2 mb-1">Ajouter des pièces jointes :</label>
+      <div class="d-flex flex-row mb-2 w-100 me-5" >
+         <i class="bi bi-file-earmark-arrow-up-fill fs-5 me-2 files-icon"></i>
+         <div class="d-flex flex-grow-1 ps-2 files-info">
+            <div>
+               3 fichiers sélectionnés :
+               <br>
+               <ul>
+                  <li>test.js</li>
+                  <li>code1.cpp</li>
+                  <li>moon.css</li>
+               </ul>
+            </div>
+         </div>
+      </div>
+
+      <!-- video link -->
+      <label class="mt-3 mb-1">Vidéo Youtube</label>
+      <div class="d-flex flex-row mb-2 w-100 me-5" style="height: 30px;">
+         <i class="bi bi-link-45deg fs-5 me-2 titre-icon"></i>
+         <input type="text" class="d-flex flex-grow-1 ps-2 titre-info">
+      </div>
+
+      <!-- Niveau de difficulté -->
+      <label class="mt-3 mb-1">Niveau de difficulté</label>
+      <div class="d-flex flex-row mb-5 w-100 me-5" style="height: 30px;">
+         <i class="bi bi-star-fill fs-5 me-2 level-icon"></i>
+         <i class="bi bi-star-fill fs-5 me-2 level-icon"></i>
+         <i class="bi bi-star fs-5 me-2 level-icon"></i>
+         <select name="level" id="level" class="level-info">
+            <option class="level" value="1">1</option>
+            <option class="level" value="2">2</option>
+            <option class="level" value="3">3</option>
+         </select>
+      </div>
+
+      <!-- bouton publier -->
+      <div class="d-flex flex-row justify-content-center mb-3">
+         <button class=" w-100 button-publish py-1">
+            <span class="w-100 text-middle">Publier !</span>
+         </button>
+      </div>
+   </div>
+
+</div>

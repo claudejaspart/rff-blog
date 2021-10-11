@@ -1,0 +1,11 @@
+.text-center {
+   background-color: var(--header-and-footer-color);
+}
+
+h1 {
+   font-family: 'Permanent Marker', cursive;
+   color: var(--tertiary-yellow);
+   font-size: 7rem;
+   letter-spacing: 15px;
+   margin-bottom: 0;
+}

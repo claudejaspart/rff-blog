@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+:root {
+   --main-black: #2B2A33;
+   --main-white: white;
+   --secondary-lightBlue: #4FC2EA;
+   --tertiary-yellow: #FFCE54;
+   --border-color: #e9e9e9;
+   --header-and-footer-color: #37363F;
+   --tiny-icon-red: #D80027;
+}
+
+html, body {
+   font-size: 16px;
+}
+
+body {
+   background-color: var(--main-black);
+}
+
+*, *::before, *::after {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: 'Montserrat', sans-serif;
+}
