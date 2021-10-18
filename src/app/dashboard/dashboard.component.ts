@@ -24,7 +24,7 @@ export class DashboardComponent implements AfterViewInit {
     // calcul hauteur du container de la liste des posts existants
     let centralPanelRectBottom = Math.floor(this.centralPanel.nativeElement.getBoundingClientRect().bottom);
     let listPostsRectTop = Math.floor(this.listOfPosts.nativeElement.getBoundingClientRect().top);
-    let height = centralPanelRectBottom - listPostsRectTop - 34 ;
+    let height = centralPanelRectBottom - listPostsRectTop;
     
     this.listOfPosts.nativeElement.style.height = `${height}px`;
   }
