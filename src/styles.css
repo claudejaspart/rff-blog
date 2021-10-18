@@ -2,6 +2,13 @@
 
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
+*, *::before, *::after {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: 'Montserrat', sans-serif;
+}
+
 :root {
    --main-black: #2B2A33;
    --main-white: white;
@@ -18,11 +25,4 @@ html, body {
 
 body {
    background-color: var(--main-black);
-}
-
-*, *::before, *::after {
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-   font-family: 'Montserrat', sans-serif;
 }
