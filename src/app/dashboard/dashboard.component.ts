@@ -1,6 +1,10 @@
 import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import * as ClassicEditor  from '@ckeditor/ckeditor5-build-classic';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+export class HttpClientHelper{
+  static baseURL: string = 'http://localhost:4201';
+}
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -11,12 +15,22 @@ export class DashboardComponent implements AfterViewInit {
   public Editor = ClassicEditor;
   @ViewChild('listPosts') listOfPosts!:ElementRef;
   @ViewChild('mainCentral') centralPanel!:ElementRef;
-  
-  constructor() { }
+  queryData : any = [];
+
+  constructor(private http: HttpClient) {
+
+   }
 
   ngAfterViewInit(): void 
   {
     this.resizePostsLists();
+    this.http.get(`${HttpClientHelper.baseURL}/subarticles`).subscribe(
+
+      (retrievedList:any) =>
+      {
+        this.queryData = retrievedList;
+        console.log(this.queryData);
+      });
   }
 
   resizePostsLists():void
