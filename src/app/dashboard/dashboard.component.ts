@@ -24,7 +24,7 @@ export class DashboardComponent implements AfterViewInit {
   ngAfterViewInit(): void 
   {
     this.resizePostsLists();
-    this.http.get(`${HttpClientHelper.baseURL}/subarticles`).subscribe(
+    this.http.get(`${HttpClientHelper.baseURL}/articles`).subscribe(
 
       (retrievedList:any) =>
       {
