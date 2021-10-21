@@ -67,10 +67,14 @@
       <div class="d-flex flex-column w-100 posts-list" #listPosts>
 
          <!-- post 1-->
-         <div class="d-flex flex-row post-card ">
+         <div class="d-flex flex-row post-card" *ngFor="let art of articles">
             <div class="d-flex flex-column flex-grow-1">
-               <div class="d-flex flex-row h-50 align-items-center ps-2">Jeudi 5 mars 2021</div> 
-               <div class="d-flex flex-row h-50 ps-2 fw-bold">Caméra all-sky made easy</div> 
+               <div class="d-flex flex-row h-50 align-items-center ps-2">
+                  {{ art.level }}
+               </div> 
+               <div class="d-flex flex-row h-50 ps-2 fw-bold">
+                  camera sky
+               </div>
             </div>
             <div class="d-flex flex-column w-25 justify-content-center align-items-center">
                <div class="d-flex flex-row">
@@ -87,63 +91,63 @@
          </div>
 
          <!-- carte selectionnée -->
-         <div class="d-flex flex-row post-card post-selected">
+<!--          <div class="d-flex flex-row post-card post-selected">
             <div class="d-flex flex-column flex-grow-1">
                <div class="d-flex flex-row h-50 align-items-center ps-2">Mardi 10 février 2021</div> 
                <div class="d-flex flex-row h-50 ps-2 fw-bold">Fabriquer un adaptateur légo</div> 
             </div>
             <div class="d-flex flex-column w-25 justify-content-center align-items-center">
-               <div class="d-flex flex-row">
+               <div class="d-flex flex-row"> -->
                   <!-- mode editable / selection -->
-                  <i class="bi bi-pencil-square fs-5 me-2 post-edit"></i>
+<!--                   <i class="bi bi-pencil-square fs-5 me-2 post-edit"></i>
                   <i class="bi bi-pencil-square fs-5 me-2" style="visibility: hidden;"></i>
-                  <i class="bi bi-trash fs-5 me-2 post-delete"></i>
+                  <i class="bi bi-trash fs-5 me-2 post-delete"></i> -->
                   <!-- mode non selection -->
-                  <i class="bi bi-star-fill fs-5 me-2 post-level" style="display: none;"></i>
+<!--                   <i class="bi bi-star-fill fs-5 me-2 post-level" style="display: none;"></i>
                   <i class="bi bi-star-fill fs-5 me-2 post-level" style="display: none;"></i>
                   <i class="bi bi-star fs-5 me-2 post-level" style="display: none;"></i>
                </div>
             </div>
-         </div>
+         </div> -->
 
          <!-- post 1-->
-         <div class="d-flex flex-row post-card ">
+<!--          <div class="d-flex flex-row post-card ">
             <div class="d-flex flex-column flex-grow-1">
                <div class="d-flex flex-row h-50 align-items-center ps-2">Jeudi 5 mars 2021</div> 
                <div class="d-flex flex-row h-50 ps-2 fw-bold">Caméra all-sky made easy</div> 
             </div>
             <div class="d-flex flex-column w-25 justify-content-center align-items-center">
-               <div class="d-flex flex-row">
+               <div class="d-flex flex-row"> -->
                   <!-- mode editable / selection -->
-                  <i class="bi bi-pencil-square fs-5 me-2 post-edit" style="display: none;"></i>
+<!--                   <i class="bi bi-pencil-square fs-5 me-2 post-edit" style="display: none;"></i>
                   <i class="bi bi-pencil-square fs-5 me-2" style="display: none;"></i>
-                  <i class="bi bi-trash fs-5 me-2 post-delete" style="display: none;"></i>
+                  <i class="bi bi-trash fs-5 me-2 post-delete" style="display: none;"></i> -->
                   <!-- mode non selection -->
-                  <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
+<!--                   <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
                   <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
                   <i class="bi bi-star fs-5 me-2 post-level"></i>
                </div>
             </div>
-         </div>
-                  <!-- post 1-->
-         <div class="d-flex flex-row post-card ">
+         </div> -->
+         <!-- post 1-->
+<!--          <div class="d-flex flex-row post-card ">
          <div class="d-flex flex-column flex-grow-1">
          <div class="d-flex flex-row h-50 align-items-center ps-2">Jeudi 5 mars 2021</div> 
          <div class="d-flex flex-row h-50 ps-2 fw-bold">Caméra all-sky made easy</div> 
          </div>
          <div class="d-flex flex-column w-25 justify-content-center align-items-center">
-         <div class="d-flex flex-row">
+         <div class="d-flex flex-row"> -->
          <!-- mode editable / selection -->
-         <i class="bi bi-pencil-square fs-5 me-2 post-edit" style="display: none;"></i>
+<!--          <i class="bi bi-pencil-square fs-5 me-2 post-edit" style="display: none;"></i>
          <i class="bi bi-pencil-square fs-5 me-2" style="display: none;"></i>
-         <i class="bi bi-trash fs-5 me-2 post-delete" style="display: none;"></i>
+         <i class="bi bi-trash fs-5 me-2 post-delete" style="display: none;"></i> -->
          <!-- mode non selection -->
-         <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
+<!--          <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
          <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
          <i class="bi bi-star fs-5 me-2 post-level"></i>
          </div>
          </div>
-         </div>
+         </div> -->
 
       </div>
 

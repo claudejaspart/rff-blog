@@ -1,6 +1,7 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, Input } from '@angular/core';
 import * as ClassicEditor  from '@ckeditor/ckeditor5-build-classic';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+//import { Article } from '../models/article';
 
 export class HttpClientHelper{
   static baseURL: string = 'http://localhost:4201';
@@ -16,6 +17,7 @@ export class DashboardComponent implements AfterViewInit {
   @ViewChild('listPosts') listOfPosts!:ElementRef;
   @ViewChild('mainCentral') centralPanel!:ElementRef;
   queryData : any = [];
+  articles: Array<Article> = [];
 
   constructor(private http: HttpClient) {
 
@@ -29,7 +31,8 @@ export class DashboardComponent implements AfterViewInit {
       (retrievedList:any) =>
       {
         this.queryData = retrievedList;
-        console.log(this.queryData);
+        this.loadData(this.queryData);
+        //console.log(this.queryData);
       });
   }
 
@@ -42,4 +45,19 @@ export class DashboardComponent implements AfterViewInit {
     
     this.listOfPosts.nativeElement.style.height = `${height}px`;
   }
+
+  loadData(queryData: any) {
+    [...queryData].forEach(article => {
+      this.articles.push(article as Article);
+    });
+    console.log(this.articles);
+    
+  }
+
+}
+
+interface Article {
+  idArticle: number;
+  datePublication: string;
+  level: number;
 }
