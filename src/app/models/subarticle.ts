@@ -1,4 +1,4 @@
-export class SousArticle {
+export class SubArticle {
 
    idSubArticle: number;
    titre: string;
@@ -14,5 +14,5 @@ export class SousArticle {
       this.richTextData = richTextData;
       this.videoLink = videoLink;
       this.language = language;
-   }     
+   }   
 }

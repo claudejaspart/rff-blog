@@ -2,7 +2,7 @@ import { Component, ElementRef, ViewChild, AfterViewInit, Input } from '@angular
 import * as ClassicEditor  from '@ckeditor/ckeditor5-build-classic';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Article } from '../models/article';
-import { SousArticle } from '../models/subarticle';
+import { SubArticle } from '../models/subarticle';
 
 export class HttpClientHelper{
   static baseURL: string = 'http://localhost:4201';
@@ -19,8 +19,7 @@ export class DashboardComponent implements AfterViewInit {
   @ViewChild('mainCentral') centralPanel!:ElementRef;
   queryData : any = [];
   articles: Array<Article> = [];
-  sousArticles: Array<SousArticle> = [];
-  langFr: boolean = true;
+  langFr: boolean = false;
 
   constructor(private http: HttpClient) {
 
@@ -35,7 +34,6 @@ export class DashboardComponent implements AfterViewInit {
       {
         this.queryData = retrievedList;
         this.loadDataArticles(this.queryData);
-        this.loadDataSubarticles(this.queryData);
         //console.log(this.queryData);
       });
   }
@@ -51,30 +49,29 @@ export class DashboardComponent implements AfterViewInit {
   }
 
   loadDataArticles(articleList: any) {
-    [...articleList].forEach(art => {
-      let currentArticle = new Article(art.idArticle, art.datePublication, art.level);
-      this.articles.push(currentArticle);
-    });
-    console.log(this.articles);
+    [...articleList].forEach(art => 
+      {
+
+        let currentArticle = new Article(art.idArticle, art.datePublication, art.level, this.loadDataSubarticles(art.subArticles));
+
+        console.log(currentArticle);
+        this.articles.push(currentArticle);
+      });
   }
 
   loadDataSubarticles(subarticleList: any) {
+    let subArticles = [] as any;
     [...subarticleList].forEach(subart => {
-      let currentSubarticle = new SousArticle(
-        subart.idSubArticle,
+      let currentSubarticle = new SubArticle(
+        subart.idSubarticle,
         subart.titre,
         subart.description,
         subart.richTextData,
-        subart.videoLink,
+        subart.videolink,
         subart.language);
-      this.sousArticles.push(currentSubarticle);
-    });
-    console.log(this.sousArticles);
-    
-  }
-
-  onSelectLanguage() {
-
+        subArticles.push(currentSubarticle);
+    });  
+    return subArticles;
   }
 
 
