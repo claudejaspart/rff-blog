@@ -1,13 +1,13 @@
 import { Tag } from '../models/tag';
-import { SousArticle } from '../models/sousArticle';
+import { SousArticle } from './subarticle';
 import { Produit } from '../models/produit';
 
 
 export class Article {
 
-   private idArticle: number;
-   private datePublication: string;
-   private level: number;
+   idArticle: number;
+   datePublication: string;
+   level: number;
 /*    private tags: Tag;
    private sousArticles: SousArticle;
    private produits: Produit; */
@@ -20,4 +20,5 @@ export class Article {
       this.sousArticles = new SousArticle();
       this.produits = new Produit();
    } */
+   }
 }

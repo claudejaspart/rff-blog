@@ -11,6 +11,11 @@ import { AuthComponent } from './auth/auth.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { HttpClientModule } from '@angular/common/http';
 
+// pour avoir la date en français
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr');
+
 
 const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },

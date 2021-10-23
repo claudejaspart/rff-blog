@@ -1,7 +1,8 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, Input } from '@angular/core';
 import * as ClassicEditor  from '@ckeditor/ckeditor5-build-classic';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-//import { Article } from '../models/article';
+import { Article } from '../models/article';
+import { SousArticle } from '../models/subarticle';
 
 export class HttpClientHelper{
   static baseURL: string = 'http://localhost:4201';
@@ -18,6 +19,8 @@ export class DashboardComponent implements AfterViewInit {
   @ViewChild('mainCentral') centralPanel!:ElementRef;
   queryData : any = [];
   articles: Array<Article> = [];
+  sousArticles: Array<SousArticle> = [];
+  langFr: boolean = true;
 
   constructor(private http: HttpClient) {
 
@@ -31,7 +34,8 @@ export class DashboardComponent implements AfterViewInit {
       (retrievedList:any) =>
       {
         this.queryData = retrievedList;
-        this.loadData(this.queryData);
+        this.loadDataArticles(this.queryData);
+        this.loadDataSubarticles(this.queryData);
         //console.log(this.queryData);
       });
   }
@@ -46,18 +50,32 @@ export class DashboardComponent implements AfterViewInit {
     this.listOfPosts.nativeElement.style.height = `${height}px`;
   }
 
-  loadData(queryData: any) {
-    [...queryData].forEach(article => {
-      this.articles.push(article as Article);
+  loadDataArticles(articleList: any) {
+    [...articleList].forEach(art => {
+      let currentArticle = new Article(art.idArticle, art.datePublication, art.level);
+      this.articles.push(currentArticle);
     });
     console.log(this.articles);
+  }
+
+  loadDataSubarticles(subarticleList: any) {
+    [...subarticleList].forEach(subart => {
+      let currentSubarticle = new SousArticle(
+        subart.idSubArticle,
+        subart.titre,
+        subart.description,
+        subart.richTextData,
+        subart.videoLink,
+        subart.language);
+      this.sousArticles.push(currentSubarticle);
+    });
+    console.log(this.sousArticles);
     
   }
 
-}
+  onSelectLanguage() {
 
-interface Article {
-  idArticle: number;
-  datePublication: string;
-  level: number;
+  }
+
+
 }

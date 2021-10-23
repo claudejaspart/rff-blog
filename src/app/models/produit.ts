@@ -1,16 +1,15 @@
-import { SousProduit } from '../models/sousProduit';
+import { SousProduit } from './subproduit';
 
 export class Produit {
 
-   private idProduit: number;
-   private imageLink: string;
-   private productLink: string;
-   private subProduit: SousProduit;
+   idProduit: number;
+   imageLink: string;
+   productLink: string;
+   //subProduit: SousProduit;
 
    constructor(idProduit: number, imageLink: string, productLink: string) {
       this.idProduit = idProduit;
       this.imageLink = imageLink;
       this.productLink = productLink;
-      this.subProduit = new SousProduit();
    }     
 }

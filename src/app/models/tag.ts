@@ -1,8 +1,8 @@
 export class Tag {
 
-   private idTag: number;
-   private libelle: string;
-   private language: string;
+   idTag: number;
+   libelle: string;
+   language: string;
 
    constructor(idTag: number, libelle: string, language: string) {
       this.idTag = idTag;
