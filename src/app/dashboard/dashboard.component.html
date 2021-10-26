@@ -12,7 +12,7 @@
 </div>
 
 <!-- MAIN DASHBOARD -->
-<div class="d-flex flex-row flex-wrap main-container">
+<div class="d-flex flex-row flex-wrap main-container h-100">
 
    <!-- Panneau Gauche -->
    <div class="d-flex flex-column main-left p-2">
@@ -27,6 +27,28 @@
                <option value="robots">Robots</option>
                <option value="lego">Lego</option>
                <option value="arduino">Arduino</option>
+               <option value="robots">Robots</option>
+               <option value="lego">Lego</option>
+               <option value="arduino">Arduino</option>
+               <option value="robots">Robots</option>
+               <option value="lego">Lego</option>
+               <option value="arduino">Arduino</option>
+               <option value="robots">Robots</option>
+               <option value="lego">Lego</option>
+               <option value="arduino">Arduino</option>
+               <option value="robots">Robots</option>
+               <option value="lego">Lego</option>
+               <option value="arduino">Arduino</option>
+               <option value="robots">Robots</option>
+               <option value="lego">Lego</option>
+               <option value="arduino">Arduino</option>               
+               <option value="robots">Robots</option>
+               <option value="lego">Lego</option>
+               <option value="arduino">Arduino</option>
+               <option value="robots">Robots</option>
+               <option value="lego">Lego</option>
+               <option value="arduino">Arduino</option>
+
             </select>
          <!-- recherche par level -->
             <select class="w-50 filter-combobox p-1" name="level" id="select-level">
@@ -64,32 +86,38 @@
       </div>
 
       <!-- liste des articles -->
-      <div class="d-flex flex-column w-100 posts-list" #listPosts>
+      <div class="w-100 posts-list" #listPosts>
 
          <!-- element liste -->
-         <div class="d-flex flex-row post-card" *ngFor="let art of articles">
-            <div class="d-flex flex-column flex-grow-1">
-               <div class="d-flex flex-row h-50 align-items-center ps-2">
-                  <span *ngIf="langFr; else englishDate">
-                     {{ art.datePublication | date:'fullDate':'':'fr-FR' }}
-                  </span>
+         <div class="post-card" *ngFor="let miniArt of miniArticles">
+            <div class="d-flex flex-row h-100">
+               <!-- date et titre -->
+               <div class="d-flex flex-column h-100 post-card-left h-100">
+                  <div class="d-flex post-card-date ps-2 h-50 align-items-center">
+                     <span *ngIf="isFrench; else isEnglishDate">
+                        <i>{{ miniArt.datePublication | date:'fullDate':'':'fr-FR' }}</i>
+                     </span>
+                     <ng-template #isEnglishDate>
+                        <i>{{ miniArt.datePublication | date:'fullDate':'':'en-EN' }}</i>
+                     </ng-template>
+                  </div>
+                  <div class="d-flex post-card-title p-2 h-50 ">
+                     <strong>{{ miniArt.miniSubArticles[isFrench].titre }}</strong>
+                  </div>
+               </div>
 
-                  <ng-template #englishDate>
-                     {{ art.datePublication | date:'fullDate':'':'en-EN' }}
-                  </ng-template>
-               </div> 
-               <div class="d-flex flex-row h-50 ps-2 fw-bold">
-                  camera sky
+               <!-- actions-->
+               <div class="d-flex post-card-right h-100 align-items-center justify-content-center">
+                  <app-level-stars [level]="miniArt.level"></app-level-stars>
                </div>
             </div>
-
-
-
          </div>
 
-        
       </div>
 
+
+
+       
    </div>
    
    <!-- Panneau Central -->
@@ -215,25 +243,19 @@
 
 
    <!-- Panneau de droite -->
-   <div class="d-flex flex-column p-2 pe-3 main-right position-relative">
+   <div class="d-flex flex-column p-2 pe-4  main-right position-relative">
       
       <!-- langue -->
       <label class="mb-1">Langue d'édition</label>
       <div class="d-flex flex-row">
-         <select class="d-flex flex-grow-1 language-combobox me-3 p-1" name="language" id="select-language">
-            <option value="english">Anglais</option>
-            <option value="french">Français</option>
+         <select class="d-flex flex-grow-1 language-combobox me-3 p-1" name="language" id="select-language" (change)="selectLanguage($event)">
+            <option value="1">Français</option>
+            <option value="0">Anglais</option>
          </select>
          <div class="d-inline">
-            <img src="./assets/images/Flag_of_the_United_Kingdom.svg" style="height: 31px; object-fit: contain;display:inline-block"/>
+            <img src="./assets/images/Flag_of_the_United_Kingdom.svg" style="height: 31px; width: 62px;display:inline-block" *ngIf="!isFrench"/>
+            <img src="./assets/images/Flag_of_France.svg" style="height: 31px; width: 62px;display:inline-block" *ngIf="isFrench"/>
          </div>
-      </div>
-
-      <!-- date de publication -->
-      <label class="mt-2 mb-1">Date de publication</label>
-      <div class="d-flex flex-row mb-2 w-100 me-5" style="height: 30px;">
-         <i class="bi bi-calendar-week-fill fs-5 me-2 date-icon"></i>
-         <div class="d-flex flex-grow-1 ps-2 date-info">Vendredi 5 Mai 2021</div>
       </div>
 
       <!-- titre -->
@@ -255,6 +277,13 @@
       <div class="d-flex flex-row mb-2 w-100 me-5" >
          <i class="bi bi-pencil-square fs-5 me-2 tags-icon"></i>
          <textarea class="d-flex flex-grow-1 ps-2 tags-info" rows="3"></textarea>
+      </div>
+
+      <!-- date de publication -->
+      <label class="mt-2 mb-1">Date de publication</label>
+      <div class="d-flex flex-row mb-2 w-100 me-5" style="height: 30px;">
+         <i class="bi bi-calendar-week-fill fs-5 me-2 date-icon"></i>
+         <div class="d-flex flex-grow-1 ps-2 date-info">Vendredi 5 Mai 2021</div>
       </div>
 
       <!-- pièces jointes -->

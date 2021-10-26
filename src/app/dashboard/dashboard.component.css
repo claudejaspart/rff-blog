@@ -57,14 +57,17 @@
 .posts-list
 {
    background-color: var(--header-and-footer-color);
-   overflow-x: auto;
+   overflow-y:auto; 
+   height: 250px;
 }
 
 .post-card
 {
    height: 80px;
+   width: 100%;
+   display: block;
    background-color: var(--secondary-lightBlue);
-   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
    color: black;
 }
 
@@ -76,6 +79,16 @@
 .post-level
 {
    color : white;
+}
+
+.post-card-left
+{
+   width: 70%;
+}
+
+.post-card-right
+{
+   width: 30%;
 }
 
 

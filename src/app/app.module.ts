@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { AddProductComponent } from './dashboard/add-product/add-product.component';
+import { LevelStarsComponent } from './level-stars/level-stars.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -30,7 +31,8 @@ const appRoutes: Routes = [
     DashboardComponent,
     HeaderComponent,
     FooterComponent,
-    AddProductComponent
+    AddProductComponent,
+    LevelStarsComponent
   ],
   imports: [
     BrowserModule,
