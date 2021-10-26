@@ -1,0 +1,57 @@
+<div class="modal-container p-5">
+
+    <!-- icone fermeture -->
+    <div class="d-flex align-items-center w-100 modal-close" (click)="closeProduct()">
+        <i class="bi bi-x fs-2 w-100 text-end produit-close"></i>
+    </div>
+  
+    <div class="modal-main p-3">
+
+        <!-- titre -->
+        <div class="modal-title d-flex mb-5 align-items-center">
+            <span class="w-100 text-center">Ajout d'un produit</span>
+        </div>
+
+        <!-- Produits existants -->
+        <label class="mb-1">Produits existants</label>
+        <div class="d-flex flex-row w-100 mb-1" style="background-color: #FFCE54;">
+            <select class="d-inline-block products-combobox me-3" name="products" id="select-product">
+                <option  value="1">Moteur lego</option>
+                <option  value="2">Raspberry pi</option>
+            </select>
+        </div>
+
+        <!-- URL Image -->
+        <label class="mt-2 mb-1">URL Image</label>
+        <div class="d-flex flex-row mb-1 w-100 me-5" style="height: 30px;">
+            <input type="text" class="d-flex flex-grow-1 ps-2">
+        </div>
+
+        <!-- URL Produit -->
+        <label class="mt-2 mb-2">URL Produit</label>
+        <div class="d-flex flex-row w-100 me-5" style="height: 30px;">
+            <input type="text" class="d-flex flex-grow-1 ps-2">
+        </div>
+
+        <!-- Libelle -->
+        <label class="mt-2 mb-1">Libellé</label>
+        <div class="d-flex flex-row mb-1 w-100 me-5" style="height: 30px;">
+            <input type="text" class="d-flex flex-grow-1 ps-2 titre-info">
+        </div>
+
+        <!-- description -->
+        <label class="mt-2 mb-1">Description</label>
+        <div class="d-flex flex-row mb-1 w-100 me-5 mb-4" >
+            <textarea class="d-flex flex-grow-1 ps-2 description-info" rows="4" style="resize: none;"></textarea>
+        </div>
+
+        <!-- bouton ajouter -->
+        <div class="d-flex flex-row justify-content-center mb-3">
+            <button class=" w-100 button-add-product py-1">
+            <span class="w-100 text-middle">ajouter</span>
+            </button>
+        </div>
+
+    </div>
+
+</div>

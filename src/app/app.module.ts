@@ -10,6 +10,11 @@ import { FooterComponent } from './footer/footer.component';
 import { AuthComponent } from './auth/auth.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { HttpClientModule } from '@angular/common/http';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+import { AddProductComponent } from './dashboard/add-product/add-product.component';
+
+registerLocaleData(localeFr, 'fr');
 
 
 const appRoutes: Routes = [
@@ -24,7 +29,8 @@ const appRoutes: Routes = [
     LoginPageComponent,
     DashboardComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,

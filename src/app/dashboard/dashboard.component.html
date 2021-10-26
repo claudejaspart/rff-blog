@@ -66,89 +66,28 @@
       <!-- liste des articles -->
       <div class="d-flex flex-column w-100 posts-list" #listPosts>
 
-         <!-- post 1-->
+         <!-- element liste -->
          <div class="d-flex flex-row post-card" *ngFor="let art of articles">
             <div class="d-flex flex-column flex-grow-1">
                <div class="d-flex flex-row h-50 align-items-center ps-2">
-                  {{ art.level }}
+                  <span *ngIf="langFr; else englishDate">
+                     {{ art.datePublication | date:'fullDate':'':'fr-FR' }}
+                  </span>
+
+                  <ng-template #englishDate>
+                     {{ art.datePublication | date:'fullDate':'':'en-EN' }}
+                  </ng-template>
                </div> 
                <div class="d-flex flex-row h-50 ps-2 fw-bold">
                   camera sky
                </div>
             </div>
-            <div class="d-flex flex-column w-25 justify-content-center align-items-center">
-               <div class="d-flex flex-row">
-                  <!-- mode editable / selection -->
-                  <i class="bi bi-pencil-square fs-5 me-2 post-edit" style="display: none;"></i>
-                  <i class="bi bi-pencil-square fs-5 me-2" style="display: none;"></i>
-                  <i class="bi bi-trash fs-5 me-2 post-delete" style="display: none;"></i>
-                  <!-- mode non selection -->
-                  <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
-                  <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
-                  <i class="bi bi-star fs-5 me-2 post-level"></i>
-               </div>
-            </div>
+
+
+
          </div>
 
-         <!-- carte selectionnée -->
-<!--          <div class="d-flex flex-row post-card post-selected">
-            <div class="d-flex flex-column flex-grow-1">
-               <div class="d-flex flex-row h-50 align-items-center ps-2">Mardi 10 février 2021</div> 
-               <div class="d-flex flex-row h-50 ps-2 fw-bold">Fabriquer un adaptateur légo</div> 
-            </div>
-            <div class="d-flex flex-column w-25 justify-content-center align-items-center">
-               <div class="d-flex flex-row"> -->
-                  <!-- mode editable / selection -->
-<!--                   <i class="bi bi-pencil-square fs-5 me-2 post-edit"></i>
-                  <i class="bi bi-pencil-square fs-5 me-2" style="visibility: hidden;"></i>
-                  <i class="bi bi-trash fs-5 me-2 post-delete"></i> -->
-                  <!-- mode non selection -->
-<!--                   <i class="bi bi-star-fill fs-5 me-2 post-level" style="display: none;"></i>
-                  <i class="bi bi-star-fill fs-5 me-2 post-level" style="display: none;"></i>
-                  <i class="bi bi-star fs-5 me-2 post-level" style="display: none;"></i>
-               </div>
-            </div>
-         </div> -->
-
-         <!-- post 1-->
-<!--          <div class="d-flex flex-row post-card ">
-            <div class="d-flex flex-column flex-grow-1">
-               <div class="d-flex flex-row h-50 align-items-center ps-2">Jeudi 5 mars 2021</div> 
-               <div class="d-flex flex-row h-50 ps-2 fw-bold">Caméra all-sky made easy</div> 
-            </div>
-            <div class="d-flex flex-column w-25 justify-content-center align-items-center">
-               <div class="d-flex flex-row"> -->
-                  <!-- mode editable / selection -->
-<!--                   <i class="bi bi-pencil-square fs-5 me-2 post-edit" style="display: none;"></i>
-                  <i class="bi bi-pencil-square fs-5 me-2" style="display: none;"></i>
-                  <i class="bi bi-trash fs-5 me-2 post-delete" style="display: none;"></i> -->
-                  <!-- mode non selection -->
-<!--                   <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
-                  <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
-                  <i class="bi bi-star fs-5 me-2 post-level"></i>
-               </div>
-            </div>
-         </div> -->
-         <!-- post 1-->
-<!--          <div class="d-flex flex-row post-card ">
-         <div class="d-flex flex-column flex-grow-1">
-         <div class="d-flex flex-row h-50 align-items-center ps-2">Jeudi 5 mars 2021</div> 
-         <div class="d-flex flex-row h-50 ps-2 fw-bold">Caméra all-sky made easy</div> 
-         </div>
-         <div class="d-flex flex-column w-25 justify-content-center align-items-center">
-         <div class="d-flex flex-row"> -->
-         <!-- mode editable / selection -->
-<!--          <i class="bi bi-pencil-square fs-5 me-2 post-edit" style="display: none;"></i>
-         <i class="bi bi-pencil-square fs-5 me-2" style="display: none;"></i>
-         <i class="bi bi-trash fs-5 me-2 post-delete" style="display: none;"></i> -->
-         <!-- mode non selection -->
-<!--          <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
-         <i class="bi bi-star-fill fs-5 me-2 post-level"></i>
-         <i class="bi bi-star fs-5 me-2 post-level"></i>
-         </div>
-         </div>
-         </div> -->
-
+        
       </div>
 
    </div>
@@ -162,7 +101,8 @@
 
       <label class="mt-3 mb-1">Ajouter des liens vers des produits</label>
       <div class="d-flex flex-row mb-2 w-100 me-5" style="height: 30px;">
-         <i class="bi bi-file-earmark-plus-fill fs-5 me-2 add-product-icon"></i>
+         <i class="bi bi-file-earmark-plus-fill fs-5 me-2 add-product-icon" (click)="toggleProductModal()"></i>
+         <app-add-product *ngIf="showProductModal" (messageEvent)="productModalState($event)"></app-add-product>
          <div class="d-flex flex-grow-1 ps-2 referenced-products-info">3 produits référencés</div>
       </div>
 
@@ -357,7 +297,7 @@
       <!-- bouton publier -->
       <div class="d-flex flex-row justify-content-center mb-3">
          <button class=" w-100 button-publish py-1">
-            <span class="w-100 text-middle">Publier !</span>
+            <span class="w-100 text-middle">publier l'article</span>
          </button>
       </div>
    </div>

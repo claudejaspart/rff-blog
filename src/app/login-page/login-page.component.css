@@ -1,59 +1,58 @@
-.person-custom {
-   font-size: 5rem;
-   color: var(--secondary-lightBlue);
-   position: absolute;
-   width: 78px;
-   height: 53px;
-   left: 342px;
-   top: 325px;
+.logo-robot 
+{
+   background-image: url('../../assets/images/rsz_robot_logo.png');
+   background-position: left;
+   background-repeat: no-repeat;
+   background-size:contain;
 }
 
-button {
+.person-custom
+{
+   font-size: 3.5rem;
+   color: var(--secondary-lightBlue);
+   margin: 0;
+   padding: 0;
+}
+
+.custom-button 
+{
    font-family: 'Montserrat', sans-serif;
    background-color: var(--tertiary-yellow);
-   position: absolute;
-   width: 417px;
-   height: 91px;
-   left: 350px;
-   top: 445px;
-   border-radius: 10px;
-   font-size: 2.7rem;
-   padding-bottom: 10px;
-   transition: .3s;
+   border-radius: 5px;
+   font-size: 1.6rem;
+   border-color : transparent;
+   padding: 10px 15px 10px 15px;
 }
 
-button:hover {
-   animation: pulse 1s infinite;
-   transition: .3s;
- }
- @keyframes pulse {
-   0% {
-     transform: scale(1);
-   }
-   70% {
-     transform: scale(.9);
-   }
-     100% {
-     transform: scale(1);
-   }
- }
-
-.logo-container {
-   position: absolute;
-   left: 925px;
-   top: 150px;
+.robotic-hand 
+{
+   width: 64px;
+   height: 64px;
+   z-index: 50000;
+   background-image: url('../../assets/images/rsz_robotic_hand.png');
+   background-position: left;
+   background-repeat: no-repeat;
+   background-size:contain;
+   transform: translate(-10%,85%);
 }
 
-.logo-robot {
-   width: 600px;
-   object-fit: contain;
+
+
+
+
+
+
+.test1
+{
+   outline: 1px solid green;
 }
 
-.robotic-hand {
-   position: absolute;
-   width: 130px;
-   height: 130px;
-   left: 750px;
-   top: 519px;
-   z-index: 5000;
+.test2
+{
+   border: 1px solid red;
+}
+
+.test3
+{
+   border: 1px solid yellow;
 }

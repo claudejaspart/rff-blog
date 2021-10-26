@@ -1,18 +1,33 @@
-<div>
+<div class="d-flex flex-column h-100 w-100">
 
    <app-header></app-header>
-   <div class="main-container">
-      <i class="bi bi-person person-custom"></i>
-      <div class="robotic-hand">
-         <img src="./assets/images/rsz_robotic_hand.png" alt="main robotique en guise de curseur" >
+   
+   <div class="d-flex flex-row flex-fill ">
+
+      <!-- login -->
+      <div class="d-flex flex-row-reverse w-50 h-100">
+
+         <div class="d-flex w-50 h-100 float-end align-items-center">
+            <div class="w-100">
+               <i class="d-block bi bi-person  person-custom"></i>
+               <div class="d-flex">
+                  <button class="ms-2 fw-bolder custom-button" routerLink="/dashboard" type="submit">google me in !</button>
+                  <div class="robotic-hand "></div>
+               </div>
+            </div>
+         </div>
+         
       </div>
-      <button routerLink="/dashboard" type="submit" class="fw-bold">google me in !</button>
-      <div class="logo-container">
-         <img class="logo-robot" src="./assets/images/rsz_robot_logo.png" alt="logo du site qui représente un robot multicolore">
-      </div>
-      
+
+      <!-- logo -->
+      <div class="w-50 h-100 logo-robot"></div>
+
    </div>
+
    <app-footer></app-footer>
 
 </div>
+
+
+
 

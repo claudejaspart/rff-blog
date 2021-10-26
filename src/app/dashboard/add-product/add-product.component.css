@@ -1,0 +1,80 @@
+:host
+{
+    background-color: rgba(66, 65, 77, 0.97);
+    display: flex;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    bottom:0;
+    left:0;
+    z-index: 999999;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+}
+
+.produit-container
+{
+    transition: ease-in 1s;
+}
+
+.produit-close
+{
+    color : var(--tertiary-yellow);
+    opacity: 0.5;
+}
+
+.produit-close:hover
+{
+    cursor: pointer;
+    opacity: 1;
+    transition: ease-in 0.1s;
+}
+
+.modal-main
+{
+    width : 400px;
+    height: 630px;
+    border-radius: 10px;
+    background-color: var(--main-black);
+}
+
+.modal-title
+{
+    color : var(--tertiary-yellow);
+    font-size: 1.5rem;
+    font-weight: 500;
+    
+}
+
+
+
+/* style combobox */
+.products-combobox
+{
+   border-radius: 0px;
+   background-color: var(--tertiary-yellow);
+   color : black;
+   height : 32px;
+   border : var(--header-and-footer-color);
+   width: 100% !important;
+}
+
+input, textarea
+{
+    border-radius: 0px;
+}
+
+/* bouton ajouter */
+.button-add-product
+{
+   background: var(--tertiary-yellow);
+   font-size: 1.25rem;
+}
+
+.button-add-product:hover {
+   background-color:var(--main-black);
+   color: var(--tertiary-yellow);
+   border-color: var(--tertiary-yellow);
+}
+

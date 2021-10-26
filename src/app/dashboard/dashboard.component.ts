@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, Input } from '@angular/core';
 import * as ClassicEditor  from '@ckeditor/ckeditor5-build-classic';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-//import { Article } from '../models/article';
+import { Article } from '../models/article';
 
 export class HttpClientHelper{
   static baseURL: string = 'http://localhost:4201';
@@ -18,10 +18,10 @@ export class DashboardComponent implements AfterViewInit {
   @ViewChild('mainCentral') centralPanel!:ElementRef;
   queryData : any = [];
   articles: Array<Article> = [];
+  langFr : number = 1;
+  showProductModal : boolean = false;
 
-  constructor(private http: HttpClient) {
-
-   }
+  constructor(private http: HttpClient) {}
 
   ngAfterViewInit(): void 
   {
@@ -31,8 +31,7 @@ export class DashboardComponent implements AfterViewInit {
       (retrievedList:any) =>
       {
         this.queryData = retrievedList;
-        this.loadData(this.queryData);
-        //console.log(this.queryData);
+        this.loadArticles(this.queryData);
       });
   }
 
@@ -46,18 +45,34 @@ export class DashboardComponent implements AfterViewInit {
     this.listOfPosts.nativeElement.style.height = `${height}px`;
   }
 
-  loadData(queryData: any) {
-    [...queryData].forEach(article => {
-      this.articles.push(article as Article);
+  loadArticles(articleList : any) 
+  {
+
+    [...articleList].forEach(art=> 
+    {
+        this.loadDataSubarticles(art.subArticles);
+        let currentArticle = new Article(art.idArticle, art.datePublication, art.level);
+        this.articles.push(currentArticle);
     });
-    console.log(this.articles);
-    
   }
 
+  loadDataSubarticles(subArticleList:any)
+  {
+    let subArticles = [] as any;
+    [...subArticleList].forEach((subart=>
+      {
+        console.log(subart);
+      }))
+  }
+
+  toggleProductModal()
+  {
+    this.showProductModal = !this.showProductModal;
+  }
+
+  productModalState($event : any) 
+  {
+    this.toggleProductModal();
+  }
 }
 
-interface Article {
-  idArticle: number;
-  datePublication: string;
-  level: number;
-}

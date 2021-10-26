@@ -100,6 +100,11 @@
    color: var(--tertiary-yellow);
 }
 
+.add-product-icon:hover
+{
+   cursor:pointer;
+}
+
 .referenced-products-info
 {
    background-color: #37363F;
@@ -168,6 +173,7 @@
    color : black;
    height : 32px;
    border : var(--header-and-footer-color);
+   width: 105%;;
 }
 
 /* date publication */
@@ -258,7 +264,6 @@
 .button-publish
 {
    background: var(--tertiary-yellow);
-   border-radius: 10px;
    font-size: 2rem;
 }
 

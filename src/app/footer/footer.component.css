@@ -1,26 +1,22 @@
-footer {
-   background-color: var(--header-and-footer-color);
-   position: absolute;
-   bottom: 0;
-   width: 100%;
-   text-align: center;
-}
-
-p, a {
+.custom-footer
+{
+   height: 40px;
    font-family: 'Montserrat', sans-serif;
-   font-size: 1.2rem;
+}
+
+p, a 
+{
+   height: 1.5vw;
+   font-size: 1vw;
    color: var(--main-white);
-   padding: 10px 0;
 }
 
-p {
-   margin-bottom: 0;
-}
-
-a {
+a 
+{
    text-decoration: none;
 }
 
-a:hover {
+a:hover 
+{
    color: var(--tertiary-yellow);
 }
