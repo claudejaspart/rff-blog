@@ -81,6 +81,12 @@
    color : white;
 }
 
+.post-card:hover
+{
+   background-color: var(--tertiary-yellow);
+   cursor: pointer;
+}
+
 .post-card-left
 {
    width: 70%;

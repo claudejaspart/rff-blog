@@ -13,7 +13,8 @@ export class HttpClientHelper{
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements AfterViewInit {
+export class DashboardComponent implements AfterViewInit 
+{
 
   public Editor = ClassicEditor;
   @ViewChild('listPosts') listOfPosts!:ElementRef;
@@ -22,6 +23,10 @@ export class DashboardComponent implements AfterViewInit {
   miniArticles: Array<MiniArticle> = [];
   isFrench : number = 1;
   showProductModal : boolean = false;
+  showActionButtonsInArticleList : boolean = false;
+
+  // informations du formulaire
+  level : number = 0;
 
   constructor(private http: HttpClient) {}
 
@@ -114,6 +119,12 @@ export class DashboardComponent implements AfterViewInit {
   {
     this.isFrench = parseInt((<HTMLSelectElement>event.target).value);
   }
+
+    /* selection du niveau */
+    selectLevel(event: Event)
+    {
+      this.level = parseInt((<HTMLSelectElement>event.target).value);
+    }
 
 }
 
