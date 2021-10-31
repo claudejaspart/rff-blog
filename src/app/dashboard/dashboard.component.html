@@ -18,17 +18,17 @@
    <div class="d-flex flex-column main-left p-2">
       
       <!-- boutons de recherches -->
-      <label class="mb-1">Filtres de recherche</label>
+      <label class="mb-1">Filtres de recherche <i class="bi bi-x-square ms-2 fs-5 p-1 reset-filters" (click)="resetAllFilters()"></i></label>
+      
       <!-- groupe 1 -->
       <div class="d-flex flex-row mb-2">
             <!-- recherche par tags-->
-            <select class="me-2 w-50 filter-combobox p-1" name="tags" id="select-tags">
+            <select class="me-2 w-50 filter-combobox p-1" name="tags" id="select-tags" #tagFilter (change)="filterEntryPoint($event, 'tags')">
                <option value="">Tags</option>
-               <option value="robots">Robots</option>
-               <option value="lego">Lego</option>
+               <option value="{{tag.libelle}}" *ngFor="let tag of allTagsInSameLanguage">{{tag.libelle}}</option>
             </select>
          <!-- recherche par level -->
-            <select class="w-50 filter-combobox p-1" name="level" id="select-level">
+            <select class="w-50 filter-combobox p-1" name="level" id="select-level" #levelFilter (change)="filterEntryPoint($event, 'level')">
                <option value="">Niveau</option>
                <option value="1">1</option>
                <option value="2">2</option>
@@ -38,14 +38,14 @@
       <!-- groupe 2 -->
       <div class="d-flex flex-row mb-2">
          <!-- recherche par année -->
-         <select class="me-2 w-50 filter-combobox p-1" name="year" id="select-year">
+         <select class="me-2 w-50 filter-combobox p-1" name="year" id="select-year" #yearFilter (change)="filterEntryPoint($event, 'year')">
             <option value="">Année</option>
             <option value="2021">2021</option>
             <option value="2020">2020</option>
             <option value="2019">2019</option>
          </select>
          <!-- recherche mois -->
-         <select class="w-50 filter-combobox p-1" name="month" id="select-month">
+         <select class="w-50 filter-combobox p-1" name="month" id="select-month" #monthFilter (change)="filterEntryPoint($event, 'month')">
             <option value="">Mois</option>
             <option value="12">Décembre</option>
             <option value="11">Novembre</option>
@@ -66,7 +66,7 @@
       <div class="w-100 posts-list" #listPosts>
 
          <!-- element liste -->
-         <div class="post-card" *ngFor="let miniArt of miniArticles" >
+         <div class="post-card" *ngFor="let miniArt of filteredMiniArticles" >
             <div class="d-flex flex-row h-100" (mouseover)="showActionButtonsInArticleList=true" (mouseout)="showActionButtonsInArticleList=false">
                <!-- date et titre -->
                <div class="d-flex flex-column h-100 post-card-left h-100">
@@ -297,7 +297,6 @@
       <div class="d-flex flex-row mb-5 w-100 me-5" style="height: 30px;">
          <app-level-stars [level]="level"></app-level-stars>
          <select name="level" id="level" class="level-info" (change)="selectLevel($event)">
-            <option class="level" value="0">0</option>
             <option class="level" value="1">1</option>
             <option class="level" value="2">2</option>
             <option class="level" value="3">3</option>

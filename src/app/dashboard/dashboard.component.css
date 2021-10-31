@@ -54,6 +54,16 @@
    border : var(--header-and-footer-color);
 }
 
+.reset-filters
+{
+   color: var(--tertiary-yellow);
+}
+
+.reset-filters:hover
+{
+   cursor: pointer;
+}
+
 .posts-list
 {
    background-color: var(--header-and-footer-color);

@@ -19,27 +19,51 @@ export class DashboardComponent implements AfterViewInit
   public Editor = ClassicEditor;
   @ViewChild('listPosts') listOfPosts!:ElementRef;
   @ViewChild('mainCentral') centralPanel!:ElementRef;
-  queryData : any = [];
-  miniArticles: Array<MiniArticle> = [];
+
+  // combo box de filtrage
+  @ViewChild('tagFilter') tagFilter!:ElementRef;
+  @ViewChild('levelFilter') levelFilter!:ElementRef;
+  @ViewChild('yearFilter')  yearFilter!:ElementRef;
+  @ViewChild('monthFilter') monthFilter!:ElementRef;
+ 
   isFrench : number = 1;
   showProductModal : boolean = false;
   showActionButtonsInArticleList : boolean = false;
 
+  // données coté serveur
+   queryData : any = [];
+  miniArticles: Array<MiniArticle> = [];
+  filteredMiniArticles : Array<MiniArticle> = [];
+  allTags : Array<MiniTag> = [];
+  allTagsInSameLanguage : Array<MiniTag> = [];
+
   // informations du formulaire
-  level : number = 0;
+  level : number = 1;
+
+  // paramètres de filtrage
+  filterByTag = "";
+  filterByLevel = 0;
+  filterByMonth = 0;
+  filterByYear = 0;
 
   constructor(private http: HttpClient) {}
 
   ngAfterViewInit(): void 
   {
     this.resizePostsLists();
-    this.http.get(`${HttpClientHelper.baseURL}/miniarticles`).subscribe(
 
+    // liste des mini articles
+    this.http.get(`${HttpClientHelper.baseURL}/miniarticles`).subscribe(
       (retrievedList:any) =>
       {
         this.queryData = retrievedList;
         this.loadArticles(this.queryData);
+        this.filteredMiniArticles = this.miniArticles;
       });
+
+      // liste de tous les tags pour le filtrage
+      this.http.get(`${HttpClientHelper.baseURL}/alltags`).subscribe((retrievedList:any) => this.loadFilterTags(retrievedList));
+
   }
 
   resizePostsLists():void
@@ -67,8 +91,6 @@ export class DashboardComponent implements AfterViewInit
 
         this.miniArticles.push(currentArticle);
     });
-
-    console.log(this.miniArticles)
   }
 
   loadMiniSubArticles(miniSubArticleList:any)
@@ -103,6 +125,23 @@ export class DashboardComponent implements AfterViewInit
     return miniTags;
   }
 
+  // chargement des tags pour les filtres
+  loadFilterTags(tags: any)
+  {
+    let allFilterTags = [] as any;
+    [...tags].forEach(el => 
+    {
+      let currentTag = new MiniTag(
+        el.libelle,
+        el.language
+      );
+      allFilterTags.push(currentTag);
+    });
+
+    this.allTags = allFilterTags;
+    this.loadFilterTagsInGivenLanguage(1);
+  }
+
   /* affichage modale nouveau produit */
   toggleProductModal()
   {
@@ -118,13 +157,105 @@ export class DashboardComponent implements AfterViewInit
   selectLanguage(event: Event)
   {
     this.isFrench = parseInt((<HTMLSelectElement>event.target).value);
+    this.loadFilterTagsInGivenLanguage(this.isFrench);
   }
 
-    /* selection du niveau */
-    selectLevel(event: Event)
+  /* selection du niveau */
+  selectLevel(event: Event)
+  {
+    this.level = parseInt((<HTMLSelectElement>event.target).value);
+  }
+
+  /* fonctions de filtrages */
+
+  /* change les tags dans la liste de filtrage en fonction de la langue */
+  loadFilterTagsInGivenLanguage(language : number)
+  {
+    let currentLanguageString = language ? 'fr' : 'en';
+    this.allTagsInSameLanguage = this.allTags.filter(tag => tag.language === currentLanguageString);
+  }
+
+  /* point d'entrée commun pour le filtrage */
+  filterEntryPoint(event : Event, type : string)
+  {
+    // raz de la liste
+    this.filteredMiniArticles = this.miniArticles;
+
+    // selection du type
+    if (type === "tags")
+      this.filterByTag = (<HTMLSelectElement>event.target).value;
+    else if (type === "level")
+      this.filterByLevel = parseInt((<HTMLSelectElement>event.target).value);
+    else if (type === "year")
+      this.filterByYear = parseInt((<HTMLSelectElement>event.target).value);
+    else if (type === "month")
+      this.filterByMonth = parseInt((<HTMLSelectElement>event.target).value);
+
+    // filtrage sur chaque valeur
+    this.filterLevel();
+    this.filterTag();
+    this.filterMonth();
+    this.filterYear();
+  }
+
+  /* filtrage par année */
+  filterTag()
+  {
+    if (this.filterByTag.length)
+      this.filteredMiniArticles = this.filteredMiniArticles.filter((article) => article.miniTags.filter(tag => tag.libelle === this.filterByTag).length > 0);
+  }
+
+  /* filtrage par niveau */
+  filterLevel()
+  {
+    if (!isNaN(this.filterByLevel) && this.filterByLevel)
+      this.filteredMiniArticles = this.filteredMiniArticles.filter((article) => article.level === this.filterByLevel);
+  }
+
+  /* filtrage par année */
+  filterYear()
+  {
+    if (!isNaN(this.filterByYear) && this.filterByYear)
     {
-      this.level = parseInt((<HTMLSelectElement>event.target).value);
+      this.filteredMiniArticles = this.filteredMiniArticles.filter((article) => 
+      {
+        let currentYear = new Date(article.datePublication).getFullYear();
+        return currentYear === this.filterByYear;
+      });
     }
+  }
+
+  /* filtrage par mois */
+  filterMonth()
+  {
+    if (!isNaN(this.filterByMonth) && this.filterByMonth)
+    {
+      this.filteredMiniArticles = this.filteredMiniArticles.filter((article) => 
+      {
+        let currentMonth = new Date(article.datePublication).getMonth() + 1;
+        return currentMonth === this.filterByMonth;
+      });
+    }
+  }
+
+  /* reset des filtres */
+  resetAllFilters()
+  {
+    // maj combobox
+    this.tagFilter.nativeElement.selectedIndex = 0;
+    this.levelFilter.nativeElement.selectedIndex = 0;
+    this.yearFilter.nativeElement.selectedIndex = 0;
+    this.monthFilter.nativeElement.selectedIndex = 0;
+
+    // maj des valeurs
+    this.filterByTag = "";
+    this.filterByYear = 0;
+    this.filterByLevel = 0;
+    this.filterByMonth = 0;
+
+    // maj de la liste filtrée
+    this.filteredMiniArticles = this.miniArticles;
+  }
 
 }
 
