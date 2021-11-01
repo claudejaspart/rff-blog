@@ -46,6 +46,10 @@ export class DashboardComponent implements AfterViewInit
   filterByMonth = 0;
   filterByYear = 0;
 
+  // paramètre de selection d'article dans la liste
+  previousIndex : number = -1;
+  currentIndex : number = -1;
+
   constructor(private http: HttpClient) {}
 
   ngAfterViewInit(): void 
@@ -257,5 +261,18 @@ export class DashboardComponent implements AfterViewInit
     this.filteredMiniArticles = this.miniArticles;
   }
 
+  /* affiche les boutons des actions pour un element de la liste d'article */
+  showActionList(id: number)
+  {
+    this.currentIndex = id;
+    this.previousIndex = this.currentIndex;
+  }
+
+  /* cache les boutons des actions pour un element de la liste d'article */
+  hideActionList(id: number)
+  {
+    this.currentIndex = -1;
+    this.previousIndex = -1;
+  }
 }
 
