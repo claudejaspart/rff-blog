@@ -1,13 +1,17 @@
+import { SubProduit } from "./SubProduit";
+
 export class Produit {
 
    idProduit: number;
    imageLink: string;
-   productLink: string;
+   produitLink: string;
+   subProduits : Array<SubProduit>;
 
-   constructor(idProduit: number, imageLink: string, productLink: string) 
+   constructor(idProduit: number, imageLink: string, produitLink: string, subProduits:Array<SubProduit>) 
    {
       this.idProduit = idProduit;
       this.imageLink = imageLink;
-      this.productLink = productLink;
+      this.produitLink = produitLink;
+      this.subProduits = subProduits;
    }     
 }

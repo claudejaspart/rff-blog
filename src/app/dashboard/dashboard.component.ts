@@ -1,9 +1,19 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, Input } from '@angular/core';
 import * as ClassicEditor  from '@ckeditor/ckeditor5-build-classic';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+// imports article complet
+import { Article } from '../models/Article';
+import { SubArticle } from '../models/SubArticle';
+import { Produit } from '../models/Produit';
+import { SubProduit } from '../models/SubProduit';
+import { Tag } from '../models/Tag';
+
+// imports mini articles 
 import { MiniArticle } from '../models/MiniArticle';
 import { MiniSubArticle } from '../models/MiniSubArticle';
 import { MiniTag } from '../models/MiniTag';
+import { NgForm } from '@angular/forms';
 
 export class HttpClientHelper{
   static baseURL: string = 'http://localhost:4201';
@@ -16,7 +26,9 @@ export class HttpClientHelper{
 export class DashboardComponent implements AfterViewInit 
 {
 
+  // rich text editor
   public Editor = ClassicEditor;
+
   @ViewChild('listPosts') listOfPosts!:ElementRef;
   @ViewChild('mainCentral') centralPanel!:ElementRef;
 
@@ -25,13 +37,17 @@ export class DashboardComponent implements AfterViewInit
   @ViewChild('levelFilter') levelFilter!:ElementRef;
   @ViewChild('yearFilter')  yearFilter!:ElementRef;
   @ViewChild('monthFilter') monthFilter!:ElementRef;
+
+  // formulaire
+  @ViewChild('currentForm') articleForm!:NgForm ;
  
   isFrench : number = 1;
   showProductModal : boolean = false;
   showActionButtonsInArticleList : boolean = false;
 
   // données coté serveur
-   queryData : any = [];
+  queryData : any = [];
+  completeArticle !: Article;
   miniArticles: Array<MiniArticle> = [];
   filteredMiniArticles : Array<MiniArticle> = [];
   allTags : Array<MiniTag> = [];
@@ -61,13 +77,12 @@ export class DashboardComponent implements AfterViewInit
       (retrievedList:any) =>
       {
         this.queryData = retrievedList;
-        this.loadArticles(this.queryData);
+        this.loadMiniArticles(this.queryData);
         this.filteredMiniArticles = this.miniArticles;
       });
 
       // liste de tous les tags pour le filtrage
       this.http.get(`${HttpClientHelper.baseURL}/alltags`).subscribe((retrievedList:any) => this.loadFilterTags(retrievedList));
-
   }
 
   resizePostsLists():void
@@ -80,7 +95,7 @@ export class DashboardComponent implements AfterViewInit
     this.listOfPosts.nativeElement.style.height = `${height}px`;
   }
 
-  loadArticles(miniArticleList : any) 
+  loadMiniArticles(miniArticleList : any) 
   {
     
     [...miniArticleList].forEach(art=> 
@@ -274,5 +289,113 @@ export class DashboardComponent implements AfterViewInit
     this.currentIndex = -1;
     this.previousIndex = -1;
   }
+
+  loadArticleInForm(articleId : Number)
+  {
+    // récupération article
+    this.http.get(`${HttpClientHelper.baseURL}/article/${articleId}`).subscribe(
+      (retrievedArticle:any) =>
+      {
+        this.queryData = retrievedArticle;
+        this.loadArticle(this.queryData);
+        
+      });
+  }
+
+  loadArticle(art : any) 
+  {
+    let currentArticle = new Article(
+            art[0].idArticle, 
+            art[0].datePublication, 
+            art[0].level, 
+            this.loadSubArticles(art[0].subArticles),
+            this.loadTags(art[0].tags),
+            this.loadProduits(art[0].produits)
+          );
+
+    this.completeArticle = currentArticle;
+    console.log(this.completeArticle);
+  }
+
+  loadTags(tagsList:any)
+  {
+    let tags = [] as any;
+    [...tagsList].forEach(el => 
+    {
+      console.log(el);
+      let currentTag = new Tag(
+        el.libelle,
+        el.language
+      );
+
+      tags.push(currentTag);
+    });
+
+    return tags;
+  }
+
+  loadSubArticles(subArticleList:any)
+  {
+    let subArticles = [] as any;
+    [...subArticleList].forEach((el=>
+    {
+        let currentSubArticle = new SubArticle(
+          el.idSubarticle,
+          el.titre,
+          el.description,
+          el.richTextData,
+          el.videolink,
+          el.language,
+        );
+
+        subArticles.push(currentSubArticle);
+    }))
+
+    return subArticles;
+  }
+
+  loadProduits(produitList:any)
+  {
+    let produits = [] as any;
+    [...produitList].forEach((el=>
+    {
+        let currentSubProduit = new Produit(
+          el.idProduit,
+          el.imageLink,
+          el.produitLink,
+          this.loadSubProduits(el.subProduits)
+        );
+
+        produits.push(currentSubProduit);
+    }))
+
+    return produits;
+  }
+
+  loadSubProduits(subProduitList:any)
+  {
+    let subProduits = [] as any;
+    [...subProduitList].forEach((el=>
+    {
+        let currentSubProduit = new SubProduit(
+          el.idSubProduit,
+          el.libelle,
+          el.description,
+          el.language
+        );
+
+        subProduits.push(currentSubProduit);
+    }))
+
+    return subProduits;
+  }
+
+
+  /* fonctions en rapport avec le formulaire */
+  sendArticle(currentForm : NgForm)
+  {
+    //console.log(currentForm);
+  }
+
 }
 
