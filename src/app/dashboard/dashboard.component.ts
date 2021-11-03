@@ -177,6 +177,7 @@ export class DashboardComponent implements AfterViewInit
   {
     this.isFrench = parseInt((<HTMLSelectElement>event.target).value);
     this.loadFilterTagsInGivenLanguage(this.isFrench);
+    this.displayArticle();
   }
 
   /* selection du niveau */
@@ -217,7 +218,7 @@ export class DashboardComponent implements AfterViewInit
     this.filterYear();
   }
 
-  /* filtrage par année */
+  /* filtrage par tag */
   filterTag()
   {
     if (this.filterByTag.length)
@@ -298,9 +299,7 @@ export class DashboardComponent implements AfterViewInit
       {
         this.queryData = retrievedArticle;
         this.loadArticle(this.queryData);
-        //this.articleForm.controls['titre'].setValue('test')
-        // this.completeArticle.subArticles[this.isFrench].titre
-        console.log(this.articleForm)
+        this.displayArticle();
       });
   }
 
@@ -395,7 +394,20 @@ export class DashboardComponent implements AfterViewInit
   /* fonctions en rapport avec le formulaire */
   sendArticle(currentForm : NgForm)
   {
-    //console.log(currentForm);
+    console.log(currentForm);
+  }
+
+  /* maj les informations dans le formulaire */
+  displayArticle()
+  {
+    console.log(this.articleForm);
+
+    if (this.completeArticle)
+    {
+      this.articleForm.controls['titre'].setValue(this.completeArticle.subArticles[this.isFrench].titre);
+      this.articleForm.controls['description'].setValue(this.completeArticle.subArticles[this.isFrench].description);
+      this.articleForm.controls['richTextContent'].setValue(this.completeArticle.subArticles[this.isFrench].richTextData);
+    }
   }
 
 }
