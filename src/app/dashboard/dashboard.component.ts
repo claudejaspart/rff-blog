@@ -298,7 +298,9 @@ export class DashboardComponent implements AfterViewInit
       {
         this.queryData = retrievedArticle;
         this.loadArticle(this.queryData);
-        
+        //this.articleForm.controls['titre'].setValue('test')
+        // this.completeArticle.subArticles[this.isFrench].titre
+        console.log(this.articleForm)
       });
   }
 
@@ -314,7 +316,6 @@ export class DashboardComponent implements AfterViewInit
           );
 
     this.completeArticle = currentArticle;
-    console.log(this.completeArticle);
   }
 
   loadTags(tagsList:any)
@@ -322,7 +323,7 @@ export class DashboardComponent implements AfterViewInit
     let tags = [] as any;
     [...tagsList].forEach(el => 
     {
-      console.log(el);
+
       let currentTag = new Tag(
         el.libelle,
         el.language
