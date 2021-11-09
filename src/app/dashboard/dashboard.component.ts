@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, Input } from '@angular/core';
 import * as ClassicEditor  from '@ckeditor/ckeditor5-build-classic';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 // imports article complet
 import { Article } from '../models/Article';
@@ -15,9 +15,11 @@ import { MiniSubArticle } from '../models/MiniSubArticle';
 import { MiniTag } from '../models/MiniTag';
 import { NgForm } from '@angular/forms';
 
-export class HttpClientHelper{
+export class HttpClientHelper
+{
   static baseURL: string = 'http://localhost:4201';
 }
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -25,7 +27,6 @@ export class HttpClientHelper{
 })
 export class DashboardComponent implements AfterViewInit 
 {
-
   // rich text editor
   public Editor = ClassicEditor;
 
@@ -41,9 +42,12 @@ export class DashboardComponent implements AfterViewInit
   // formulaire
   @ViewChild('currentForm') articleForm!:NgForm ;
  
+  // variables diverses
   isFrench : number = 1;
   showProductModal : boolean = false;
   showActionButtonsInArticleList : boolean = false;
+  hasProducts : boolean = false;
+  numberProducts : number = 0;
 
   // données coté serveur
   queryData : any = [];
@@ -52,6 +56,7 @@ export class DashboardComponent implements AfterViewInit
   filteredMiniArticles : Array<MiniArticle> = [];
   allTags : Array<MiniTag> = [];
   allTagsInSameLanguage : Array<MiniTag> = [];
+  currentProducts : Array<Produit> = [];
 
   // informations du formulaire
   level : number = 1;
@@ -356,20 +361,33 @@ export class DashboardComponent implements AfterViewInit
 
   loadProduits(produitList:any)
   {
-    let produits = [] as any;
-    [...produitList].forEach((el=>
+    if (produitList)
     {
-        let currentSubProduit = new Produit(
-          el.idProduit,
-          el.imageLink,
-          el.produitLink,
-          this.loadSubProduits(el.subProduits)
-        );
+      let produits = [] as any;
+      [...produitList].forEach((el=>
+      {
+          let currentSubProduit = new Produit(
+            el.idProduit,
+            el.imageLink,
+            el.produitLink,
+            this.loadSubProduits(el.subProduits)
+          );
 
-        produits.push(currentSubProduit);
-    }))
+          produits.push(currentSubProduit);
+      }));
 
-    return produits;
+      this.numberProducts = produits.length;
+      this.hasProducts = true;
+      this.currentProducts = produits;
+      return produits;
+    }
+    else
+    {
+      this.currentProducts = [];
+      this.numberProducts = 0;
+      this.hasProducts = false;
+      return null;
+    }
   }
 
   loadSubProduits(subProduitList:any)
@@ -394,20 +412,28 @@ export class DashboardComponent implements AfterViewInit
   /* fonctions en rapport avec le formulaire */
   sendArticle(currentForm : NgForm)
   {
-    console.log(currentForm);
+    //console.log(currentForm);
   }
 
   /* maj les informations dans le formulaire */
   displayArticle()
   {
-    console.log(this.articleForm);
-
     if (this.completeArticle)
     {
       this.articleForm.controls['titre'].setValue(this.completeArticle.subArticles[this.isFrench].titre);
       this.articleForm.controls['description'].setValue(this.completeArticle.subArticles[this.isFrench].description);
       this.articleForm.controls['richTextContent'].setValue(this.completeArticle.subArticles[this.isFrench].richTextData);
     }
+  }
+
+  deleteProductFromArticle(productId : number)
+  {
+    console.log('deleting');
+  }
+
+  editProduct(productId : number)
+  {
+    console.log('editing ' + productId);
   }
 
 }

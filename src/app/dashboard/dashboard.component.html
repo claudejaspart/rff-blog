@@ -69,7 +69,7 @@
 
             <!-- debut element article  -->
             <div class="post-card" *ngFor="let miniArt of filteredMiniArticles;let id = index">
-               <div class="d-flex flex-row h-100"  (mouseover)="showActionList(id)" (mouseout)="hideActionList(id)">
+               <div class="d-flex flex-row h-100"  (mouseover)="showActionList(id)" (mouseout)="hideActionList(id)" >
                   <!-- date et titre -->
                   <div class="d-flex flex-column h-100 post-card-left h-100">
                      <div class="d-flex post-card-date ps-2 h-50 align-items-center">
@@ -89,8 +89,8 @@
                   <div class="d-flex post-card-right h-100 align-items-center justify-content-center">
                      <app-level-stars [level]="miniArt.level" *ngIf="currentIndex !== id" id="level-{{id}}"></app-level-stars>
                      <div *ngIf="currentIndex === id" id="actions-{{id}}">
-                        <i class="bi bi-pencil-square fs-5 me-2 post-edit" (click)="loadArticleInForm(miniArt.idArticle)"></i>
-                        <i class="bi bi-pencil-square fs-5 me-2" style="visibility: hidden;"></i>
+                        <i class="bi bi-pencil-square fs-5 post-edit" (click)="loadArticleInForm(miniArt.idArticle)"></i>
+                        <i class="bi bi-trash fs-5 me-2 post-delete invisible"></i>
                         <i class="bi bi-trash fs-5 me-2 post-delete"></i>
                      </div>
                   </div>
@@ -116,31 +116,39 @@
          <div class="d-flex flex-row mb-2 w-100 me-5" style="height: 30px;">
             <i class="bi bi-file-earmark-plus-fill fs-5 me-2 add-product-icon" (click)="toggleProductModal()"></i>
             <app-add-product *ngIf="showProductModal" (messageEvent)="productModalState($event)"></app-add-product>
-            <div class="d-flex flex-grow-1 ps-2 referenced-products-info">3 produits référencés</div>
+            <div class="d-flex flex-grow-1 ps-2 referenced-products-info">
+               {{numberProducts}}&nbsp;
+               <span *ngIf="numberProducts>1; else oneOrLess">
+                  <i>produits référencés</i>
+               </span>
+               <ng-template #oneOrLess>
+                  <i>produit référencé</i>
+               </ng-template>
+            </div>
          </div>
 
          <!-- liste des cartes produits -->
          <div class="p-2 w-100 h-50 referenced-products-list">
 
-            <!-- carte -->
-            <!-- <div class="card d-inline-block position-relative me-2">
-               <i class="bi bi-pencil-square fs-5 edit-product-icon position-absolute"></i>
-               <div class="d-inline-block w-100 " style="padding-left: 3rem;">
-                  <img src="./assets/images/lego-motor.svg" class="d-flex align-self-center lego-motor-image" style="width: 8rem;">
+            <span *ngIf="hasProducts" class="d-flex m-0 p-0">
+               <!-- carte -->
+               <div class="card d-inline-block position-relative me-2 carte-produit" *ngFor="let produit of completeArticle.produits">
+                  <i class="bi bi-pencil-square fs-5 edit-product-icon position-absolute" (click)="editProduct(produit.idProduit)"></i>
+                  <div class="d-inline-block w-100 " style="padding-left: 3rem;">
+                     <img src="{{produit.imageLink}}" class="d-flex align-self-center lego-motor-image" style="width: 8rem;">
+                  </div>
+                  <i class="bi bi-x-square fs-5 delete-product-icon position-absolute" (click)="deleteProductFromArticle(produit.idProduit)"></i>
+                  <div class="card-body">
+                     <h5 class="card-title fw-bold">{{produit.subProduits[isFrench].libelle}}OOOO</h5>
+                     <p class="card-text">{{produit.subProduits[isFrench].description}}</p>
+                     <a href="{{produit.produitLink}}"  target="_blank" class="btn btn-product-see fw-bold">Voir sur site</a>
+                  </div>
                </div>
-               <i class="bi bi-x-square fs-5 delete-product-icon position-absolute"></i>
-               <div class="card-body">
-                  <h5 class="card-title fw-bold">Moteur Lego</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-product-see fw-bold">Voir</a>
-               </div>
-            </div> -->
-
+            </span>
       
          </div>
 
       </div>
-
 
       <!-- Panneau de droite -->
       <div class="d-flex flex-column p-2 pe-4  main-right position-relative">

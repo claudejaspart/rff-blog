@@ -7,50 +7,67 @@
   
     <div class="modal-main p-3">
 
-        <!-- titre -->
-        <div class="modal-title d-flex mb-5 align-items-center">
-            <span class="w-100 text-center">Ajout d'un produit</span>
-        </div>
+        <form (ngSubmit)="addProduct(productForm)" #productForm="ngForm">
 
-        <!-- Produits existants -->
-        <label class="mb-1">Produits existants</label>
-        <div class="d-flex flex-row w-100 mb-1" style="background-color: #FFCE54;">
-            <select class="d-inline-block products-combobox me-3" name="products" id="select-product">
-                <option  value="1">Moteur lego</option>
-                <option  value="2">Raspberry pi</option>
-            </select>
-        </div>
+            <!-- titre -->
+            <div class="modal-title d-flex mb-3 align-items-center">
+                <span class="w-100 text-center">Ajout d'un produit</span>
+            </div>
 
-        <!-- URL Image -->
-        <label class="mt-2 mb-1">URL Image</label>
-        <div class="d-flex flex-row mb-1 w-100 me-5" style="height: 30px;">
-            <input type="text" class="d-flex flex-grow-1 ps-2">
-        </div>
+            <div class="modal-title mb-3 align-items-center text-center d-block">
+                <p><img src="{{selectedProduit.imageLink}}" height="150px" *ngIf="isProductSelected"></p>
+                <p><img src="../../../assets/images/empty.jpg" height="150px" *ngIf="!isProductSelected"></p>
+                
+            </div>
 
-        <!-- URL Produit -->
-        <label class="mt-2 mb-2">URL Produit</label>
-        <div class="d-flex flex-row w-100 me-5" style="height: 30px;">
-            <input type="text" class="d-flex flex-grow-1 ps-2">
-        </div>
+            <!-- Produits existants -->
+            <label class="mb-1">Produits existants</label>
+            <div class="d-flex flex-row w-100 mb-1" style="background-color: #FFCE54;">
+                <select class="d-inline-block products-combobox me-3" name="products" id="select-product" (change)="selectProduct($event)">
+                    <option value="-1">nouveau produit</option>
+                    <option  *ngFor="let produit of produits" value="{{produit.idProduit}}">{{produit.subProduits[isFrench].libelle}}</option>
+                </select>
+            </div>
 
-        <!-- Libelle -->
-        <label class="mt-2 mb-1">Libellé</label>
-        <div class="d-flex flex-row mb-1 w-100 me-5" style="height: 30px;">
-            <input type="text" class="d-flex flex-grow-1 ps-2 titre-info">
-        </div>
+            <!-- URL Image -->
+            <label class="mt-2 mb-1">URL Image</label>
+            <div class="d-flex flex-row mb-1 w-100 me-5" style="height: 30px;">
+                <input type="text" autocomplete="off" class="d-flex flex-grow-1 ps-2" ngModel name="imageUrl" (ngModelChange)="setUrlImage($event)" required>
+            </div>
 
-        <!-- description -->
-        <label class="mt-2 mb-1">Description</label>
-        <div class="d-flex flex-row mb-1 w-100 me-5 mb-4" >
-            <textarea class="d-flex flex-grow-1 ps-2 description-info" rows="4" style="resize: none;"></textarea>
-        </div>
+            <!-- URL Produit -->
+            <label class="mt-2 mb-2">URL Produit</label>
+            <div class="d-flex flex-row w-100 me-5" style="height: 30px;">
+                <input type="text" autocomplete="off" class="d-flex flex-grow-1 ps-2" ngModel name="productUrl" required>
+            </div>
 
-        <!-- bouton ajouter -->
-        <div class="d-flex flex-row justify-content-center mb-3">
-            <button class=" w-100 button-add-product py-1">
-            <span class="w-100 text-middle">ajouter</span>
-            </button>
-        </div>
+
+            <!-- Libelle -->
+            <label class="mt-2 mb-1">
+                <span class="custom-label pe-2">Libellé ({{libelleLength}} / 23 chars)</span>
+                <img src="{{flags[isFrench]}}" class="button-flag" (click)="toggleLanguage()"/>
+            </label>
+            <div class="d-flex flex-row mb-1 w-100 me-5" style="height: 30px;">
+                <input type="text" autocomplete="off" class="d-flex flex-grow-1 ps-2 titre-info" maxlength="23" ngModel name="libelle" (ngModelChange)="setLibelle()" required>
+            </div>
+
+            <!-- description -->
+            <label class="mt-2 mb-1">
+                <span class="custom-label pe-1">Description</span>
+                <img src="{{flags[isFrench]}}" class="button-flag" (click)="toggleLanguage()"/>
+            </label>
+            <div class="d-flex flex-row mb-1 w-100 me-5 mb-4" >
+                <textarea class="d-flex flex-grow-1 ps-2 description-info" rows="4" style="resize:none;" ngModel name="description" (ngModelChange)="setDescription()" required></textarea>
+            </div>
+
+            <!-- bouton ajouter -->
+            <div class="d-flex flex-row justify-content-center mb-3">
+                <button class="w-100 button-add-product py-1" type="submit">
+                    <span class="w-100 text-middle">ajouter</span>
+                </button>
+            </div>
+
+        </form>
 
     </div>
 

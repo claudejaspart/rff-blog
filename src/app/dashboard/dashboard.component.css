@@ -94,7 +94,6 @@
 .post-card:hover
 {
    background-color: var(--tertiary-yellow);
-   cursor: pointer;
 }
 
 .post-card-left
@@ -107,7 +106,17 @@
    width: 30%;
 }
 
+.post-delete:hover
+{
+   color : var(--tiny-icon-red);
+   cursor:pointer;
+}
 
+.post-edit:hover
+{
+   color : green;
+   cursor: pointer;
+}
 
 
 /* *************** */
@@ -162,11 +171,21 @@
 .card-title
 {
    font-size: 0.85rem;
+   display: -webkit-box;
+   max-width: 13rem;
+   -webkit-line-clamp: 1;
+   -webkit-box-orient: vertical;
+   overflow: hidden;
 }
 
 .card-text
 {
    font-size: 0.65rem;
+   display: -webkit-box;
+   max-width: 13rem;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+   overflow: hidden;
 }
 
 .btn-product-see
@@ -189,6 +208,10 @@
    color : var(--tiny-icon-red);
 }
 
+.delete-product-icon:hover, .edit-product-icon:hover
+{
+   cursor: pointer;
+}
 
 /* ***************** */
 /* PANNEAU DE DROITE */
