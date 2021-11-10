@@ -7,7 +7,7 @@
   
     <div class="modal-main p-3">
 
-        <form (ngSubmit)="addProduct(productForm)" #productForm="ngForm">
+        <form (ngSubmit)="submitProduct()" #productForm="ngForm">
 
             <!-- titre -->
             <div class="modal-title d-flex mb-3 align-items-center">
@@ -38,7 +38,7 @@
             <!-- URL Produit -->
             <label class="mt-2 mb-2">URL Produit</label>
             <div class="d-flex flex-row w-100 me-5" style="height: 30px;">
-                <input type="text" autocomplete="off" class="d-flex flex-grow-1 ps-2" ngModel name="productUrl" required>
+                <input type="text" autocomplete="off" class="d-flex flex-grow-1 ps-2" ngModel name="productUrl" (ngModelChange)="setUrlProduct($event)" required>
             </div>
 
 

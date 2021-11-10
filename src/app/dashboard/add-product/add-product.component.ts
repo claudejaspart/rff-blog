@@ -138,6 +138,11 @@ export class AddProductComponent implements OnInit
       this.selectedProduit.imageLink = imageURL;
   }
 
+  setUrlProduct(productURL : string)
+  {
+      this.selectedProduit.produitLink = productURL;
+  }
+
   setLibelle()
   {
     if (!this.changingLanguage)
@@ -170,9 +175,28 @@ export class AddProductComponent implements OnInit
     this.productForm.controls['description'].setValue(description);
   }
 
-  addProduct(productForm : NgForm)
+  submitProduct()
   {
-    console.log(productForm);
+
+    if (this.selectedProduit.idProduit >= 0)
+    {
+        this.http
+        .put(`${HttpClientHelper.baseURL}/produit`,this.selectedProduit,{responseType:'text',reportProgress:true,observe:'events'})
+        .subscribe(event => 
+        {
+          console.log(event);
+        });     
+    }
+    else
+    {
+        this.http
+        .post(`${HttpClientHelper.baseURL}/produit`,this.selectedProduit,{responseType:'text',reportProgress:true,observe:'events'})
+        .subscribe(event => 
+        {
+          console.log(event);
+        });  
+    }
+
   }
 
   loadFormData()
