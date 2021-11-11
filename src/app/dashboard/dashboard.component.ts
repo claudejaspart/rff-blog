@@ -456,7 +456,7 @@ export class DashboardComponent implements AfterViewInit
       this.currentProducts = [];
       this.numberProducts = 0;
       this.hasProducts = false;
-      return null;
+      return [];
     }
   }
 
