@@ -51,7 +51,7 @@ export class DashboardComponent implements AfterViewInit
 
   // données coté serveur
   queryData : any = [];
-  completeArticle !: Article;
+  currentArticle !: Article;
   miniArticles: Array<MiniArticle> = [];
   filteredMiniArticles : Array<MiniArticle> = [];
   allTags : Array<MiniTag> = [];
@@ -59,7 +59,7 @@ export class DashboardComponent implements AfterViewInit
   currentProducts : Array<Produit> = [];
 
   // informations du formulaire
-  level : number = 1;
+  level : number = 0;
 
   // paramètres de filtrage
   filterByTag = "";
@@ -88,7 +88,10 @@ export class DashboardComponent implements AfterViewInit
 
       // liste de tous les tags pour le filtrage
       this.http.get(`${HttpClientHelper.baseURL}/alltags`).subscribe((retrievedList:any) => this.loadFilterTags(retrievedList));
-  }
+  
+      // initialisation d'un article vide
+      this.currentArticle = this.createEmptyArticle();
+    }
 
   resizePostsLists():void
   {
@@ -172,9 +175,47 @@ export class DashboardComponent implements AfterViewInit
     this.showProductModal = !this.showProductModal;
   }
 
-  productModalState($event : any) 
+  // récuperation id produit ajouté depuis la modale
+  productModalState(productId : string) 
   {
-    this.toggleProductModal();
+    // récupération du produit
+    this.http.get(`${HttpClientHelper.baseURL}/produit/${productId}`).subscribe(
+      (retrievedProduct:any) =>
+      {
+        // ajout du produit
+        this.addProductToArticle(retrievedProduct);
+
+        // fermeture de la modale
+        this.toggleProductModal();
+      });
+  }
+
+  // add product to article
+  addProductToArticle(product : Produit)
+  {
+    let currentProduct = this.loadProduits(product)[0];
+    let productFound = false;
+
+    for (let i=0; i<this.currentArticle.produits.length; i++)
+    {
+      if (this.currentArticle.produits[i].idProduit === currentProduct.idProduit)
+      {
+        productFound = true;
+        this.currentArticle.produits[i] = currentProduct;
+      }
+    }
+
+    if (!productFound)
+    {
+      this.currentArticle.produits.push(currentProduct);
+    }
+    
+    this.updateNumberProductsInArticle();
+  }
+
+  updateNumberProductsInArticle()
+  {
+    this.numberProducts = this.currentArticle.produits.length;
   }
   
   /* selection de la langue */
@@ -319,7 +360,7 @@ export class DashboardComponent implements AfterViewInit
             this.loadProduits(art[0].produits)
           );
 
-    this.completeArticle = currentArticle;
+    this.currentArticle = currentArticle;
   }
 
   loadTags(tagsList:any)
@@ -418,11 +459,11 @@ export class DashboardComponent implements AfterViewInit
   /* maj les informations dans le formulaire */
   displayArticle()
   {
-    if (this.completeArticle)
+    if (this.currentArticle)
     {
-      this.articleForm.controls['titre'].setValue(this.completeArticle.subArticles[this.isFrench].titre);
-      this.articleForm.controls['description'].setValue(this.completeArticle.subArticles[this.isFrench].description);
-      this.articleForm.controls['richTextContent'].setValue(this.completeArticle.subArticles[this.isFrench].richTextData);
+      this.articleForm.controls['titre'].setValue(this.currentArticle.subArticles[this.isFrench].titre);
+      this.articleForm.controls['description'].setValue(this.currentArticle.subArticles[this.isFrench].description);
+      this.articleForm.controls['richTextContent'].setValue(this.currentArticle.subArticles[this.isFrench].richTextData);
     }
   }
 
@@ -434,6 +475,11 @@ export class DashboardComponent implements AfterViewInit
   editProduct(productId : number)
   {
     console.log('editing ' + productId);
+  }
+
+  createEmptyArticle()
+  {
+    return new Article(-1, "",0,[],[],[]);
   }
 
 }

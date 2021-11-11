@@ -131,19 +131,22 @@
          <div class="p-2 w-100 h-50 referenced-products-list">
 
             <span *ngIf="hasProducts" class="d-flex m-0 p-0">
+
                <!-- carte -->
-               <div class="card d-inline-block position-relative me-2 carte-produit" *ngFor="let produit of completeArticle.produits">
+               <div class="card d-inline-block position-relative me-2 carte-produit" *ngFor="let produit of currentArticle.produits">
                   <i class="bi bi-pencil-square fs-5 edit-product-icon position-absolute" (click)="editProduct(produit.idProduit)"></i>
                   <div class="d-inline-block w-100 " style="padding-left: 3rem;">
                      <img src="{{produit.imageLink}}" class="d-flex align-self-center lego-motor-image" style="width: 8rem;">
                   </div>
                   <i class="bi bi-x-square fs-5 delete-product-icon position-absolute" (click)="deleteProductFromArticle(produit.idProduit)"></i>
                   <div class="card-body">
-                     <h5 class="card-title fw-bold">{{produit.subProduits[isFrench].libelle}}OOOO</h5>
+                     <h5 class="card-title fw-bold">{{produit.subProduits[isFrench].libelle}}</h5>
                      <p class="card-text">{{produit.subProduits[isFrench].description}}</p>
                      <a href="{{produit.produitLink}}"  target="_blank" class="btn btn-product-see fw-bold">Voir sur site</a>
                   </div>
                </div>
+               <!-- fin carte-->
+
             </span>
       
          </div>
@@ -222,7 +225,8 @@
          <label class="mt-3 mb-1">Niveau de difficulté</label>
          <div class="d-flex flex-row mb-5 w-100 me-5" style="height: 30px;">
             <app-level-stars [level]="level"></app-level-stars>
-            <select name="level" id="level" class="level-info" (change)="selectLevel($event)" name="level">
+            <select name="level" id="level" class="level-info" (change)="selectLevel($event)">
+               <option class="level" value="0">0</option>
                <option class="level" value="1">1</option>
                <option class="level" value="2">2</option>
                <option class="level" value="3">3</option>

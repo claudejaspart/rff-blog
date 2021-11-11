@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, HostListener, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 import { Produit } from '../../models/Produit';
 import { SubProduit } from '../../models/SubProduit';
 import { NgForm } from '@angular/forms';
@@ -16,7 +16,7 @@ export class HttpClientHelper
 })
 export class AddProductComponent implements OnInit 
 {
-  showProductModal : string = "closeProductModal";
+  currentProductId : string = "undefined";
   produits : Array<Produit> = [];
   selectedProduit : Produit = this.initSelectedProduit();
   isProductSelected : boolean = false;
@@ -44,7 +44,7 @@ export class AddProductComponent implements OnInit
   // gestion fermeture modale
   closeProduct() 
   {
-    this.messageEvent.emit(this.showProductModal)
+    this.messageEvent.emit(this.currentProductId);
   }
 
   // touche echap pour fermer la modale
@@ -133,14 +133,15 @@ export class AddProductComponent implements OnInit
     return new Produit(-1,"","",[new SubProduit(-1,"","", "en"),new SubProduit(-1,"","", "fr")]); 
   }
 
-  setUrlImage(imageURL : string)
+  setUrlImage(imageLink : string)
   {
-      this.selectedProduit.imageLink = imageURL;
+    this.isProductSelected = true;
+    this.selectedProduit.imageLink = imageLink;
   }
 
-  setUrlProduct(productURL : string)
+  setUrlProduct(produitLink : string)
   {
-      this.selectedProduit.produitLink = productURL;
+    this.selectedProduit.produitLink =  produitLink;
   }
 
   setLibelle()
@@ -180,23 +181,30 @@ export class AddProductComponent implements OnInit
 
     if (this.selectedProduit.idProduit >= 0)
     {
+        // MAJ d'un produit
         this.http
-        .put(`${HttpClientHelper.baseURL}/produit`,this.selectedProduit,{responseType:'text',reportProgress:true,observe:'events'})
-        .subscribe(event => 
+        .put(`${HttpClientHelper.baseURL}/produit`,this.selectedProduit,{responseType:'text',observe:'events'})
+        .subscribe(event=> 
         {
-          console.log(event);
+          if (event.type === HttpEventType.Response && event.status === 200)
+          {
+              this.messageEvent.emit(event.body?.toString());
+          }
         });     
     }
     else
     {
+        // Creation d'un produit 
         this.http
-        .post(`${HttpClientHelper.baseURL}/produit`,this.selectedProduit,{responseType:'text',reportProgress:true,observe:'events'})
+        .post(`${HttpClientHelper.baseURL}/produit`,this.selectedProduit,{responseType:'json',observe:'events'})
         .subscribe(event => 
         {
-          console.log(event);
+          if (event.type === HttpEventType.Response && event.status === 200)
+          {
+              this.messageEvent.emit(event.body?.toString());
+          }
         });  
     }
-
   }
 
   loadFormData()
