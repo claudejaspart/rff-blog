@@ -41,6 +41,8 @@ export class DashboardComponent implements AfterViewInit
 
   // formulaire
   @ViewChild('currentForm') articleForm!:NgForm ;
+
+  
  
   // variables diverses
   isFrench : number = 1;
@@ -57,6 +59,7 @@ export class DashboardComponent implements AfterViewInit
   allTags : Array<MiniTag> = [];
   allTagsInSameLanguage : Array<MiniTag> = [];
   currentProducts : Array<Produit> = [];
+  currentIdProduct : number = -1;
 
   // informations du formulaire
   level : number = 0;
@@ -91,6 +94,7 @@ export class DashboardComponent implements AfterViewInit
   
       // initialisation d'un article vide
       this.currentArticle = this.createEmptyArticle();
+
     }
 
   resizePostsLists():void
@@ -178,16 +182,27 @@ export class DashboardComponent implements AfterViewInit
   // récuperation id produit ajouté depuis la modale
   productModalState(productId : string) 
   {
-    // récupération du produit
-    this.http.get(`${HttpClientHelper.baseURL}/produit/${productId}`).subscribe(
-      (retrievedProduct:any) =>
-      {
-        // ajout du produit
-        this.addProductToArticle(retrievedProduct);
+    if (parseInt(productId) >= 0)
+    {
+      // récupération du produit
+      this.http.get(`${HttpClientHelper.baseURL}/produit/${productId}`).subscribe(
+        (retrievedProduct:any) =>
+        {
+          // ajout du produit
+          this.addProductToArticle(retrievedProduct);
 
+          // fermeture de la modale
+          this.toggleProductModal();
+        });
+    }
+    else
+    {
         // fermeture de la modale
         this.toggleProductModal();
-      });
+    }
+
+    // plus de produit sélectionné
+    this.currentIdProduct = -1;
   }
 
   // add product to article
@@ -210,6 +225,20 @@ export class DashboardComponent implements AfterViewInit
       this.currentArticle.produits.push(currentProduct);
     }
     
+    this.updateNumberProductsInArticle();
+  }
+
+  // supprime un produit de la liste des produits d'un article
+  deleteProductFromArticle(productId : number)
+  {
+    for (let i=0; i<this.currentArticle.produits.length; i++)
+    {
+      if (this.currentArticle.produits[i].idProduit === productId)
+      {
+        this.currentArticle.produits.splice(i,1);
+      }
+    }
+
     this.updateNumberProductsInArticle();
   }
 
@@ -467,18 +496,17 @@ export class DashboardComponent implements AfterViewInit
     }
   }
 
-  deleteProductFromArticle(productId : number)
-  {
-    console.log('deleting');
-  }
+
 
   editProduct(productId : number)
   {
-    console.log('editing ' + productId);
+    this.currentIdProduct = productId;
+    this.toggleProductModal();
   }
 
   createEmptyArticle()
   {
+    this.currentIdProduct = -1;
     return new Article(-1, "",0,[],[],[]);
   }
 

@@ -11,7 +11,8 @@
 
             <!-- titre -->
             <div class="modal-title d-flex mb-3 align-items-center">
-                <span class="w-100 text-center">Ajout d'un produit</span>
+                <span class="w-100 text-center" *ngIf="selectedProductId == -1">Ajout d'un produit</span>
+                <span class="w-100 text-center" *ngIf="selectedProductId >= 0">Modifier le produit</span>
             </div>
 
             <div class="modal-title mb-3 align-items-center text-center d-block">
@@ -21,8 +22,8 @@
             </div>
 
             <!-- Produits existants -->
-            <label class="mb-1">Produits existants</label>
-            <div class="d-flex flex-row w-100 mb-1" style="background-color: #FFCE54;">
+            <label class="mb-1" *ngIf="selectedProductId == -1">Produits existants</label>
+            <div class="d-flex flex-row w-100 mb-1" style="background-color: #FFCE54;" *ngIf="selectedProductId == -1">
                 <select class="d-inline-block products-combobox me-3" name="products" id="select-product" (change)="selectProduct($event)">
                     <option value="-1">nouveau produit</option>
                     <option  *ngFor="let produit of produits" value="{{produit.idProduit}}">{{produit.subProduits[isFrench].libelle}}</option>
@@ -63,7 +64,8 @@
             <!-- bouton ajouter -->
             <div class="d-flex flex-row justify-content-center mb-3">
                 <button class="w-100 button-add-product py-1" type="submit">
-                    <span class="w-100 text-middle">ajouter</span>
+                    <span class="w-100 text-middle" *ngIf="selectedProductId == -1">ajouter</span>
+                    <span class="w-100 text-middle" *ngIf="selectedProductId >= 0">modifier</span>
                 </button>
             </div>
 

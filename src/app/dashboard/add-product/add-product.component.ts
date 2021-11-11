@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, HostListener, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener, ViewChild } from '@angular/core';
 import { HttpClient, HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 import { Produit } from '../../models/Produit';
 import { SubProduit } from '../../models/SubProduit';
@@ -16,7 +16,7 @@ export class HttpClientHelper
 })
 export class AddProductComponent implements OnInit 
 {
-  currentProductId : string = "undefined";
+  currentProductId : string = "-1";
   produits : Array<Produit> = [];
   selectedProduit : Produit = this.initSelectedProduit();
   isProductSelected : boolean = false;
@@ -25,6 +25,7 @@ export class AddProductComponent implements OnInit
   flags : Array<string> = ["./assets/images/Flag_of_the_United_Kingdom.svg","./assets/images/Flag_of_France.svg"];
   libelleLength : number = 0;
   @Output() messageEvent = new EventEmitter<string>();
+  @Input('selectedProductId') selectedProductId !: number; 
 
   // formulaire
   @ViewChild('productForm') productForm!:NgForm ;
@@ -33,12 +34,25 @@ export class AddProductComponent implements OnInit
 
   ngOnInit(): void 
   {
-        // liste des mini articles
-        this.http.get(`${HttpClientHelper.baseURL}/produits`).subscribe(
-          (retrievedList:any) =>
-          {
-            this.produits = this.loadProduits(retrievedList);
-          });
+    if (this.selectedProductId >= 0)
+    {
+      // récupération du produit
+      this.http.get(`${HttpClientHelper.baseURL}/produit/${this.selectedProductId}`).subscribe(
+        (retrievedList:any) =>
+        {
+          this.selectedProduit = this.loadProduits(retrievedList)[0];
+          this.loadFormData();
+        });
+    }
+    else
+    {
+      // liste des produits
+      this.http.get(`${HttpClientHelper.baseURL}/produits`).subscribe(
+        (retrievedList:any) =>
+        {
+          this.produits = this.loadProduits(retrievedList);
+        });
+    }
   }
 
   // gestion fermeture modale

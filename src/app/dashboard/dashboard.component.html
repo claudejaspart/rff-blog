@@ -115,7 +115,7 @@
          <label class="mt-3 mb-1">Ajouter des liens vers des produits</label>
          <div class="d-flex flex-row mb-2 w-100 me-5" style="height: 30px;">
             <i class="bi bi-file-earmark-plus-fill fs-5 me-2 add-product-icon" (click)="toggleProductModal()"></i>
-            <app-add-product *ngIf="showProductModal" (messageEvent)="productModalState($event)"></app-add-product>
+            <app-add-product *ngIf="showProductModal" [selectedProductId]="currentIdProduct" (messageEvent)="productModalState($event)" ></app-add-product>
             <div class="d-flex flex-grow-1 ps-2 referenced-products-info">
                {{numberProducts}}&nbsp;
                <span *ngIf="numberProducts>1; else oneOrLess">
@@ -129,7 +129,6 @@
 
          <!-- liste des cartes produits -->
          <div class="p-2 w-100 h-50 referenced-products-list">
-
             <span *ngIf="hasProducts" class="d-flex m-0 p-0">
 
                <!-- carte -->
@@ -148,7 +147,6 @@
                <!-- fin carte-->
 
             </span>
-      
          </div>
 
       </div>
@@ -241,8 +239,7 @@
          </div>
       </div>
 
-      
-
+   
    </div>
 
 </form>
