@@ -213,9 +213,10 @@
          <!-- pièces jointes -->
          <label class="mt-2 mb-1">Ajouter une archive</label>
          <div class="d-flex flex-row mb-2 w-100 me-5" >
-            <i class="bi bi-file-earmark-arrow-up-fill fs-5 me-2 files-icon"></i>
-            <div class="d-flex flex-grow-1 ps-2 files-info">
-
+            <i class="bi bi-file-earmark-arrow-up-fill fs-5 me-2 files-icon add-zip" (click)="hiddenfileinput.click()"></i>
+            <input ngModel #hiddenfileinput name="zipFile" style="display: none;" type="file" (change)="chooseFile()" accept="zip,application/zip,application/x-zip,application/x-zip-compressed">
+            <div class="d-flex flex-grow-1 ps-2 files-info align-items-center">
+               {{filename}}
             </div>
          </div>
 

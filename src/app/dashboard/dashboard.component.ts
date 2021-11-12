@@ -66,6 +66,7 @@ export class DashboardComponent implements AfterViewInit, OnInit
   hasTags : boolean = false;
   newTagIndex : number = 0;
   previousInputTagLength : number = 0;
+  filename : string = "Aucun fichier sélectionné";
 
 
   // informations du formulaire
@@ -605,6 +606,19 @@ export class DashboardComponent implements AfterViewInit, OnInit
     return this.isFrench ? "fr" : "en";
   }
 
+  chooseFile()
+  {
+    let path = this.articleForm.form.controls["zipFile"].value;
+    if (path.length)
+    {
+      let filenameParts = path.split('\\');
+      this.filename = filenameParts[filenameParts.length - 1];
+    }
+    else 
+    {
+      this.filename = "Aucun fichier sélectionné";
+    }
+  }
 
 }
 
