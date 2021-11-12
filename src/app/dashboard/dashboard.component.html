@@ -182,33 +182,40 @@
          </div>
          
          <!-- tags -->
-         <label class="mt-2 mb-1">Tags séparés par une virgule</label>
-         <div class="d-flex flex-row mb-2 w-100 me-5" >
-            <i class="bi bi-pencil-square fs-5 me-2 tags-icon"></i>
-            <textarea class="d-flex flex-grow-1 ps-2 tags-info" rows="3"></textarea>
-         </div>
-
-         <!-- date de publication -->
-         <label class="mt-2 mb-1">Date de publication</label>
+         <label class="mt-2 mb-1">Ajouter un tag</label>
          <div class="d-flex flex-row mb-2 w-100 me-5" style="height: 30px;">
-            <i class="bi bi-calendar-week-fill fs-5 me-2 date-icon"></i>
-            <div class="d-flex flex-grow-1 ps-2 date-info"></div>
+            <i class="bi bi-pencil-square fs-5 me-2 tags-icon"></i>
+            <input type="text" class="d-flex flex-grow-1 ps-2 titre-info" list="alltags" (keyup.enter)="addTag()"  name="addtag" ngModel (ngModelChange)="autoAddTag()" #tagInput>
+            <span >
+               <datalist id="alltags">
+                  <option *ngFor="let tag of allTagsInSameLanguage">{{tag.libelle}}</option>
+               </datalist>
+            </span>
+         </div>
+         <div class="d-flex flex-row mb-2 w-100 me-5" >
+            <i class="bi bi-pencil-square fs-5 me-2 tags-icon invisible"></i>
+               <div class="d-flex flex-grow-1 ps-2 tags-info">
+                  <div >
+                     
+                     <!-- tag -->
+                        <span *ngFor="let currentTag of currentArticle.tags">
+                           <span class="badge rounded-pill bg-info text-dark me-1" *ngIf="currentTag.language == getCurrentLanguage()">
+                              {{currentTag.libelle}}
+                              <i class="bi bi-x-square delete-tag-icon" (click)="deleteTag(currentTag.idTag)"></i>
+                           </span>
+                        </span>
+                     <!-- fin tag -->
+                     
+                  </div> 
+            </div>
          </div>
 
          <!-- pièces jointes -->
-         <label class="mt-2 mb-1">Ajouter des pièces jointes :</label>
+         <label class="mt-2 mb-1">Ajouter une archive</label>
          <div class="d-flex flex-row mb-2 w-100 me-5" >
             <i class="bi bi-file-earmark-arrow-up-fill fs-5 me-2 files-icon"></i>
             <div class="d-flex flex-grow-1 ps-2 files-info">
-               <div>
-                  <!-- 3 fichiers sélectionnés :
-                  <br>
-                  <ul>
-                     <li>test.js</li>
-                     <li>code1.cpp</li>
-                     <li>moon.css</li>
-                  </ul> -->
-               </div>
+
             </div>
          </div>
 

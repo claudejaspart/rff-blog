@@ -204,7 +204,7 @@
    color : var(--tiny-icon-red);
 }
 
-.delete-product-icon:hover, .edit-product-icon:hover
+.delete-product-icon:hover,.delete-tag-icon:hover, .edit-product-icon:hover
 {
    cursor: pointer;
 }
@@ -257,14 +257,23 @@
 /* tags */
 .tags-icon
 {
-   color: var(--tertiary-yellow);
+   color: white;
 }
 
 .tags-info
 {
+   background-color: var(--header-and-footer-color);
    border-radius: 0px;
    color:black;
    resize: none;
+   height: 85px;
+}
+
+.delete-tag-icon
+{
+   top : 4px;
+   right: 7px;
+   color : black;
 }
 
 /* pieces jointes */
@@ -279,7 +288,7 @@
    font-weight: bold;
    background-color: var(--header-and-footer-color);
    overflow-y: auto;
-   height: 115px;
+   height: 32px;
 }
 
 /* video link */

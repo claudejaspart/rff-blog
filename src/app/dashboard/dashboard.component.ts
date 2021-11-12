@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, AfterViewInit, Input } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, OnInit, Input , ChangeDetectorRef} from '@angular/core';
 import * as ClassicEditor  from '@ckeditor/ckeditor5-build-classic';
 import { HttpClient } from '@angular/common/http';
 
@@ -25,7 +25,7 @@ export class HttpClientHelper
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements AfterViewInit 
+export class DashboardComponent implements AfterViewInit, OnInit
 {
   // rich text editor
   public Editor = ClassicEditor;
@@ -42,6 +42,9 @@ export class DashboardComponent implements AfterViewInit
   // formulaire
   @ViewChild('currentForm') articleForm!:NgForm ;
 
+  // Input nouveau tag
+  @ViewChild('tagInput') tagInput !: ElementRef
+
   
  
   // variables diverses
@@ -56,10 +59,14 @@ export class DashboardComponent implements AfterViewInit
   currentArticle !: Article;
   miniArticles: Array<MiniArticle> = [];
   filteredMiniArticles : Array<MiniArticle> = [];
-  allTags : Array<MiniTag> = [];
-  allTagsInSameLanguage : Array<MiniTag> = [];
+  allTags : Array<Tag> = [];
+  allTagsInSameLanguage : Array<Tag> = [];
   currentProducts : Array<Produit> = [];
   currentIdProduct : number = -1;
+  hasTags : boolean = false;
+  newTagIndex : number = 0;
+  previousInputTagLength : number = 0;
+
 
   // informations du formulaire
   level : number = 0;
@@ -74,7 +81,13 @@ export class DashboardComponent implements AfterViewInit
   previousIndex : number = -1;
   currentIndex : number = -1;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private changeDetection: ChangeDetectorRef) {}
+
+  ngOnInit(): void 
+  {
+      // initialisation d'un article vide
+      this.currentArticle = this.createEmptyArticle();
+  }
 
   ngAfterViewInit(): void 
   {
@@ -91,10 +104,6 @@ export class DashboardComponent implements AfterViewInit
 
       // liste de tous les tags pour le filtrage
       this.http.get(`${HttpClientHelper.baseURL}/alltags`).subscribe((retrievedList:any) => this.loadFilterTags(retrievedList));
-  
-      // initialisation d'un article vide
-      this.currentArticle = this.createEmptyArticle();
-
     }
 
   resizePostsLists():void
@@ -162,7 +171,8 @@ export class DashboardComponent implements AfterViewInit
     let allFilterTags = [] as any;
     [...tags].forEach(el => 
     {
-      let currentTag = new MiniTag(
+      let currentTag = new Tag(
+        el.idTag,
         el.libelle,
         el.language
       );
@@ -170,7 +180,7 @@ export class DashboardComponent implements AfterViewInit
     });
 
     this.allTags = allFilterTags;
-    this.loadFilterTagsInGivenLanguage(1);
+    this.loadFilterTagsInGivenLanguage(this.isFrench);
   }
 
   /* affichage modale nouveau produit */
@@ -399,6 +409,7 @@ export class DashboardComponent implements AfterViewInit
     {
 
       let currentTag = new Tag(
+        el.idTag,
         el.libelle,
         el.language
       );
@@ -456,7 +467,7 @@ export class DashboardComponent implements AfterViewInit
       this.currentProducts = [];
       this.numberProducts = 0;
       this.hasProducts = false;
-      return [];
+      return null;
     }
   }
 
@@ -507,8 +518,93 @@ export class DashboardComponent implements AfterViewInit
   createEmptyArticle()
   {
     this.currentIdProduct = -1;
-    return new Article(-1, "",0,[],[],[]);
+    return new Article(-1, "",0,[new SubArticle(-1,"","","","","en"),new SubArticle(-1,"","","","","fr")],[],[]);
   }
+
+  autoAddTag()
+  {
+    let currentInputTagLength = this.tagInput.nativeElement.value.length;
+
+    if ( (currentInputTagLength - this.previousInputTagLength) > 1 )
+      this.addTag();
+    else
+      this.previousInputTagLength = currentInputTagLength;
+
+  }
+
+  addTag()
+  {
+    
+    let tagValue = this.tagInput.nativeElement.value;
+    
+    if (!this.ifTagExistsInArticle(tagValue))
+    {
+      let existingTagArray = this.getTagInAllTags(tagValue);
+
+      if (existingTagArray.length)
+      {
+        this.removeFromAllTags(existingTagArray[0].idTag);
+        this.addTagToArticle(existingTagArray[0]);
+      }
+      else
+      {
+        let tagId = this.getNewTagId();
+        let taglanguage = this.getCurrentLanguage();
+        this.addTagToArticle(new Tag(tagId, tagValue, taglanguage));
+      }
+    }
+
+    this.tagInput.nativeElement.value = "";
+  }
+
+  getNewTagId() : number
+  {
+    this.newTagIndex -= 1;
+    return this.newTagIndex;
+  }
+
+  ifTagExistsInArticle(tagValue : string)
+  {
+    return (this.currentArticle.tags.filter(t => t.libelle.toLowerCase() === tagValue.toLowerCase())).length > 0;
+  }
+
+  getTagInAllTags(tagValue : string)
+  {
+    return this.allTags.filter(t => t.libelle.toLowerCase() === tagValue.toLowerCase());
+  }
+
+  addTagToArticle(newTag : Tag)
+  {
+    this.currentArticle.tags.push(newTag);
+  }
+
+  removeFromAllTags(currentTagId : number)
+  {
+    for (let i=0;i<this.allTags.length; i++)
+    {
+      if (this.allTags[i].idTag == currentTagId)
+      {
+        this.allTags.splice(i,1);
+      }
+    }
+  }
+
+  deleteTag(idTag : number)
+  {
+    for(let i=0; i<this.currentArticle.tags.length; i++)
+    {
+      if (this.currentArticle.tags[i].idTag === idTag)
+      {
+        this.currentArticle.tags.splice(i,1);
+      }
+    }
+  }
+
+  getCurrentLanguage() : string
+  {
+    return this.isFrench ? "fr" : "en";
+  }
+
 
 }
 
