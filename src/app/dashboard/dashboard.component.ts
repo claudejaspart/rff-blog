@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, OnInit, Input , ChangeDetectorRef} from '@angular/core';
 import * as ClassicEditor  from '@ckeditor/ckeditor5-build-classic';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEventType } from '@angular/common/http';
 
 // imports article complet
 import { Article } from '../models/Article';
@@ -67,7 +67,7 @@ export class DashboardComponent implements AfterViewInit, OnInit
   newTagIndex : number = 0;
   previousInputTagLength : number = 0;
   filename : string = "Aucun fichier sélectionné";
-
+  archive !: File
 
   // informations du formulaire
   level : number = 0;
@@ -261,15 +261,20 @@ export class DashboardComponent implements AfterViewInit, OnInit
   /* selection de la langue */
   selectLanguage(event: Event)
   {
+    // maj de la langue
     this.isFrench = parseInt((<HTMLSelectElement>event.target).value);
+
+    // changement langue des tags dans la combobox de filtre
     this.loadFilterTagsInGivenLanguage(this.isFrench);
+
+    // affiche les données de l'article dans le formulaire
     this.displayArticle();
   }
 
   /* selection du niveau */
   selectLevel(event: Event)
   {
-    this.level = parseInt((<HTMLSelectElement>event.target).value);
+    this.currentArticle.level = parseInt((<HTMLSelectElement>event.target).value);
   }
 
   /* fonctions de filtrages */
@@ -395,6 +400,7 @@ export class DashboardComponent implements AfterViewInit, OnInit
             art[0].idArticle, 
             art[0].datePublication, 
             art[0].level, 
+            art[0].archive,
             this.loadSubArticles(art[0].subArticles),
             this.loadTags(art[0].tags),
             this.loadProduits(art[0].produits)
@@ -492,9 +498,34 @@ export class DashboardComponent implements AfterViewInit, OnInit
 
 
   /* fonctions en rapport avec le formulaire */
-  sendArticle(currentForm : NgForm)
+  sendArticle()
   {
-    //console.log(currentForm);
+    console.log("creating an article ...");
+    
+    // éléments à envoyer
+    let fd = new FormData();
+    fd.append('article', JSON.stringify(this.currentArticle));
+    if (this.archive)
+      fd.append('zip', this.archive, this.archive.name);
+
+    if (this.currentArticle.idArticle < 0)
+    {
+        // création d'un nouvel article
+        this.http
+        .post(`${HttpClientHelper.baseURL}/article`,fd,{responseType:'json',observe:'events'})
+        .subscribe(event => 
+        {
+          if (event.type === HttpEventType.Response && event.status === 200)
+          {
+              console.log(event)
+          }
+        });  
+    }
+    else
+    {
+
+    }
+
   }
 
   /* maj les informations dans le formulaire */
@@ -504,7 +535,8 @@ export class DashboardComponent implements AfterViewInit, OnInit
     {
       this.articleForm.controls['titre'].setValue(this.currentArticle.subArticles[this.isFrench].titre);
       this.articleForm.controls['description'].setValue(this.currentArticle.subArticles[this.isFrench].description);
-      this.articleForm.controls['richTextContent'].setValue(this.currentArticle.subArticles[this.isFrench].richTextData);
+      this.articleForm.controls['richtext'].setValue(this.currentArticle.subArticles[this.isFrench].richTextData);
+      this.articleForm.controls['videolink'].setValue(this.currentArticle.subArticles[this.isFrench].videoLink);
     }
   }
 
@@ -519,7 +551,7 @@ export class DashboardComponent implements AfterViewInit, OnInit
   createEmptyArticle()
   {
     this.currentIdProduct = -1;
-    return new Article(-1, "",0,[new SubArticle(-1,"","","","","en"),new SubArticle(-1,"","","","","fr")],[],[]);
+    return new Article(-1, "",0,"",[new SubArticle(-1,"","","","","en"),new SubArticle(-1,"","","","","fr")],[],[]);
   }
 
   autoAddTag()
@@ -606,18 +638,32 @@ export class DashboardComponent implements AfterViewInit, OnInit
     return this.isFrench ? "fr" : "en";
   }
 
-  chooseFile()
+  chooseFile(event : Event)
   {
-    let path = this.articleForm.form.controls["zipFile"].value;
-    if (path.length)
-    {
-      let filenameParts = path.split('\\');
-      this.filename = filenameParts[filenameParts.length - 1];
-    }
-    else 
-    {
-      this.filename = "Aucun fichier sélectionné";
-    }
+    // récupération du fichier
+    const target = event.target as HTMLInputElement;
+    this.archive = (target.files as FileList)[0];
+    this.filename = this.archive ? this.archive.name : "Aucun fichier sélectionné";
+  }
+
+  updateRichText()
+  {
+    this.currentArticle.subArticles[this.isFrench].richTextData=this.articleForm.form.controls["richtext"].value;
+  }
+
+  updateTitle()
+  {
+    this.currentArticle.subArticles[this.isFrench].titre=this.articleForm.form.controls["titre"].value;
+  }
+
+  updateDescription()
+  {
+    this.currentArticle.subArticles[this.isFrench].description=this.articleForm.form.controls["description"].value;
+  }
+
+  updateVideoLink()
+  {
+    this.currentArticle.subArticles[this.isFrench].videoLink=this.articleForm.form.controls["videolink"].value;
   }
 
 }
