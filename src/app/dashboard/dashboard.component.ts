@@ -474,7 +474,7 @@ export class DashboardComponent implements AfterViewInit, OnInit
       this.currentProducts = [];
       this.numberProducts = 0;
       this.hasProducts = false;
-      return null;
+      return [];
     }
   }
 
@@ -500,8 +500,6 @@ export class DashboardComponent implements AfterViewInit, OnInit
   /* fonctions en rapport avec le formulaire */
   sendArticle()
   {
-    console.log("creating an article ...");
-    
     // éléments à envoyer
     let fd = new FormData();
     fd.append('article', JSON.stringify(this.currentArticle));
@@ -523,9 +521,18 @@ export class DashboardComponent implements AfterViewInit, OnInit
     }
     else
     {
-
+        // update d'un nouvel article
+        this.http
+        .put(`${HttpClientHelper.baseURL}/article`,fd,{responseType:'json',observe:'events'})
+        .subscribe(event => 
+        {
+          if (event.type === HttpEventType.Response && event.status === 200)
+          {
+              console.log("maj article");
+              console.log(event);
+          }
+        }); 
     }
-
   }
 
   /* maj les informations dans le formulaire */
